@@ -1,0 +1,12 @@
+language: ruby
+sudo: false
+rvm:
+- 2.6.2
+addons:
+  apt:
+    packages:
+    - libcurl4-openssl-dev
+script: bundle exec rake test
+env:
+  global:
+  - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
