@@ -1,0 +1,15 @@
+title: ROOCS
+author: Ag Stephens
+email: ag.stephens@stfc.ac.uk
+description: >- # this means to ignore newlines until "baseurl:"
+  roocs - remote operations on climate simulations
+
+github_username:  roocs
+# Build settings
+theme: minima
+
+header_pages:
+  - about.md
+  - overview.md
+  - releases.md
+  - contact.md
