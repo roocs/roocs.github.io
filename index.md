@@ -1,7 +1,7 @@
 ---
 layout: home
 ---
-ROOCS is a project to develop data services in support of the [Copernicus Climate Change Service (C3S)](https://climate.copernicus.eu/). Led by the STFC [Centre for Environmental Data Analysis](www.ceda.ac.uk),
+ROOCS is a project to develop data services in support of the [Copernicus Climate Change Service (C3S)](https://climate.copernicus.eu/). Led by the STFC [Centre for Environmental Data Analysis](https://www.ceda.ac.uk),
 ROOCS is providing a collection of tools to provide *data-aware* processing services
 of climate projections from CMIP5 and CORDEX.
 
