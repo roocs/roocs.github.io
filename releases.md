@@ -9,7 +9,7 @@ permalink: /releases/
 
 Our first release for a production service.
 
-* rooki: [v0.2.1](https://github.com/roocs/rooki/releases/tag/v0.2.1)
+* rooki: [v0.2.2](https://github.com/roocs/rooki/releases/tag/v0.2.2)
 * rook:
 * daops:
 * clisops:
