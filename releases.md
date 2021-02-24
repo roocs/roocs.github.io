@@ -5,7 +5,7 @@ permalink: /releases/
 ---
 
 
-## Autumn Release v0.2.0
+## Autumn 2020 Release v0.2.0
 
 Our first release for a production service.
 
