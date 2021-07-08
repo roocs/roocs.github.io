@@ -4,6 +4,19 @@ title: Releases
 permalink: /releases/
 ---
 
+## June 2021 Release v0.6.0
+
+Updated production release used by Climate Data Store.
+
+Release date: 18.06.2021
+
+* rooki: [v0.3.2](https://github.com/roocs/rooki/releases/tag/v0.3.2)
+* rook: [v0.6.1](https://github.com/roocs/rook/releases/tag/v0.6.1)
+* daops: [v0.6.0](https://github.com/roocs/daops/releases/tag/v0.6.0)
+* clisops: [v0.6.5](https://github.com/roocs/clisops/releases/tag/v0.6.5)
+* roocs-utils: [v0.4.2](https://github.com/roocs/roocs-utils/releases/tag/v0.4.2)
+
+
 ## April 2021 Release v0.5.0
 
 Updated production release used by Climate Data Store.
