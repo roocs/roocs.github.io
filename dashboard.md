@@ -5,5 +5,5 @@ permalink: /dashboard/
 ---
 
 Usage Statistics:
-* ![Current](/images/roocs.png)
-* ![March-June 2021](/images/roocs.png)
+* [June 2021](/downloads/dashboard/2021/2021-06-01-dashboard.html)
+* [May 2021](/downloads/dashboard/2021/2021-05-01-dashboard.html)
