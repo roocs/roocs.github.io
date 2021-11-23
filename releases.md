@@ -4,6 +4,22 @@ title: Releases
 permalink: /releases/
 ---
 
+## November 2021 Release v0.7.0
+
+Updated production release used by Climate Data Store.
+
+New Features:
+* Allows temporal subsetting with selected months and days (e.g. Jan, Feb, Mar).
+
+Release date: 08.11.2021
+
+* rooki: [v0.3.3](https://github.com/roocs/rooki/releases/tag/v0.3.3)
+* rook: [v0.7.0](https://github.com/roocs/rook/releases/tag/v0.7.0)
+* daops: [v0.7.0](https://github.com/roocs/daops/releases/tag/v0.7.0)
+* clisops: [v0.7.0](https://github.com/roocs/clisops/releases/tag/v0.7.0)
+* roocs-utils: [v0.5.0](https://github.com/roocs/roocs-utils/releases/tag/v0.5.0)
+
+
 ## June 2021 Release v0.6.0
 
 Updated production release used by Climate Data Store.
