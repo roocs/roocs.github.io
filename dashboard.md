@@ -5,6 +5,9 @@ permalink: /dashboard/
 ---
 
 Usage Statistics:
+* [Dec 2021](/downloads/dashboard/2021/2021-12-01-dashboard.html)
+  * [CEDA](/downloads/dashboard/2021/2021-12-01-dashboard_ceda.html)
+  * [DKRZ](/downloads/dashboard/2021/2021-12-01-dashboard_dkrz.html)
 * [Nov 2021](/downloads/dashboard/2021/2021-11-01-dashboard.html)
   * [CEDA](/downloads/dashboard/2021/2021-11-01-dashboard_ceda.html)
   * [DKRZ](/downloads/dashboard/2021/2021-11-01-dashboard_dkrz.html)
