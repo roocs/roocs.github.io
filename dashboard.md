@@ -18,7 +18,9 @@ Monthly reports:
 ## 2021
 
 Year report:
-
+* [2021](/downloads/dashboard/2021/2021-dashboard.html)
+  * [CEDA](/downloads/dashboard/2021/2021-dashboard_ceda.html)
+  * [DKRZ](/downloads/dashboard/2021/2021-dashboard_dkrz.html)
 
 Monthly reports:
 
