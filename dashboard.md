@@ -22,6 +22,11 @@ Year report:
   * [CEDA](/downloads/dashboard/2021/2021-dashboard_ceda.html)
   * [DKRZ](/downloads/dashboard/2021/2021-dashboard_dkrz.html)
 
+* [July - December 2021](/downloads/dashboard/2021/2021-jul-dec-dashboard.html)
+  * [CEDA](/downloads/dashboard/2021/2021-jul-dec-dashboard_ceda.html)
+  * [DKRZ](/downloads/dashboard/2021/2021-jul-dec-dashboard_dkrz.html)
+  * Total transfer (subsetted data): 11 TB
+
 Monthly reports:
 
 * [Dec 2021](/downloads/dashboard/2021/2021-12-01-dashboard.html)
