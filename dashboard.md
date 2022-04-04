@@ -10,6 +10,11 @@ permalink: /dashboard/
 
 Monthly reports:
 
+* [Mar 2022](/downloads/dashboard/2022/2022-03-01-dashboard.html)
+  * [CEDA](/downloads/dashboard/2022/2022-03-01-dashboard_ceda.html)
+  * [IPSL](/downloads/dashboard/2022/2022-03-01-dashboard_ipsl.html)
+  * [DKRZ](/downloads/dashboard/2022/2022-03-01-dashboard_dkrz.html)
+
 * [Feb 2022](/downloads/dashboard/2022/2022-02-01-dashboard.html)
   * [CEDA](/downloads/dashboard/2022/2022-02-01-dashboard_ceda.html)
   * [IPSL](/downloads/dashboard/2022/2022-02-01-dashboard_ipsl.html)
