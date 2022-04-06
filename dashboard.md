@@ -14,14 +14,16 @@ Quarterly reports:
   * [CEDA](/downloads/dashboard/2022/2022-q1-dashboard_ceda.html)
   * [IPSL](/downloads/dashboard/2022/2022-q1-dashboard_ipsl.html)
   * [DKRZ](/downloads/dashboard/2022/2022-q1-dashboard_dkrz.html)
-  * Total requests:
-    * DKRZ: 12527, 53038, 27911
-    * IPSL: 1318, 8255, 9938
-    * CEDA: 5730, 241, 88
-  * Total transfer (subsetted data):
-    * DKRZ: 848 GB, 1662 GB, 1425 GB
-    * IPSL: 68 GB, 306 GB, 879 GB
-    * CEDA: ?, 10 GB, 8 GB
+  * Number of requests:
+    * Total: 119046
+      * DKRZ: 93476
+      * IPSL: 19511
+      * CEDA: 6059
+  * Data transfer (subsetted data):
+    * Total: 5608 GB
+      * DKRZ: 3935 GB
+      * IPSL: 1253 GB
+      * CEDA: 420 GB
   * Max Concurrency: 16
 
 Monthly reports:
