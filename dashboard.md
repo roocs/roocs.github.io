@@ -28,9 +28,9 @@ Quarterly reports:
 
 Monthly reports:
 
-* [Apr 2022](/downloads/dashboard/2022/2022-04-01-dashboard.html)
+* Apr 2022
   * [CEDA](/downloads/dashboard/2022/2022-04-01-dashboard_ceda.html)
-  * [IPSL](/downloads/dashboard/2022/2022-04-01-dashboard_ipsl.html)
+  * IPSL
   * [DKRZ](/downloads/dashboard/2022/2022-04-01-dashboard_dkrz.html)
 
 * [Mar 2022](/downloads/dashboard/2022/2022-03-01-dashboard.html)
