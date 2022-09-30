@@ -42,6 +42,11 @@ Quarterly reports:
 
 Monthly reports:
 
+* August 2022
+  * CEDA
+  * [IPSL](/downloads/dashboard/2022/2022-08-01-dashboard_ipsl.html)
+  * [DKRZ](/downloads/dashboard/2022/2022-08-01-dashboard_dkrz.html)
+
 * July 2022
   * CEDA
   * [IPSL](/downloads/dashboard/2022/2022-07-01-dashboard_ipsl.html)
