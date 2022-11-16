@@ -10,6 +10,20 @@ permalink: /dashboard/
 
 Quarterly reports:
 
+* July - September 2022
+  * CEDA
+  * [IPSL](/downloads/dashboard/2022/2022-q3-dashboard_ipsl.html)
+  * [DKRZ](/downloads/dashboard/2022/2022-q3-dashboard_dkrz.html)
+  * Number of requests:
+    * Total: 64343
+      * DKRZ: 32887 
+      * IPSL: 31456 
+  * Data transfer (subsetted data):
+    * Total: 4900 GB
+      * DKRZ: 2560 GB 
+      * IPSL: 2340 GB
+  * Max Concurrency: 21
+
 * April - June 2022
   * CEDA
   * [IPSL](/downloads/dashboard/2022/2022-q2-dashboard_ipsl.html)
@@ -41,6 +55,15 @@ Quarterly reports:
   * Max Concurrency: 16
 
 Monthly reports:
+* September 2022
+  * CEDA
+  * [IPSL](/downloads/dashboard/2022/2022-09-01-dashboard_ipsl.html)
+  * [DKRZ](/downloads/dashboard/2022/2022-09-01-dashboard_dkrz.html)
+
+* August 2022
+  * CEDA
+  * [IPSL](/downloads/dashboard/2022/2022-08-01-dashboard_ipsl.html)
+  * [DKRZ](/downloads/dashboard/2022/2022-08-01-dashboard_dkrz.html)
 
 * July 2022
   * CEDA
