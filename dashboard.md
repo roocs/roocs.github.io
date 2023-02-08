@@ -6,6 +6,19 @@ permalink: /dashboard/
 
 # Usage Statistics
 
+## 2023
+
+Quarterly reports:
+
+
+Monthly reports:
+
+* January 2023
+   * CEDA
+   * [IPSL](/downloads/dashboard/2023/2023-01-dashboard_ipsl.html)
+   * [DKRZ](/downloads/dashboard/2023/2022-01-dashboard_dkrz.html)
+
+
 ## 2022
 
 Quarterly reports:
@@ -69,10 +82,11 @@ Quarterly reports:
   * Max Concurrency: 16
 
 Monthly reports:
+
  * December 2022
-  * CEDA
-  * [IPSL](/downloads/dashboard/2022/2022-12-01-dashboard_ipsl.html)
-  * [DKRZ](/downloads/dashboard/2022/2022-12-01-dashboard_dkrz.html)
+   * CEDA
+   * [IPSL](/downloads/dashboard/2022/2022-12-01-dashboard_ipsl.html)
+   * [DKRZ](/downloads/dashboard/2022/2022-12-01-dashboard_dkrz.html)
 
 * November 2022
   * CEDA
