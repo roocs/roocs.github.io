@@ -4,6 +4,58 @@ title: Releases
 permalink: /releases/
 ---
 
+## February 2023 Release v0.9.2
+
+Changes:
+* Added support for IPCC-Atlas data.
+* First productive version of concat operator.
+
+Release date: 02.02.2023
+
+* rooki: [v0.4.0](https://github.com/roocs/rooki/releases/tag/v0.4.0)
+* rook: [v0.9.2](https://github.com/roocs/rook/releases/tag/v0.9.2)
+* daops: [v0.8.1](https://github.com/roocs/daops/releases/tag/v0.8.1)
+* clisops: [v0.9.5](https://github.com/roocs/clisops/releases/tag/v0.9.5)
+* roocs-utils: [v0.6.4](https://github.com/roocs/roocs-utils/releases/tag/v0.6.4)
+
+## December 2022 Release v0.9.1
+
+Fixes for "subset_level_by_values" operation.
+
+Release date: 14.12.2022
+
+* rooki: [v0.4.0](https://github.com/roocs/rooki/releases/tag/v0.4.0)
+* rook: [v0.9.1](https://github.com/roocs/rook/releases/tag/v0.9.1)
+* daops: [v0.8.1](https://github.com/roocs/daops/releases/tag/v0.8.1)
+* clisops: [v0.9.5](https://github.com/roocs/clisops/releases/tag/v0.9.5)
+* roocs-utils: [v0.6.3](https://github.com/roocs/roocs-utils/releases/tag/v0.6.3)
+
+
+## September 2022 Release v0.9.0
+
+Added initial version of concat operator.
+
+Release date: 27.09.2022
+
+* rooki: [v0.4.0](https://github.com/roocs/rooki/releases/tag/v0.4.0)
+* rook: [v0.9.0](https://github.com/roocs/rook/releases/tag/v0.9.0)
+* daops: [v0.8.1](https://github.com/roocs/daops/releases/tag/v0.8.1)
+* clisops: [v0.9.2](https://github.com/roocs/clisops/releases/tag/v0.9.2)
+* roocs-utils: [v0.6.3](https://github.com/roocs/roocs-utils/releases/tag/v0.6.3)
+
+## April 2022 Release v0.8.0
+
+Added "average" and "average_time" operators.
+
+Release date: 15.04.2022
+
+* rooki: [v0.4.0](https://github.com/roocs/rooki/releases/tag/v0.4.0)
+* rook: [v0.8.0](https://github.com/roocs/rook/releases/tag/v0.8.0)
+* daops: [v0.8.0](https://github.com/roocs/daops/releases/tag/v0.8.0)
+* clisops: [v0.9.0](https://github.com/roocs/clisops/releases/tag/v0.9.0)
+* roocs-utils: [v0.5.0](https://github.com/roocs/roocs-utils/releases/tag/v0.5.0)
+
+
 ## November 2021 Release v0.7.0
 
 Updated production release used by Climate Data Store.
