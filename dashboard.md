@@ -6,6 +6,38 @@ permalink: /dashboard/
 
 # Usage Statistics
 
+## 2023
+
+### Quarterly reports
+
+* January - March 2023
+  * [IPSL](/downloads/dashboard/2023/2023-q1-dashboard_ipsl.html)
+  * [DKRZ](/downloads/dashboard/2023/2023-q1-dashboard_dkrz.html)
+  * Number of requests:
+    * Total: 166838
+      * DKRZ: 98872
+      * IPSL: 67966
+  * Data transfer (subsetted data):
+    * Total: 26988 GB
+      * DKRZ: 15309 GB
+      * IPSL: 5339 + 4000 + 2340 = 11679 GB
+  * Max Concurrency: 34
+
+### Monthly reports
+
+* March 2023
+   * [IPSL](/downloads/dashboard/2023/2023-03-dashboard_ipsl.html)
+   * [DKRZ](/downloads/dashboard/2023/2023-03-dashboard_dkrz.html)
+
+* Feburary 2023
+   * [IPSL](/downloads/dashboard/2023/2023-02-dashboard_ipsl.html)
+   * [DKRZ](/downloads/dashboard/2023/2023-02-dashboard_dkrz.html)
+
+* January 2023
+   * [IPSL](/downloads/dashboard/2023/2023-01-dashboard_ipsl.html)
+   * [DKRZ](/downloads/dashboard/2023/2023-01-dashboard_dkrz.html)
+
+
 ## 2022
 
 Quarterly reports:
@@ -69,10 +101,11 @@ Quarterly reports:
   * Max Concurrency: 16
 
 Monthly reports:
+
  * December 2022
-  * CEDA
-  * [IPSL](/downloads/dashboard/2022/2022-12-01-dashboard_ipsl.html)
-  * [DKRZ](/downloads/dashboard/2022/2022-12-01-dashboard_dkrz.html)
+   * CEDA
+   * [IPSL](/downloads/dashboard/2022/2022-12-01-dashboard_ipsl.html)
+   * [DKRZ](/downloads/dashboard/2022/2022-12-01-dashboard_dkrz.html)
 
 * November 2022
   * CEDA
