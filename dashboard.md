@@ -15,13 +15,13 @@ permalink: /dashboard/
   * [DKRZ](/downloads/dashboard/2023/2023-q1-dashboard_dkrz.html)
   * Number of requests:
     * Total:
-      * DKRZ:
+      * DKRZ: 98872
       * IPSL:
   * Data transfer (subsetted data):
     * Total:
-      * DKRZ:
+      * DKRZ: 15309 GB
       * IPSL:
-  * Max Concurrency: 
+  * Max Concurrency: 28
 
 ### Monthly reports
 
