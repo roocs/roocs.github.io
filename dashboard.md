@@ -10,6 +10,19 @@ permalink: /dashboard/
 
 ### Quarterly reports
 
+* April - June 2023
+  * [IPSL](/downloads/dashboard/2023/2023-q2-dashboard_ipsl.html)
+  * [DKRZ](/downloads/dashboard/2023/2023-q2-dashboard_dkrz.html)
+  * Number of requests:
+    * Total: 155358
+      * DKRZ: 80436
+      * IPSL: 74922
+  * Data transfer (subsetted data):
+    * Total: 23126 GB
+      * DKRZ: 11427 GB
+      * IPSL: 5088 + 3453 + 3158 = 11699 GB
+  * Max Concurrency: 40
+
 * January - March 2023
   * [IPSL](/downloads/dashboard/2023/2023-q1-dashboard_ipsl.html)
   * [DKRZ](/downloads/dashboard/2023/2023-q1-dashboard_dkrz.html)
@@ -24,6 +37,18 @@ permalink: /dashboard/
   * Max Concurrency: 34
 
 ### Monthly reports
+
+* June 2023
+   * [IPSL](/downloads/dashboard/2023/2023-06-dashboard_ipsl.html)
+   * [DKRZ](/downloads/dashboard/2023/2023-06-dashboard_dkrz.html)
+
+* May 2023
+   * [IPSL](/downloads/dashboard/2023/2023-05-dashboard_ipsl.html)
+   * [DKRZ](/downloads/dashboard/2023/2023-05-dashboard_dkrz.html)
+
+* April 2023
+   * [IPSL](/downloads/dashboard/2023/2023-04-dashboard_ipsl.html)
+   * [DKRZ](/downloads/dashboard/2023/2023-04-dashboard_dkrz.html)
 
 * March 2023
    * [IPSL](/downloads/dashboard/2023/2023-03-dashboard_ipsl.html)
