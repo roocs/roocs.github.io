@@ -38,6 +38,14 @@ permalink: /dashboard/
 
 ### Monthly reports
 
+* August 2023
+   * [IPSL](/downloads/dashboard/2023/2023-08-dashboard_ipsl.html)
+   * [DKRZ](/downloads/dashboard/2023/2023-08-dashboard_dkrz.html)
+
+* July 2023
+   * [IPSL](/downloads/dashboard/2023/2023-07-dashboard_ipsl.html)
+   * [DKRZ](/downloads/dashboard/2023/2023-07-dashboard_dkrz.html)
+
 * June 2023
    * [IPSL](/downloads/dashboard/2023/2023-06-dashboard_ipsl.html)
    * [DKRZ](/downloads/dashboard/2023/2023-06-dashboard_dkrz.html)
