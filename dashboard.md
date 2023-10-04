@@ -18,8 +18,8 @@ permalink: /dashboard/
       * DKRZ: 128955
       * IPSL:  64443
   * Data transfer (subsetted data):
-    * Total: 15502 GB
-      * DKRZ:  3030 + 4887 + 2500 (?) = 10417 GB
+    * Total: 15605 GB
+      * DKRZ:  3030 + 4887 + 2603 = 10520 GB
       * IPSL: 2322 + 1856 + 907 = 5085 GB
   * Max Concurrency: 31
 
