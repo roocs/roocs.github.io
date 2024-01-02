@@ -14,14 +14,14 @@ permalink: /dashboard/
   * [IPSL](/downloads/dashboard/2023/2023-q4-dashboard_ipsl.html)
   * [DKRZ](/downloads/dashboard/2023/2023-q4-dashboard_dkrz.html)
   * Number of requests:
-    * Total: 
-      * DKRZ: 
-      * IPSL:  
+    * Total: 222841
+      * DKRZ: 178192
+      * IPSL:  44649
   * Data transfer (subsetted data):
-    * Total:  GB
-      * DKRZ:  GB
-      * IPSL:  GB
-  * Max Concurrency: 
+    * Total: 16200 GB
+      * DKRZ:  14799 GB
+      * IPSL:  901 + 500 (?) = 1401 GB
+  * Max Concurrency: 31
 
 * July - September 2023
   * [IPSL](/downloads/dashboard/2023/2023-q3-dashboard_ipsl.html)
