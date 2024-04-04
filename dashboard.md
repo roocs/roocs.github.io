@@ -6,6 +6,39 @@ permalink: /dashboard/
 
 # Usage Statistics
 
+## 2024
+
+### Quarterly reports
+
+* January - March 2024
+  * [all](/downloads/dashboard/2024/2024-q1-dashboard_all.html)
+  * [IPSL](/downloads/dashboard/2024/2024-q1-dashboard_ipsl.html)
+  * [DKRZ](/downloads/dashboard/2024/2024-q1-dashboard_dkrz.html)
+  * Number of requests:
+    * Total: 342052
+      * DKRZ: 268249
+      * IPSL:  73803
+  * Data transfer (subsetted data):
+    * Total: 14.888 TB
+      * DKRZ: 11.957 TB
+      * IPSL: 875 GB + 1309 GB + 747 GB = 2.931 TB
+  * Max Concurrency: 23
+
+### Monthly reports
+
+* March 2024
+   * [IPSL](/downloads/dashboard/2024/2024-03-dashboard_ipsl.html)
+   * [DKRZ](/downloads/dashboard/2024/2024-03-dashboard_dkrz.html)
+
+* Feburary 2024
+   * [IPSL](/downloads/dashboard/2024/2024-02-dashboard_ipsl.html)
+   * [DKRZ](/downloads/dashboard/2024/2024-02-dashboard_dkrz.html)
+
+* January 2024
+   * [IPSL](/downloads/dashboard/2024/2024-01-dashboard_ipsl.html)
+   * [DKRZ](/downloads/dashboard/2024/2024-01-dashboard_dkrz.html)
+
+
 ## 2023
 
 ### Quarterly reports
