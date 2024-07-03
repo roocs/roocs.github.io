@@ -10,6 +10,20 @@ permalink: /dashboard/
 
 ### Quarterly reports
 
+* April - June 2024
+  * [all](/downloads/dashboard/2024/2024-q2-dashboard_all.html)
+  * [IPSL](/downloads/dashboard/2024/2024-q2-dashboard_ipsl.html)
+  * [DKRZ](/downloads/dashboard/2024/2024-q2-dashboard_dkrz.html)
+  * Number of requests:
+    * Total: 
+      * DKRZ: 
+      * IPSL:  
+  * Data transfer (subsetted data):
+    * Total: 
+      * DKRZ: 
+      * IPSL: 
+  * Max Concurrency:
+
 * January - March 2024
   * [all](/downloads/dashboard/2024/2024-q1-dashboard_all.html)
   * [IPSL](/downloads/dashboard/2024/2024-q1-dashboard_ipsl.html)
@@ -25,6 +39,18 @@ permalink: /dashboard/
   * Max Concurrency: 23
 
 ### Monthly reports
+
+* June 2024
+   * [IPSL](/downloads/dashboard/2024/2024-06-dashboard_ipsl.html)
+   * [DKRZ](/downloads/dashboard/2024/2024-06-dashboard_dkrz.html)
+
+* May 2024
+   * [IPSL](/downloads/dashboard/2024/2024-05-dashboard_ipsl.html)
+   * [DKRZ](/downloads/dashboard/2024/2024-05-dashboard_dkrz.html)
+
+* April 2024
+   * [IPSL](/downloads/dashboard/2024/2024-04-dashboard_ipsl.html)
+   * [DKRZ](/downloads/dashboard/2024/2024-04-dashboard_dkrz.html)
 
 * March 2024
    * [IPSL](/downloads/dashboard/2024/2024-03-dashboard_ipsl.html)
