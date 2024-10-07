@@ -14,7 +14,7 @@ permalink: /dashboard/
   * [IPSL](/downloads/dashboard/2024/2024-q3-dashboard_ipsl.html)
   * [DKRZ](/downloads/dashboard/2024/2024-q3-dashboard_dkrz.html)
   * Number of requests:
-    * Total: 61865
+    * Total: 345303
       * DKRZ: 82805 + 194361 + 37765 = 314931
       * IPSL: 19752 + 8620 +  (2000) = 30372
   * Data transfer (subsetted data):
