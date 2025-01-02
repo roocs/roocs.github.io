@@ -14,14 +14,14 @@ permalink: /dashboard/
   * [IPSL](/downloads/dashboard/2024/2024-q4-dashboard_ipsl.html)
   * [DKRZ](/downloads/dashboard/2024/2024-q4-dashboard_dkrz.html)
   * Number of requests:
-    * Total: 345303
-      * DKRZ: 82805 + 194361 + 37765 = 314931
-      * IPSL: 19752 + 8620 +  (2000) = 30372
+    * Total: 286071
+      * DKRZ: 269142
+      * IPSL:  16929
   * Data transfer (subsetted data):
-    * Total: 13.276 TB
-      * DKRZ: 4056 GB + 4685 GB + 2822 GB = 11.563 TB
-      * IPSL: 1338 GB + 235 GB + (140) GB = 1.713 TB
-  * Max Concurrency: 31
+    * Total: 14.012 TB
+      * DKRZ: 4208 GB + 2360 GB + 5867 GB =  12.435 TB
+      * IPSL: 367 GB + 1188 GB + 22 GB =  1.577 TB
+  * Max Concurrency: 40
 
 * July - September 2024
   * [IPSL](/downloads/dashboard/2024/2024-q3-dashboard_ipsl.html)
