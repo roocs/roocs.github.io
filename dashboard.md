@@ -11,6 +11,7 @@ permalink: /dashboard/
 ### Quarterly reports
 
 * October - December 2024
+  * [all](/downloads/dashboard/2024/2024-q4-dashboard_all.html)
   * [IPSL](/downloads/dashboard/2024/2024-q4-dashboard_ipsl.html)
   * [DKRZ](/downloads/dashboard/2024/2024-q4-dashboard_dkrz.html)
   * Number of requests:
