@@ -11,8 +11,8 @@ permalink: /dashboard/
 ### Quarterly reports
 
 * January - March 2024
-  * [IPSL](/downloads/dashboard/2025/2025-q1-dashboard_ipsl.html)
-  * [DKRZ](/downloads/dashboard/2025/2025-q1-dashboard_dkrz.html)
+  * [IPSL](/downloads/dashboard/2025/dashboard-2025-q1-ipsl.html)
+  * [DKRZ](/downloads/dashboard/2025/dashboard-2025-q1-dkrz.html)
   * Number of requests:
     * Total: 362556
       * DKRZ: 273494
