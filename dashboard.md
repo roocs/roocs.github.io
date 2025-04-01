@@ -10,7 +10,7 @@ permalink: /dashboard/
 
 ### Quarterly reports
 
-* January - March 2024
+* January - March 2025
   * [IPSL](/downloads/dashboard/2025/dashboard-2025-q1-ipsl.html)
   * [DKRZ](/downloads/dashboard/2025/dashboard-2025-q1-dkrz.html)
   * Number of requests:
