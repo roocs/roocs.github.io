@@ -1,0 +1,9 @@
+name: roocs
+channels:
+- conda-forge
+dependencies:
+- pip
+- python>=3.10,<3.13
+- pandoc
+# docs
+- mkdocs-material

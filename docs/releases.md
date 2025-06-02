@@ -1,9 +1,3 @@
----
-layout: page
-title: Releases
-permalink: /releases/
----
-
 ## February 2023 Release v0.9.2
 
 Changes:
