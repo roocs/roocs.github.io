@@ -8,7 +8,7 @@
 
 Contributions are welcome. Feel free to open a pull request with changes.
 
-### Running it Locally
+## Running it Locally
 
 It can be helpful to preview changes on your computer before opening a pull request. *ROOCS website* uses the [Jekyll static site generator](http://jekyllrb.com/). After forking or cloning the repository, perform the following steps to generate the site and preview it:
 
@@ -17,9 +17,28 @@ It can be helpful to preview changes on your computer before opening a pull requ
 - `bundle exec jekyll serve`
 - Point your browser at http://127.0.0.1:4000/
 
+### Use Docker as build environment
+
+Run this once to generate Gemfile.lock:
+```
+docker-compose run jekyll bundle install
+```
+
+Build image:
+```
+docker-compose build
+```
+
+Start service:
+```
+docker-compose up
+```
+
+Open http://localhost:4000
+
 ## Deployment
 
-Pull requests merged to the master branch are automatically deployed to the production website.
+Pull requests merged to the main branch are automatically deployed to the production website.
 
 ## License
 
