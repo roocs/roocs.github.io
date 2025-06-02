@@ -5,8 +5,8 @@
 ### Quarterly reports
 
 * January - March 2025
-  * [IPSL](/downloads/dashboard/2025/dashboard-2025-q1-ipsl.html)
-  * [DKRZ](/downloads/dashboard/2025/dashboard-2025-q1-dkrz.html)
+  * [IPSL](downloads/dashboard/2025/dashboard-2025-q1-ipsl.html)
+  * [DKRZ](downloads/dashboard/2025/dashboard-2025-q1-dkrz.html)
   * Number of requests:
     * Total: 362556
       * DKRZ: 273494
@@ -20,38 +20,38 @@
 ### Monthly reports
 
 * May 2025
-   * [IPSL](/downloads/dashboard/2025/2025-05-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2025/2025-05-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2025/2025-05-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2025/2025-05-dashboard_dkrz.html)
 
 * April 2025
-   * [IPSL](/downloads/dashboard/2025/2025-04-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2025/2025-04-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2025/2025-04-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2025/2025-04-dashboard_dkrz.html)
 
 * March 2025
-   * [IPSL](/downloads/dashboard/2025/2025-03-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2025/2025-03-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2025/2025-03-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2025/2025-03-dashboard_dkrz.html)
 
 * Feburary 2025
-   * [IPSL](/downloads/dashboard/2025/2025-02-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2025/2025-02-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2025/2025-02-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2025/2025-02-dashboard_dkrz.html)
 
 * January 2025
-   * [IPSL](/downloads/dashboard/2025/2025-01-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2025/2025-01-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2025/2025-01-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2025/2025-01-dashboard_dkrz.html)
 
 ## 2024
 
 January - December 2024:
-  * [all](/downloads/dashboard/2024/2024-dashboard_all.html)
-  * [IPSL](/downloads/dashboard/2024/2024-dashboard_ipsl.html)
-  * [DKRZ](/downloads/dashboard/2024/2024-dashboard_dkrz.html)
+  * [all](downloads/dashboard/2024/2024-dashboard_all.html)
+  * [IPSL](downloads/dashboard/2024/2024-dashboard_ipsl.html)
+  * [DKRZ](downloads/dashboard/2024/2024-dashboard_dkrz.html)
 
 ### Quarterly reports
 
 * October - December 2024
-  * [all](/downloads/dashboard/2024/2024-q4-dashboard_all.html)
-  * [IPSL](/downloads/dashboard/2024/2024-q4-dashboard_ipsl.html)
-  * [DKRZ](/downloads/dashboard/2024/2024-q4-dashboard_dkrz.html)
+  * [all](downloads/dashboard/2024/2024-q4-dashboard_all.html)
+  * [IPSL](downloads/dashboard/2024/2024-q4-dashboard_ipsl.html)
+  * [DKRZ](downloads/dashboard/2024/2024-q4-dashboard_dkrz.html)
   * Number of requests:
     * Total: 286071
       * DKRZ: 269142
@@ -63,8 +63,8 @@ January - December 2024:
   * Max Concurrency: 40
 
 * July - September 2024
-  * [IPSL](/downloads/dashboard/2024/2024-q3-dashboard_ipsl.html)
-  * [DKRZ](/downloads/dashboard/2024/2024-q3-dashboard_dkrz.html)
+  * [IPSL](downloads/dashboard/2024/2024-q3-dashboard_ipsl.html)
+  * [DKRZ](downloads/dashboard/2024/2024-q3-dashboard_dkrz.html)
   * Number of requests:
     * Total: 345303
       * DKRZ: 82805 + 194361 + 37765 = 314931
@@ -76,8 +76,8 @@ January - December 2024:
   * Max Concurrency: 31
 
 * April - June 2024
-  * [IPSL](/downloads/dashboard/2024/2024-q2-dashboard_ipsl.html)
-  * [DKRZ](/downloads/dashboard/2024/2024-q2-dashboard_dkrz.html)
+  * [IPSL](downloads/dashboard/2024/2024-q2-dashboard_ipsl.html)
+  * [DKRZ](downloads/dashboard/2024/2024-q2-dashboard_dkrz.html)
   * Number of requests:
     * Total: 557733
       * DKRZ: 440907
@@ -89,9 +89,9 @@ January - December 2024:
   * Max Concurrency: 28
 
 * January - March 2024
-  * [all](/downloads/dashboard/2024/2024-q1-dashboard_all.html)
-  * [IPSL](/downloads/dashboard/2024/2024-q1-dashboard_ipsl.html)
-  * [DKRZ](/downloads/dashboard/2024/2024-q1-dashboard_dkrz.html)
+  * [all](downloads/dashboard/2024/2024-q1-dashboard_all.html)
+  * [IPSL](downloads/dashboard/2024/2024-q1-dashboard_ipsl.html)
+  * [DKRZ](downloads/dashboard/2024/2024-q1-dashboard_dkrz.html)
   * Number of requests:
     * Total: 342052
       * DKRZ: 268249
@@ -105,52 +105,52 @@ January - December 2024:
 ### Monthly reports
 
 * December 2024
-   * [IPSL](/downloads/dashboard/2024/2024-12-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2024/2024-12-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2024/2024-12-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2024/2024-12-dashboard_dkrz.html)
 
 * November 2024
-   * [IPSL](/downloads/dashboard/2024/2024-11-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2024/2024-11-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2024/2024-11-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2024/2024-11-dashboard_dkrz.html)
 
 * October 2024
-   * [IPSL](/downloads/dashboard/2024/2024-10-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2024/2024-10-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2024/2024-10-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2024/2024-10-dashboard_dkrz.html)
 
 * September 2024
-   * [IPSL](/downloads/dashboard/2024/2024-09-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2024/2024-09-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2024/2024-09-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2024/2024-09-dashboard_dkrz.html)
 
 * August 2024
-   * [IPSL](/downloads/dashboard/2024/2024-08-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2024/2024-08-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2024/2024-08-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2024/2024-08-dashboard_dkrz.html)
 
 * July 2024
-   * [IPSL](/downloads/dashboard/2024/2024-07-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2024/2024-07-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2024/2024-07-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2024/2024-07-dashboard_dkrz.html)
 
 * June 2024
-   * [IPSL](/downloads/dashboard/2024/2024-06-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2024/2024-06-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2024/2024-06-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2024/2024-06-dashboard_dkrz.html)
 
 * May 2024
-   * [IPSL](/downloads/dashboard/2024/2024-05-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2024/2024-05-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2024/2024-05-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2024/2024-05-dashboard_dkrz.html)
 
 * April 2024
-   * [IPSL](/downloads/dashboard/2024/2024-04-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2024/2024-04-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2024/2024-04-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2024/2024-04-dashboard_dkrz.html)
 
 * March 2024
-   * [IPSL](/downloads/dashboard/2024/2024-03-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2024/2024-03-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2024/2024-03-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2024/2024-03-dashboard_dkrz.html)
 
 * Feburary 2024
-   * [IPSL](/downloads/dashboard/2024/2024-02-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2024/2024-02-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2024/2024-02-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2024/2024-02-dashboard_dkrz.html)
 
 * January 2024
-   * [IPSL](/downloads/dashboard/2024/2024-01-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2024/2024-01-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2024/2024-01-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2024/2024-01-dashboard_dkrz.html)
 
 
 ## 2023
@@ -158,8 +158,8 @@ January - December 2024:
 ### Quarterly reports
 
 * October - December 2023
-  * [IPSL](/downloads/dashboard/2023/2023-q4-dashboard_ipsl.html)
-  * [DKRZ](/downloads/dashboard/2023/2023-q4-dashboard_dkrz.html)
+  * [IPSL](downloads/dashboard/2023/2023-q4-dashboard_ipsl.html)
+  * [DKRZ](downloads/dashboard/2023/2023-q4-dashboard_dkrz.html)
   * Number of requests:
     * Total: 222841
       * DKRZ: 178192
@@ -171,8 +171,8 @@ January - December 2024:
   * Max Concurrency: 31
 
 * July - September 2023
-  * [IPSL](/downloads/dashboard/2023/2023-q3-dashboard_ipsl.html)
-  * [DKRZ](/downloads/dashboard/2023/2023-q3-dashboard_dkrz.html)
+  * [IPSL](downloads/dashboard/2023/2023-q3-dashboard_ipsl.html)
+  * [DKRZ](downloads/dashboard/2023/2023-q3-dashboard_dkrz.html)
   * Number of requests:
     * Total: 193398
       * DKRZ: 128955
@@ -184,8 +184,8 @@ January - December 2024:
   * Max Concurrency: 31
 
 * April - June 2023
-  * [IPSL](/downloads/dashboard/2023/2023-q2-dashboard_ipsl.html)
-  * [DKRZ](/downloads/dashboard/2023/2023-q2-dashboard_dkrz.html)
+  * [IPSL](downloads/dashboard/2023/2023-q2-dashboard_ipsl.html)
+  * [DKRZ](downloads/dashboard/2023/2023-q2-dashboard_dkrz.html)
   * Number of requests:
     * Total: 155358
       * DKRZ: 80436
@@ -197,8 +197,8 @@ January - December 2024:
   * Max Concurrency: 40
 
 * January - March 2023
-  * [IPSL](/downloads/dashboard/2023/2023-q1-dashboard_ipsl.html)
-  * [DKRZ](/downloads/dashboard/2023/2023-q1-dashboard_dkrz.html)
+  * [IPSL](downloads/dashboard/2023/2023-q1-dashboard_ipsl.html)
+  * [DKRZ](downloads/dashboard/2023/2023-q1-dashboard_dkrz.html)
   * Number of requests:
     * Total: 166838
       * DKRZ: 98872
@@ -212,52 +212,52 @@ January - December 2024:
 ### Monthly reports
 
 * December 2023
-   * [IPSL](/downloads/dashboard/2023/2023-12-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2023/2023-12-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2023/2023-12-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2023/2023-12-dashboard_dkrz.html)
 
 * November 2023
-   * [IPSL](/downloads/dashboard/2023/2023-11-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2023/2023-11-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2023/2023-11-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2023/2023-11-dashboard_dkrz.html)
 
 * October 2023
-   * [IPSL](/downloads/dashboard/2023/2023-10-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2023/2023-10-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2023/2023-10-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2023/2023-10-dashboard_dkrz.html)
 
 * September 2023
-   * [IPSL](/downloads/dashboard/2023/2023-09-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2023/2023-09-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2023/2023-09-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2023/2023-09-dashboard_dkrz.html)
 
 * August 2023
-   * [IPSL](/downloads/dashboard/2023/2023-08-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2023/2023-08-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2023/2023-08-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2023/2023-08-dashboard_dkrz.html)
 
 * July 2023
-   * [IPSL](/downloads/dashboard/2023/2023-07-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2023/2023-07-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2023/2023-07-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2023/2023-07-dashboard_dkrz.html)
 
 * June 2023
-   * [IPSL](/downloads/dashboard/2023/2023-06-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2023/2023-06-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2023/2023-06-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2023/2023-06-dashboard_dkrz.html)
 
 * May 2023
-   * [IPSL](/downloads/dashboard/2023/2023-05-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2023/2023-05-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2023/2023-05-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2023/2023-05-dashboard_dkrz.html)
 
 * April 2023
-   * [IPSL](/downloads/dashboard/2023/2023-04-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2023/2023-04-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2023/2023-04-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2023/2023-04-dashboard_dkrz.html)
 
 * March 2023
-   * [IPSL](/downloads/dashboard/2023/2023-03-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2023/2023-03-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2023/2023-03-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2023/2023-03-dashboard_dkrz.html)
 
 * Feburary 2023
-   * [IPSL](/downloads/dashboard/2023/2023-02-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2023/2023-02-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2023/2023-02-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2023/2023-02-dashboard_dkrz.html)
 
 * January 2023
-   * [IPSL](/downloads/dashboard/2023/2023-01-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2023/2023-01-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2023/2023-01-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2023/2023-01-dashboard_dkrz.html)
 
 
 ## 2022
@@ -266,8 +266,8 @@ Quarterly reports:
 
 * October - December 2022
   * CEDA
-  * [IPSL](/downloads/dashboard/2022/2022-q4-dashboard_ipsl.html)
-  * [DKRZ](/downloads/dashboard/2022/2022-q4-dashboard_dkrz.html)
+  * [IPSL](downloads/dashboard/2022/2022-q4-dashboard_ipsl.html)
+  * [DKRZ](downloads/dashboard/2022/2022-q4-dashboard_dkrz.html)
   * Number of requests:
     * Total: 71288
       * DKRZ: 35030 
@@ -280,8 +280,8 @@ Quarterly reports:
 
 * July - September 2022
   * CEDA
-  * [IPSL](/downloads/dashboard/2022/2022-q3-dashboard_ipsl.html)
-  * [DKRZ](/downloads/dashboard/2022/2022-q3-dashboard_dkrz.html)
+  * [IPSL](downloads/dashboard/2022/2022-q3-dashboard_ipsl.html)
+  * [DKRZ](downloads/dashboard/2022/2022-q3-dashboard_dkrz.html)
   * Number of requests:
     * Total: 64343
       * DKRZ: 32887 
@@ -294,8 +294,8 @@ Quarterly reports:
 
 * April - June 2022
   * CEDA
-  * [IPSL](/downloads/dashboard/2022/2022-q2-dashboard_ipsl.html)
-  * [DKRZ](/downloads/dashboard/2022/2022-q2-dashboard_dkrz.html)
+  * [IPSL](downloads/dashboard/2022/2022-q2-dashboard_ipsl.html)
+  * [DKRZ](downloads/dashboard/2022/2022-q2-dashboard_dkrz.html)
   * Number of requests:
     * Total: 102990
       * DKRZ: 77481
@@ -307,9 +307,9 @@ Quarterly reports:
   * Max Concurrency: 23
 
 * January - March 2022
-  * [CEDA](/downloads/dashboard/2022/2022-q1-dashboard_ceda.html)
+  * [CEDA](downloads/dashboard/2022/2022-q1-dashboard_ceda.html)
   * IPSL
-  * [DKRZ](/downloads/dashboard/2022/2022-q1-dashboard_dkrz.html)
+  * [DKRZ](downloads/dashboard/2022/2022-q1-dashboard_dkrz.html)
   * Number of requests:
     * Total: 119046
       * DKRZ: 93476
@@ -326,97 +326,97 @@ Monthly reports:
 
  * December 2022
    * CEDA
-   * [IPSL](/downloads/dashboard/2022/2022-12-01-dashboard_ipsl.html)
-   * [DKRZ](/downloads/dashboard/2022/2022-12-01-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2022/2022-12-01-dashboard_ipsl.html)
+   * [DKRZ](downloads/dashboard/2022/2022-12-01-dashboard_dkrz.html)
 
 * November 2022
   * CEDA
-  * [IPSL](/downloads/dashboard/2022/2022-11-01-dashboard_ipsl.html)
-  * [DKRZ](/downloads/dashboard/2022/2022-11-01-dashboard_dkrz.html)
+  * [IPSL](downloads/dashboard/2022/2022-11-01-dashboard_ipsl.html)
+  * [DKRZ](downloads/dashboard/2022/2022-11-01-dashboard_dkrz.html)
 
 * October 2022
   * CEDA
-  * [IPSL](/downloads/dashboard/2022/2022-10-01-dashboard_ipsl.html)
-  * [DKRZ](/downloads/dashboard/2022/2022-10-01-dashboard_dkrz.html)
+  * [IPSL](downloads/dashboard/2022/2022-10-01-dashboard_ipsl.html)
+  * [DKRZ](downloads/dashboard/2022/2022-10-01-dashboard_dkrz.html)
 
 * September 2022
   * CEDA
-  * [IPSL](/downloads/dashboard/2022/2022-09-01-dashboard_ipsl.html)
-  * [DKRZ](/downloads/dashboard/2022/2022-09-01-dashboard_dkrz.html)
+  * [IPSL](downloads/dashboard/2022/2022-09-01-dashboard_ipsl.html)
+  * [DKRZ](downloads/dashboard/2022/2022-09-01-dashboard_dkrz.html)
 
 * August 2022
   * CEDA
-  * [IPSL](/downloads/dashboard/2022/2022-08-01-dashboard_ipsl.html)
-  * [DKRZ](/downloads/dashboard/2022/2022-08-01-dashboard_dkrz.html)
+  * [IPSL](downloads/dashboard/2022/2022-08-01-dashboard_ipsl.html)
+  * [DKRZ](downloads/dashboard/2022/2022-08-01-dashboard_dkrz.html)
 
 * July 2022
   * CEDA
-  * [IPSL](/downloads/dashboard/2022/2022-07-01-dashboard_ipsl.html)
-  * [DKRZ](/downloads/dashboard/2022/2022-07-01-dashboard_dkrz.html)
+  * [IPSL](downloads/dashboard/2022/2022-07-01-dashboard_ipsl.html)
+  * [DKRZ](downloads/dashboard/2022/2022-07-01-dashboard_dkrz.html)
 
 * June 2022
   * CEDA
-  * [IPSL](/downloads/dashboard/2022/2022-06-01-dashboard_ipsl.html)
-  * [DKRZ](/downloads/dashboard/2022/2022-06-01-dashboard_dkrz.html)
+  * [IPSL](downloads/dashboard/2022/2022-06-01-dashboard_ipsl.html)
+  * [DKRZ](downloads/dashboard/2022/2022-06-01-dashboard_dkrz.html)
 
 * May 2022
   * CEDA
-  * [IPSL](/downloads/dashboard/2022/2022-05-01-dashboard_ipsl.html)
-  * [DKRZ](/downloads/dashboard/2022/2022-05-01-dashboard_dkrz.html)
+  * [IPSL](downloads/dashboard/2022/2022-05-01-dashboard_ipsl.html)
+  * [DKRZ](downloads/dashboard/2022/2022-05-01-dashboard_dkrz.html)
 
 * Apr 2022
-  * [CEDA](/downloads/dashboard/2022/2022-04-01-dashboard_ceda.html)
+  * [CEDA](downloads/dashboard/2022/2022-04-01-dashboard_ceda.html)
   * IPSL
-  * [DKRZ](/downloads/dashboard/2022/2022-04-01-dashboard_dkrz.html)
+  * [DKRZ](downloads/dashboard/2022/2022-04-01-dashboard_dkrz.html)
 
-* [Mar 2022](/downloads/dashboard/2022/2022-03-01-dashboard.html)
-  * [CEDA](/downloads/dashboard/2022/2022-03-01-dashboard_ceda.html)
-  * [IPSL](/downloads/dashboard/2022/2022-03-01-dashboard_ipsl.html)
-  * [DKRZ](/downloads/dashboard/2022/2022-03-01-dashboard_dkrz.html)
+* [Mar 2022](downloads/dashboard/2022/2022-03-01-dashboard.html)
+  * [CEDA](downloads/dashboard/2022/2022-03-01-dashboard_ceda.html)
+  * [IPSL](downloads/dashboard/2022/2022-03-01-dashboard_ipsl.html)
+  * [DKRZ](downloads/dashboard/2022/2022-03-01-dashboard_dkrz.html)
 
-* [Feb 2022](/downloads/dashboard/2022/2022-02-01-dashboard.html)
-  * [CEDA](/downloads/dashboard/2022/2022-02-01-dashboard_ceda.html)
-  * [IPSL](/downloads/dashboard/2022/2022-02-01-dashboard_ipsl.html)
-  * [DKRZ](/downloads/dashboard/2022/2022-02-01-dashboard_dkrz.html)
+* [Feb 2022](downloads/dashboard/2022/2022-02-01-dashboard.html)
+  * [CEDA](downloads/dashboard/2022/2022-02-01-dashboard_ceda.html)
+  * [IPSL](downloads/dashboard/2022/2022-02-01-dashboard_ipsl.html)
+  * [DKRZ](downloads/dashboard/2022/2022-02-01-dashboard_dkrz.html)
 
-* [Jan 2022](/downloads/dashboard/2022/2022-01-01-dashboard.html)
-  * [CEDA](/downloads/dashboard/2022/2022-01-01-dashboard_ceda.html)
-  * [IPSL](/downloads/dashboard/2022/2022-01-01-dashboard_ipsl.html)
-  * [DKRZ](/downloads/dashboard/2022/2022-01-01-dashboard_dkrz.html)
+* [Jan 2022](downloads/dashboard/2022/2022-01-01-dashboard.html)
+  * [CEDA](downloads/dashboard/2022/2022-01-01-dashboard_ceda.html)
+  * [IPSL](downloads/dashboard/2022/2022-01-01-dashboard_ipsl.html)
+  * [DKRZ](downloads/dashboard/2022/2022-01-01-dashboard_dkrz.html)
 
 ## 2021
 
 Year report:
-* [2021](/downloads/dashboard/2021/2021-dashboard.html)
-  * [CEDA](/downloads/dashboard/2021/2021-dashboard_ceda.html)
-  * [DKRZ](/downloads/dashboard/2021/2021-dashboard_dkrz.html)
+* [2021](downloads/dashboard/2021/2021-dashboard.html)
+  * [CEDA](downloads/dashboard/2021/2021-dashboard_ceda.html)
+  * [DKRZ](downloads/dashboard/2021/2021-dashboard_dkrz.html)
 
-* [July - December 2021](/downloads/dashboard/2021/2021-jul-dec-dashboard.html)
-  * [CEDA](/downloads/dashboard/2021/2021-jul-dec-dashboard_ceda.html)
-  * [DKRZ](/downloads/dashboard/2021/2021-jul-dec-dashboard_dkrz.html)
+* [July - December 2021](downloads/dashboard/2021/2021-jul-dec-dashboard.html)
+  * [CEDA](downloads/dashboard/2021/2021-jul-dec-dashboard_ceda.html)
+  * [DKRZ](downloads/dashboard/2021/2021-jul-dec-dashboard_dkrz.html)
   * Total transfer (subsetted data): 11 TB
 
 Monthly reports:
 
-* [Dec 2021](/downloads/dashboard/2021/2021-12-01-dashboard.html)
-  * [CEDA](/downloads/dashboard/2021/2021-12-01-dashboard_ceda.html)
-  * [DKRZ](/downloads/dashboard/2021/2021-12-01-dashboard_dkrz.html)
-* [Nov 2021](/downloads/dashboard/2021/2021-11-01-dashboard.html)
-  * [CEDA](/downloads/dashboard/2021/2021-11-01-dashboard_ceda.html)
-  * [DKRZ](/downloads/dashboard/2021/2021-11-01-dashboard_dkrz.html)
-* [Oct 2021](/downloads/dashboard/2021/2021-10-01-dashboard.html)
-  * [CEDA](/downloads/dashboard/2021/2021-10-01-dashboard_ceda.html)
-  * [DKRZ](/downloads/dashboard/2021/2021-10-01-dashboard_dkrz.html)
-* [Sept 2021](/downloads/dashboard/2021/2021-09-01-dashboard.html)
-  * [CEDA](/downloads/dashboard/2021/2021-09-01-dashboard_ceda.html)
-  * [DKRZ](/downloads/dashboard/2021/2021-09-01-dashboard_dkrz.html)
-* [Aug 2021](/downloads/dashboard/2021/2021-08-01-dashboard.html)
-  * [CEDA](/downloads/dashboard/2021/2021-08-01-dashboard_ceda.html)
-  * [DKRZ](/downloads/dashboard/2021/2021-08-01-dashboard_dkrz.html)
-* [July 2021](/downloads/dashboard/2021/2021-07-01-dashboard.html)
-  * [CEDA](/downloads/dashboard/2021/2021-07-01-dashboard_ceda.html)
-  * [DKRZ](/downloads/dashboard/2021/2021-07-01-dashboard_dkrz.html)
-* [June 2021](/downloads/dashboard/2021/2021-06-01-dashboard.html)
-* [May 2021](/downloads/dashboard/2021/2021-05-01-dashboard.html)
-* [Apr 2021](/downloads/dashboard/2021/2021-04-01-dashboard.html)
-* [Mar 2021](/downloads/dashboard/2021/2021-03-01-dashboard.html)
+* [Dec 2021](downloads/dashboard/2021/2021-12-01-dashboard.html)
+  * [CEDA](downloads/dashboard/2021/2021-12-01-dashboard_ceda.html)
+  * [DKRZ](downloads/dashboard/2021/2021-12-01-dashboard_dkrz.html)
+* [Nov 2021](downloads/dashboard/2021/2021-11-01-dashboard.html)
+  * [CEDA](downloads/dashboard/2021/2021-11-01-dashboard_ceda.html)
+  * [DKRZ](downloads/dashboard/2021/2021-11-01-dashboard_dkrz.html)
+* [Oct 2021](downloads/dashboard/2021/2021-10-01-dashboard.html)
+  * [CEDA](downloads/dashboard/2021/2021-10-01-dashboard_ceda.html)
+  * [DKRZ](downloads/dashboard/2021/2021-10-01-dashboard_dkrz.html)
+* [Sept 2021](downloads/dashboard/2021/2021-09-01-dashboard.html)
+  * [CEDA](downloads/dashboard/2021/2021-09-01-dashboard_ceda.html)
+  * [DKRZ](downloads/dashboard/2021/2021-09-01-dashboard_dkrz.html)
+* [Aug 2021](downloads/dashboard/2021/2021-08-01-dashboard.html)
+  * [CEDA](downloads/dashboard/2021/2021-08-01-dashboard_ceda.html)
+  * [DKRZ](downloads/dashboard/2021/2021-08-01-dashboard_dkrz.html)
+* [July 2021](downloads/dashboard/2021/2021-07-01-dashboard.html)
+  * [CEDA](downloads/dashboard/2021/2021-07-01-dashboard_ceda.html)
+  * [DKRZ](downloads/dashboard/2021/2021-07-01-dashboard_dkrz.html)
+* [June 2021](downloads/dashboard/2021/2021-06-01-dashboard.html)
+* [May 2021](downloads/dashboard/2021/2021-05-01-dashboard.html)
+* [Apr 2021](downloads/dashboard/2021/2021-04-01-dashboard.html)
+* [Mar 2021](downloads/dashboard/2021/2021-03-01-dashboard.html)
