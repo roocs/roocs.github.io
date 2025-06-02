@@ -41,7 +41,7 @@
 
 ## 2024
 
-January - December 2024:
+* January - December 2024:
   * [all](downloads/dashboard/2024/2024-dashboard_all.html)
   * [IPSL](downloads/dashboard/2024/2024-dashboard_ipsl.html)
   * [DKRZ](downloads/dashboard/2024/2024-dashboard_dkrz.html)
