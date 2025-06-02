@@ -8,7 +8,7 @@ nav:
   - Contact: contact.md 
 theme:
   name: material
-  logo: images/roocs.svg
+  logo: images/logo.png
   favicon: images/favicon.ico
 plugins:
   - search
