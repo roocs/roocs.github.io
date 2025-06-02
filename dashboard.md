@@ -23,6 +23,28 @@ permalink: /dashboard/
       * IPSL: 1109 GB + 1988 GB + [1500 GB] = 4.597 TB
   * Max Concurrency: 17
 
+### Monthly reports
+
+* May 2025
+   * [IPSL](/downloads/dashboard/2025/2025-05-dashboard_ipsl.html)
+   * [DKRZ](/downloads/dashboard/2025/2025-05-dashboard_dkrz.html)
+
+* April 2025
+   * [IPSL](/downloads/dashboard/2025/2025-04-dashboard_ipsl.html)
+   * [DKRZ](/downloads/dashboard/2025/2025-04-dashboard_dkrz.html)
+
+* March 2025
+   * [IPSL](/downloads/dashboard/2025/2025-03-dashboard_ipsl.html)
+   * [DKRZ](/downloads/dashboard/2025/2025-03-dashboard_dkrz.html)
+
+* Feburary 2025
+   * [IPSL](/downloads/dashboard/2025/2025-02-dashboard_ipsl.html)
+   * [DKRZ](/downloads/dashboard/2025/2025-02-dashboard_dkrz.html)
+
+* January 2025
+   * [IPSL](/downloads/dashboard/2025/2025-01-dashboard_ipsl.html)
+   * [DKRZ](/downloads/dashboard/2025/2025-01-dashboard_dkrz.html)
+
 ## 2024
 
 January - December 2024:
