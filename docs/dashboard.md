@@ -20,24 +20,24 @@
 ### Monthly reports
 
 * May 2025
-   * [IPSL](downloads/dashboard/2025/2025-05-dashboard_ipsl.html)
-   * [DKRZ](downloads/dashboard/2025/2025-05-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2025/dashboard-2025-05-ipsl.html)
+   * [DKRZ](downloads/dashboard/2025/dashboard-2025-05-dkrz.html)
 
 * April 2025
-   * [IPSL](downloads/dashboard/2025/2025-04-dashboard_ipsl.html)
-   * [DKRZ](downloads/dashboard/2025/2025-04-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2025/dashboard-2025-04-ipsl.html)
+   * [DKRZ](downloads/dashboard/2025/dashboard-2025-04-dkrz.html)
 
 * March 2025
-   * [IPSL](downloads/dashboard/2025/2025-03-dashboard_ipsl.html)
-   * [DKRZ](downloads/dashboard/2025/2025-03-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2025/dashboard-2025-03-ipsl.html)
+   * [DKRZ](downloads/dashboard/2025/dashboard-2025-03-dkrz.html)
 
 * Feburary 2025
-   * [IPSL](downloads/dashboard/2025/2025-02-dashboard_ipsl.html)
-   * [DKRZ](downloads/dashboard/2025/2025-02-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2025/dashboard-2025-02-ipsl.html)
+   * [DKRZ](downloads/dashboard/2025/dashboard-2025-02-dkrz.html)
 
 * January 2025
-   * [IPSL](downloads/dashboard/2025/2025-01-dashboard_ipsl.html)
-   * [DKRZ](downloads/dashboard/2025/2025-01-dashboard_dkrz.html)
+   * [IPSL](downloads/dashboard/2025/dashboard-2025-01-ipsl.html)
+   * [DKRZ](downloads/dashboard/2025/dashboard-2025-01-dkrz.html)
 
 ## 2024
 
