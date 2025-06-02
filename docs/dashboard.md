@@ -1,9 +1,3 @@
----
-layout: page
-title: Dashboard
-permalink: /dashboard/
----
-
 # Usage Statistics
 
 ## 2025

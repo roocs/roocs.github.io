@@ -1,8 +1,3 @@
----
-layout: page
-title: About Us
-permalink: /about/
----
 # What is the project about?
 
 We provide *data-aware* processing services of climate projections (like CMIP6 global data)

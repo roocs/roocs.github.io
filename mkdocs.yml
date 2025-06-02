@@ -1,9 +1,14 @@
 site_name: Roocs
 nav:
-  - Overview: index.md
+  - Home: index.md
+  - About: about.md
+  - Overview: overview.md
+  - Dashboard: dashboard.md
+  - Releases: releases.md
+  - Contact: contact.md 
 theme:
   name: material
-  # logo: images/logo.svg
+  logo: images/roocs.svg
   favicon: images/favicon.ico
 plugins:
   - search

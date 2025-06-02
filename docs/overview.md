@@ -1,9 +1,3 @@
----
-layout: page
-title: Overview
-permalink: /overview/
----
-
 ROOCS has several components to provide *data-aware* processing on climate projections.
 
 ![roocs components](/images/roocs.png){:class="img-responsive"}
