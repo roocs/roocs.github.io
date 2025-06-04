@@ -5,8 +5,8 @@
 ### Q1: January – March 2025
 
 - **Dashboards**
-  - 📊 [IPSL](downloads/dashboard/2025/dashboard-2025-q1-ipsl.html)
-  - 📊 [DKRZ](downloads/dashboard/2025/dashboard-2025-q1-dkrz.html)
+  - 📊 [IPSL](/downloads/dashboard/2025/dashboard-2025-q1-ipsl.html)
+  - 📊 [DKRZ](/downloads/dashboard/2025/dashboard-2025-q1-dkrz.html)
 
 - **Number of Requests**
   - **Total**: `362,556`
@@ -26,8 +26,8 @@
 
 | Month           | IPSL  | DKRZ  |
 |------------------|----------------|----------------|
-| **May 2025**      | [View](downloads/dashboard/2025/dashboard-2025-05-ipsl.html) | [View](downloads/dashboard/2025/dashboard-2025-05-dkrz.html) |
-| **April 2025**    | [View](downloads/dashboard/2025/dashboard-2025-04-ipsl.html) | [View](downloads/dashboard/2025/dashboard-2025-04-dkrz.html) |
-| **March 2025**    | [View](downloads/dashboard/2025/dashboard-2025-03-ipsl.html) | [View](downloads/dashboard/2025/dashboard-2025-03-dkrz.html) |
-| **February 2025** | [View](downloads/dashboard/2025/dashboard-2025-02-ipsl.html) | [View](downloads/dashboard/2025/dashboard-2025-02-dkrz.html) |
-| **January 2025**  | [View](downloads/dashboard/2025/dashboard-2025-01-ipsl.html) | [View](downloads/dashboard/2025/dashboard-2025-01-dkrz.html) |
+| **May 2025**      | [View](/downloads/dashboard/2025/dashboard-2025-05-ipsl.html) | [View](/downloads/dashboard/2025/dashboard-2025-05-dkrz.html) |
+| **April 2025**    | [View](/downloads/dashboard/2025/dashboard-2025-04-ipsl.html) | [View](/downloads/dashboard/2025/dashboard-2025-04-dkrz.html) |
+| **March 2025**    | [View](/downloads/dashboard/2025/dashboard-2025-03-ipsl.html) | [View](/downloads/dashboard/2025/dashboard-2025-03-dkrz.html) |
+| **February 2025** | [View](/downloads/dashboard/2025/dashboard-2025-02-ipsl.html) | [View](/downloads/dashboard/2025/dashboard-2025-02-dkrz.html) |
+| **January 2025**  | [View](/downloads/dashboard/2025/dashboard-2025-01-ipsl.html) | [View](/downloads/dashboard/2025/dashboard-2025-01-dkrz.html) |

@@ -3,9 +3,9 @@
 
 ## Full Year Overview
 
-- 📊 [All](downloads/dashboard/2024/2024-dashboard_all.html)
-- 📊 [IPSL](downloads/dashboard/2024/2024-dashboard_ipsl.html)
-- 📊 [DKRZ](downloads/dashboard/2024/2024-dashboard_dkrz.html)
+- 📊 [All](/downloads/dashboard/2024/2024-dashboard_all.html)
+- 📊 [IPSL](/downloads/dashboard/2024/2024-dashboard_ipsl.html)
+- 📊 [DKRZ](/downloads/dashboard/2024/2024-dashboard_dkrz.html)
 
 ---
 
@@ -13,9 +13,9 @@
 
 ### Q4: October – December 2024
 
-- 📊 [All](downloads/dashboard/2024/2024-q4-dashboard_all.html)
-- 📊 [IPSL](downloads/dashboard/2024/2024-q4-dashboard_ipsl.html)
-- 📊 [DKRZ](downloads/dashboard/2024/2024-q4-dashboard_dkrz.html)
+- 📊 [All](/downloads/dashboard/2024/2024-q4-dashboard_all.html)
+- 📊 [IPSL](/downloads/dashboard/2024/2024-q4-dashboard_ipsl.html)
+- 📊 [DKRZ](/downloads/dashboard/2024/2024-q4-dashboard_dkrz.html)
 
 - **Number of Requests**
   - **Total**: `286,071`
@@ -33,8 +33,8 @@
 
 ### Q3: July – September 2024
 
-- 📊 [IPSL](downloads/dashboard/2024/2024-q3-dashboard_ipsl.html)
-- 📊 [DKRZ](downloads/dashboard/2024/2024-q3-dashboard_dkrz.html)
+- 📊 [IPSL](/downloads/dashboard/2024/2024-q3-dashboard_ipsl.html)
+- 📊 [DKRZ](/downloads/dashboard/2024/2024-q3-dashboard_dkrz.html)
 
 - **Number of Requests**
   - **Total**: `345,303`
@@ -52,8 +52,8 @@
 
 ### Q2: April – June 2024
 
-- 📊 [IPSL](downloads/dashboard/2024/2024-q2-dashboard_ipsl.html)
-- 📊 [DKRZ](downloads/dashboard/2024/2024-q2-dashboard_dkrz.html)
+- 📊 [IPSL](/downloads/dashboard/2024/2024-q2-dashboard_ipsl.html)
+- 📊 [DKRZ](/downloads/dashboard/2024/2024-q2-dashboard_dkrz.html)
 
 - **Number of Requests**
   - **Total**: `557,733`
@@ -71,9 +71,9 @@
 
 ### Q1: January – March 2024
 
-- 📊 [All](downloads/dashboard/2024/2024-q1-dashboard_all.html)
-- 📊 [IPSL](downloads/dashboard/2024/2024-q1-dashboard_ipsl.html)
-- 📊 [DKRZ](downloads/dashboard/2024/2024-q1-dashboard_dkrz.html)
+- 📊 [All](/downloads/dashboard/2024/2024-q1-dashboard_all.html)
+- 📊 [IPSL](/downloads/dashboard/2024/2024-q1-dashboard_ipsl.html)
+- 📊 [DKRZ](/downloads/dashboard/2024/2024-q1-dashboard_dkrz.html)
 
 - **Number of Requests**
   - **Total**: `342,052`
@@ -93,15 +93,15 @@
 
 | Month           | IPSL | DKRZ  |
 |------------------|----------------|----------------|
-| **December**      | [View](downloads/dashboard/2024/2024-12-dashboard_ipsl.html) | [View](downloads/dashboard/2024/2024-12-dashboard_dkrz.html) |
-| **November**      | [View](downloads/dashboard/2024/2024-11-dashboard_ipsl.html) | [View](downloads/dashboard/2024/2024-11-dashboard_dkrz.html) |
-| **October**       | [View](downloads/dashboard/2024/2024-10-dashboard_ipsl.html) | [View](downloads/dashboard/2024/2024-10-dashboard_dkrz.html) |
-| **September**     | [View](downloads/dashboard/2024/2024-09-dashboard_ipsl.html) | [View](downloads/dashboard/2024/2024-09-dashboard_dkrz.html) |
-| **August**        | [View](downloads/dashboard/2024/2024-08-dashboard_ipsl.html) | [View](downloads/dashboard/2024/2024-08-dashboard_dkrz.html) |
-| **July**          | [View](downloads/dashboard/2024/2024-07-dashboard_ipsl.html) | [View](downloads/dashboard/2024/2024-07-dashboard_dkrz.html) |
-| **June**          | [View](downloads/dashboard/2024/2024-06-dashboard_ipsl.html) | [View](downloads/dashboard/2024/2024-06-dashboard_dkrz.html) |
-| **May**           | [View](downloads/dashboard/2024/2024-05-dashboard_ipsl.html) | [View](downloads/dashboard/2024/2024-05-dashboard_dkrz.html) |
-| **April**         | [View](downloads/dashboard/2024/2024-04-dashboard_ipsl.html) | [View](downloads/dashboard/2024/2024-04-dashboard_dkrz.html) |
-| **March**         | [View](downloads/dashboard/2024/2024-03-dashboard_ipsl.html) | [View](downloads/dashboard/2024/2024-03-dashboard_dkrz.html) |
-| **February**      | [View](downloads/dashboard/2024/2024-02-dashboard_ipsl.html) | [View](downloads/dashboard/2024/2024-02-dashboard_dkrz.html) |
-| **January**       | [View](downloads/dashboard/2024/2024-01-dashboard_ipsl.html) | [View](downloads/dashboard/2024/2024-01-dashboard_dkrz.html) |
+| **December**      | [View](/downloads/dashboard/2024/2024-12-dashboard_ipsl.html) | [View](/downloads/dashboard/2024/2024-12-dashboard_dkrz.html) |
+| **November**      | [View](/downloads/dashboard/2024/2024-11-dashboard_ipsl.html) | [View](/downloads/dashboard/2024/2024-11-dashboard_dkrz.html) |
+| **October**       | [View](/downloads/dashboard/2024/2024-10-dashboard_ipsl.html) | [View](/downloads/dashboard/2024/2024-10-dashboard_dkrz.html) |
+| **September**     | [View](/downloads/dashboard/2024/2024-09-dashboard_ipsl.html) | [View](/downloads/dashboard/2024/2024-09-dashboard_dkrz.html) |
+| **August**        | [View](/downloads/dashboard/2024/2024-08-dashboard_ipsl.html) | [View](/downloads/dashboard/2024/2024-08-dashboard_dkrz.html) |
+| **July**          | [View](/downloads/dashboard/2024/2024-07-dashboard_ipsl.html) | [View](/downloads/dashboard/2024/2024-07-dashboard_dkrz.html) |
+| **June**          | [View](/downloads/dashboard/2024/2024-06-dashboard_ipsl.html) | [View](/downloads/dashboard/2024/2024-06-dashboard_dkrz.html) |
+| **May**           | [View](/downloads/dashboard/2024/2024-05-dashboard_ipsl.html) | [View](/downloads/dashboard/2024/2024-05-dashboard_dkrz.html) |
+| **April**         | [View](/downloads/dashboard/2024/2024-04-dashboard_ipsl.html) | [View](/downloads/dashboard/2024/2024-04-dashboard_dkrz.html) |
+| **March**         | [View](/downloads/dashboard/2024/2024-03-dashboard_ipsl.html) | [View](/downloads/dashboard/2024/2024-03-dashboard_dkrz.html) |
+| **February**      | [View](/downloads/dashboard/2024/2024-02-dashboard_ipsl.html) | [View](/downloads/dashboard/2024/2024-02-dashboard_dkrz.html) |
+| **January**       | [View](/downloads/dashboard/2024/2024-01-dashboard_ipsl.html) | [View](/downloads/dashboard/2024/2024-01-dashboard_dkrz.html) |
