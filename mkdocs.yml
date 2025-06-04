@@ -3,13 +3,17 @@ nav:
   - Home: index.md
   - About: about.md
   - Overview: overview.md
-  - Dashboard: dashboard.md
+  - Dashboard:
+    - 2025: dashboard/dashboard-2025.md 
+    - 2021-2024: dashboard/dashboard.md
   - Releases: releases.md
   - Contact: contact.md 
 theme:
   name: material
   logo: images/logo.png
   favicon: images/favicon.ico
+markdown_extensions:
+  - attr_list
 plugins:
   - search
 
