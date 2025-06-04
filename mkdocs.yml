@@ -9,7 +9,7 @@ nav:
     - 2023: dashboard/dashboard-2023.md
     - 2022: dashboard/dashboard-2022.md
     - 2021: dashboard/dashboard-2021.md
-  - Releases: releases.md
+  - Releases: changelog.md
   - Contact: contact.md 
 theme:
   name: material
