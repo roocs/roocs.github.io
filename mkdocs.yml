@@ -7,15 +7,14 @@ nav:
     - 2025: dashboard/dashboard-2025.md 
     - 2024: dashboard/dashboard-2024.md
     - 2023: dashboard/dashboard-2023.md
-    - 2021-2022: dashboard/dashboard.md
+    - 2022: dashboard/dashboard-2022.md
+    - 2021: dashboard/dashboard-2021.md
   - Releases: releases.md
   - Contact: contact.md 
 theme:
   name: material
   logo: images/logo.png
   favicon: images/favicon.ico
-markdown_extensions:
-  - attr_list
 plugins:
   - search
 
