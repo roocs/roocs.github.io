@@ -8,10 +8,10 @@ These services support scalable, efficient access and transformation of large cl
 
 ## 👥 Who’s Involved?
 
-![IPSL logo](assets/logos/ipsl.png){ width=100 }  
+![IPSL logo](ipsl.png){ width=100 }  
 [**IPSL** – Institut Pierre-Simon Laplace](https://www.ipsl.fr/en)
 
-![DKRZ logo](assets/logos/dkrz.png){ width=100 }  
+![DKRZ logo](images/dkrz.svg){ width=100 }  
 [**DKRZ** – Deutsches Klimarechenzentrum](https://www.dkrz.de/)
 
 ---
