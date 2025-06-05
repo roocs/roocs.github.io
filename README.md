@@ -1,8 +1,6 @@
 # ROOCS Website
 
-[![Build Status](https://travis-ci.org/roocs/roocs.github.io.svg?branch=master)](https://travis-ci.org/roocs/roocs.github.io)
-
-*[ROOCS Website](https://roocs.github.io/)* is the front page for the roocs project.
+[ROOCS Website](https://roocs.github.io/) is the front page for the roocs project.
 
 ## Contributing
 
@@ -12,17 +10,20 @@ Contributions are welcome. Feel free to open a pull request with changes.
 
 It can be helpful to preview changes on your computer before opening a pull request. *ROOCS website* uses the [MkDocs static site generator](https://www.mkdocs.org/). After forking or cloning the repository, perform the following steps to generate the site and preview it:
 
-````
+```
+# build conda env with mkdcos
 conda env create
-
 conda activate roocs
 
+# build docs
 mkdocs build
 
+# view docs locally
 mkdocs serve
+```
 
 Open browser: http://127.0.0.1:8000
-```
+
 
 ## Deployment
 
