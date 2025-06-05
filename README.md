@@ -10,31 +10,19 @@ Contributions are welcome. Feel free to open a pull request with changes.
 
 ## Running it Locally
 
-It can be helpful to preview changes on your computer before opening a pull request. *ROOCS website* uses the [Jekyll static site generator](http://jekyllrb.com/). After forking or cloning the repository, perform the following steps to generate the site and preview it:
+It can be helpful to preview changes on your computer before opening a pull request. *ROOCS website* uses the [MkDocs static site generator](https://www.mkdocs.org/). After forking or cloning the repository, perform the following steps to generate the site and preview it:
 
-- Make sure you have ruby installed on your computer. See https://www.ruby-lang.org/en/downloads/
-- `bundle install`
-- `bundle exec jekyll serve`
-- Point your browser at http://127.0.0.1:4000/
+````
+conda env create
 
-### Use Docker as build environment
+conda activate roocs
 
-Run this once to generate Gemfile.lock:
-```
-docker-compose run jekyll bundle install
-```
+mkdocs build
 
-Build image:
-```
-docker-compose build
-```
+mkdocs serve
 
-Start service:
+Open browser: http://127.0.0.1:8000
 ```
-docker-compose up
-```
-
-Open http://localhost:4000
 
 ## Deployment
 
