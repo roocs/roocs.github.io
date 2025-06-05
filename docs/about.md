@@ -8,7 +8,7 @@ These services support scalable, efficient access and transformation of large cl
 
 ## 👥 Who’s Involved?
 
-![IPSL logo](ipsl.png){ width=100 }  
+![IPSL logo](images/ipsl.png){ width=100 }  
 [**IPSL** – Institut Pierre-Simon Laplace](https://www.ipsl.fr/en)
 
 ![DKRZ logo](images/dkrz.svg){ width=100 }  
@@ -30,5 +30,4 @@ We actively work with several partners and community groups:
 
 ## 🚀 Future Development
 
-> **Note**  
-> Ongoing developments are driven by [STFC/CEDA](http://www.ceda.ac.uk/) and [DKRZ](https://www.dkrz.de/), focusing on integrating processing services into the [ESGF](https://esgf.llnl.gov/) infrastructure.
+Ongoing developments are driven by [STFC/CEDA](http://www.ceda.ac.uk/) and [DKRZ](https://www.dkrz.de/), focusing on integrating processing services into the [ESGF](https://esgf.llnl.gov/) infrastructure.
