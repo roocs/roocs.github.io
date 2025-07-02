@@ -2,6 +2,24 @@
 
 ## Quarterly Reports
 
+### Q2: April – June 2025
+
+- **Dashboards**
+  - 📊 [IPSL](/downloads/dashboard/2025/dashboard-2025-q2-ipsl.html)
+  - 📊 [DKRZ](/downloads/dashboard/2025/dashboard-2025-q2-dkrz.html)
+
+- **Number of Requests**
+  - **Total**: `446,788`
+    - **DKRZ**: `352,845`
+    - **IPSL**: `93,943`
+
+- **Data Transfer (Subsetted Data)**
+  - **Total**: `21.754 TB`
+    - **DKRZ**: `4,451 GB + 4,900 GB + 9,246 GB = 18.597 TB` 
+    - **IPSL**: `1,671 GB + 632 GB + 854 GB = 3.157 TB`
+
+- **Max Concurrency**: #`45`
+
 ### Q1: January – March 2025
 
 - **Dashboards**
@@ -26,6 +44,7 @@
 
 | Month           | IPSL  | DKRZ  |
 |------------------|----------------|----------------|
+| **June 2025**      | [View](/downloads/dashboard/2025/dashboard-2025-06-ipsl.html) | [View](/downloads/dashboard/2025/dashboard-2025-06-dkrz.html) |
 | **May 2025**      | [View](/downloads/dashboard/2025/dashboard-2025-05-ipsl.html) | [View](/downloads/dashboard/2025/dashboard-2025-05-dkrz.html) |
 | **April 2025**    | [View](/downloads/dashboard/2025/dashboard-2025-04-ipsl.html) | [View](/downloads/dashboard/2025/dashboard-2025-04-dkrz.html) |
 | **March 2025**    | [View](/downloads/dashboard/2025/dashboard-2025-03-ipsl.html) | [View](/downloads/dashboard/2025/dashboard-2025-03-dkrz.html) |
