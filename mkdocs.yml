@@ -12,7 +12,7 @@ nav:
   - Releases: changelog.md
   - Contact: contact.md 
 theme:
-  name: material
+  name: mkdocs
   logo: images/logo.png
   favicon: images/favicon.ico
 markdown_extensions:
