@@ -44,6 +44,8 @@
 
 | Month           | IPSL  | DKRZ  |
 |------------------|----------------|----------------|
+| **August 2025**      | [View](/downloads/dashboard/2025/dashboard-2025-08-ipsl.html) | [View](/downloads/dashboard/2025/dashboard-2025-08-dkrz.html) |
+| **July 2025**      | [View](/downloads/dashboard/2025/dashboard-2025-07-ipsl.html) | [View](/downloads/dashboard/2025/dashboard-2025-07-dkrz.html) |
 | **June 2025**      | [View](/downloads/dashboard/2025/dashboard-2025-06-ipsl.html) | [View](/downloads/dashboard/2025/dashboard-2025-06-dkrz.html) |
 | **May 2025**      | [View](/downloads/dashboard/2025/dashboard-2025-05-ipsl.html) | [View](/downloads/dashboard/2025/dashboard-2025-05-dkrz.html) |
 | **April 2025**    | [View](/downloads/dashboard/2025/dashboard-2025-04-ipsl.html) | [View](/downloads/dashboard/2025/dashboard-2025-04-dkrz.html) |
