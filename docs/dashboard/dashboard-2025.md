@@ -9,7 +9,7 @@
   - 📊 [DKRZ](/downloads/dashboard/2025/dashboard-2025-q3-dkrz.html)
 
 - **Number of Requests**
-  - **Total**: `449,367`
+  - **Total**: `449,637`
     - **DKRZ**: `376,894`
     - **IPSL**: `72,743`
 
