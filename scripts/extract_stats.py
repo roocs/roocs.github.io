@@ -177,6 +177,15 @@ def parse_month(ym: str, site: str) -> dict[str, int | float | str]:
     }
 
 
+def to_visit_row(metrics_row: dict[str, int | float | str]) -> dict[str, str]:
+    # Temporary fixed mapping for CDS Copernicus service traffic.
+    return {
+        "date": str(metrics_row["date"]),
+        "ip": "136.156.0.0/16",
+        "country": "UK",
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Extract monthly request/download stats from dashboard HTML files."
@@ -188,6 +197,11 @@ def main() -> None:
         "--output",
         default=None,
         help="Output CSV path (default: docs/downloads/dashboard/<site>-monthly-<start>_to_<end>_metrics.csv)",
+    )
+    parser.add_argument(
+        "--visits-output",
+        default=None,
+        help="Visits CSV path (default: docs/downloads/dashboard/<site>-monthly-<start>_to_<end>_visits.csv)",
     )
     parser.add_argument(
         "--quiet",
@@ -204,6 +218,11 @@ def main() -> None:
     else:
         out_path = BASE / f"{args.site}-monthly-{args.start}_to_{args.end}_metrics.csv"
 
+    if args.visits_output:
+        visits_out_path = Path(args.visits_output)
+    else:
+        visits_out_path = BASE / f"{args.site}-monthly-{args.start}_to_{args.end}_visits.csv"
+
     with out_path.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(
             f, fieldnames=["date", "requests", "downloads", "downloads_size"]
@@ -211,7 +230,14 @@ def main() -> None:
         writer.writeheader()
         writer.writerows(rows)
 
+    visit_rows = [to_visit_row(row) for row in rows]
+    with visits_out_path.open("w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=["date", "ip", "country"])
+        writer.writeheader()
+        writer.writerows(visit_rows)
+
     print(out_path.as_posix())
+    print(visits_out_path.as_posix())
     if not args.quiet:
         for row in rows:
             print(row)
