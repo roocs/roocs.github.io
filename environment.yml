@@ -7,3 +7,5 @@ dependencies:
 - pandoc
 # docs
 - mkdocs-material
+- beautifulsoup4
+- lxml
