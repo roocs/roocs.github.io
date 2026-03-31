@@ -165,6 +165,7 @@ def parse_month(ym: str, site: str) -> dict[str, int | float | str]:
     if not transfer_match:
         raise RuntimeError(f"Could not parse total data transfer in {fpath}")
     total_transfer_gb = float(transfer_match.group(1))
+    total_transfer_mb = int(round(total_transfer_gb * 1024))
 
     downloads = int(sum(_extract_download_counts(text)))
     date_ts = f"{ym}-01T00:00:00"
@@ -173,7 +174,7 @@ def parse_month(ym: str, site: str) -> dict[str, int | float | str]:
         "date": date_ts,
         "requests": requests,
         "downloads": downloads,
-        "downloads_size": f"{total_transfer_gb} GB",
+        "downloads_size": total_transfer_mb,
     }
 
 
