@@ -187,7 +187,7 @@ def main() -> None:
     parser.add_argument(
         "--output",
         default=None,
-        help="Output CSV path (default: docs/downloads/dashboard/<site>-monthly-<start>_to_<end>.csv)",
+        help="Output CSV path (default: docs/downloads/dashboard/<site>-monthly-<start>_to_<end>_metrics.csv)",
     )
     parser.add_argument(
         "--quiet",
@@ -202,7 +202,7 @@ def main() -> None:
     if args.output:
         out_path = Path(args.output)
     else:
-        out_path = BASE / f"{args.site}-monthly-{args.start}_to_{args.end}.csv"
+        out_path = BASE / f"{args.site}-monthly-{args.start}_to_{args.end}_metrics.csv"
 
     with out_path.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(

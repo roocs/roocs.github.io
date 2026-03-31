@@ -36,7 +36,7 @@ python scripts/extract_stats.py --start 2025-04 --end 2026-02 --site dkrz --quie
 
 This writes:
 
-`docs/downloads/dashboard/<site>-monthly-<start>_to_<end>.csv`
+`docs/downloads/dashboard/<site>-monthly-<start>_to_<end>_metrics.csv`
 
 
 ## Deployment
