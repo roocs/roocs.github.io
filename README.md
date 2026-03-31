@@ -8,21 +8,35 @@ Contributions are welcome. Feel free to open a pull request with changes.
 
 ## Running it Locally
 
-It can be helpful to preview changes on your computer before opening a pull request. *ROOCS website* uses the [MkDocs static site generator](https://www.mkdocs.org/). After forking or cloning the repository, perform the following steps to generate the site and preview it:
+Preview changes locally before opening a pull request. This site uses [MkDocs](https://www.mkdocs.org/).
 
 ```
-# build conda env with mkdcos
+# create conda environment
 conda env create
 conda activate roocs
 
 # build docs
 mkdocs build
 
-# view docs locally
+# serve docs locally
 mkdocs serve
 ```
 
 Open browser: http://127.0.0.1:8000
+
+## Extract Monthly Download Stats
+
+Use `scripts/extract_stats.py` to aggregate monthly request/download metrics from dashboard HTML files.
+
+Use the same conda environment setup shown above (`conda env create`, `conda activate roocs`), then run:
+
+```bash
+python scripts/extract_stats.py --start 2025-04 --end 2026-02 --site dkrz --quiet
+```
+
+This writes:
+
+`docs/downloads/dashboard/<site>-monthly-<start>_to_<end>.csv`
 
 
 ## Deployment
