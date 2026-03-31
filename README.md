@@ -39,6 +39,8 @@ This writes:
 `docs/downloads/dashboard/<site>-monthly-<start>_to_<end>_metrics.csv`
 `docs/downloads/dashboard/<site>-monthly-<start>_to_<end>_visits.csv`
 
+In the metrics CSV, `downloads_size` is in MB (rounded to full MB, no unit suffix in the values).
+
 
 ## Deployment
 
