@@ -173,7 +173,7 @@ def parse_month(ym: str, site: str) -> dict[str, int | float | str]:
         "date": date_ts,
         "requests": requests,
         "downloads": downloads,
-        "download_size": f"{total_transfer_gb} GB",
+        "downloads_size": f"{total_transfer_gb} GB",
     }
 
 
@@ -206,7 +206,7 @@ def main() -> None:
 
     with out_path.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(
-            f, fieldnames=["date", "requests", "downloads", "download_size"]
+            f, fieldnames=["date", "requests", "downloads", "downloads_size"]
         )
         writer.writeheader()
         writer.writerows(rows)
