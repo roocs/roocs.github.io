@@ -9,3 +9,4 @@ dependencies:
 - mkdocs-material
 - beautifulsoup4
 - lxml
+- jinja2
