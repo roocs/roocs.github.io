@@ -6,7 +6,7 @@ from pathlib import Path
 from jinja2 import Template
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-STATS_DIR = REPO_ROOT / "docs" / "downloads" / "stats"
+DEFAULT_STATS_DIR = REPO_ROOT / "docs" / "downloads" / "stats"
 DASHBOARD_HTML_DIR = REPO_ROOT / "docs" / "downloads" / "dashboard"
 DASHBOARD_MD_DIR = REPO_ROOT / "docs" / "dashboard"
 
@@ -20,11 +20,11 @@ class QuarterRow:
     max_concurrency: int
 
 
-def _read_quarterly_rows(site: str, year: int) -> dict[str, QuarterRow]:
+def _read_quarterly_rows(site: str, year: int, stats_dir: Path) -> dict[str, QuarterRow]:
     rows: dict[str, QuarterRow] = {}
     pattern = f"{site}-quarterly-*_metrics.csv"
 
-    for csv_path in sorted(STATS_DIR.glob(pattern)):
+    for csv_path in sorted(stats_dir.glob(pattern)):
         with csv_path.open(newline="", encoding="utf-8") as f:
             reader = csv.DictReader(f)
             for row in reader:
@@ -90,10 +90,10 @@ def _mb_to_tb_text(mb_value: int) -> str:
     return f"{tb:,.2f} TB"
 
 
-def build_report(year: int) -> str:
-    dkrz = _read_quarterly_rows("dkrz", year)
-    ipsl = _read_quarterly_rows("ipsl", year)
-    all_ = _read_quarterly_rows("all", year)
+def build_report(year: int, stats_dir: Path) -> str:
+    dkrz = _read_quarterly_rows("dkrz", year, stats_dir)
+    ipsl = _read_quarterly_rows("ipsl", year, stats_dir)
+    all_ = _read_quarterly_rows("all", year, stats_dir)
 
     quarter_ids = sorted(
         {k.split("-")[1] for k in (set(dkrz) | set(ipsl) | set(all_))},
@@ -200,11 +200,36 @@ def main() -> None:
     parser = argparse.ArgumentParser(
         description="Generate docs/dashboard/dashboard-<year>.md from quarterly stats CSV files."
     )
-    parser.add_argument("year", type=int, help="Report year (e.g. 2026)")
+    parser.add_argument(
+        "year",
+        nargs="?",
+        type=int,
+        help="Report year (e.g. 2026). Optional if --year is provided.",
+    )
+    parser.add_argument("--year", dest="year_opt", type=int, help="Report year (e.g. 2026)")
+    parser.add_argument(
+        "--stats-dir",
+        default=str(DEFAULT_STATS_DIR),
+        help="Directory containing quarterly *_metrics.csv files",
+    )
+    parser.add_argument(
+        "--output",
+        default=None,
+        help="Output markdown file path (default: docs/dashboard/dashboard-<year>.md)",
+    )
+    parser.add_argument("--quiet", action="store_true", help="Only print output file path")
     args = parser.parse_args()
 
-    content = build_report(args.year)
-    out_path = DASHBOARD_MD_DIR / f"dashboard-{args.year}.md"
+    year = args.year_opt if args.year_opt is not None else args.year
+    if year is None:
+        parser.error("year is required (positional year or --year)")
+
+    stats_dir = Path(args.stats_dir)
+    if not stats_dir.exists():
+        parser.error(f"stats directory does not exist: {stats_dir}")
+
+    content = build_report(year, stats_dir)
+    out_path = Path(args.output) if args.output else DASHBOARD_MD_DIR / f"dashboard-{year}.md"
     out_path.write_text(content, encoding="utf-8")
     print(out_path.as_posix())
 

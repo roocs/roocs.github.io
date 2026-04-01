@@ -50,7 +50,14 @@ Notes:
 Generate `docs/dashboard/dashboard-<year>.md` from the current quarterly stats files:
 
 ```bash
+python scripts/generate_dashboard_report.py --year 2026 --quiet
+```
+
+Extended usage:
+
+```bash
 python scripts/generate_dashboard_report.py 2026
+python scripts/generate_dashboard_report.py --year 2026 --stats-dir docs/downloads/stats --output docs/dashboard/dashboard-2026.md
 ```
 
 Input parameter:
