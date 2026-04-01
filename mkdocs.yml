@@ -4,6 +4,7 @@ nav:
   - About: about.md
   - Overview: overview.md
   - Dashboard:
+    - 2026: dashboard/dashboard-2026.md 
     - 2025: dashboard/dashboard-2025.md 
     - 2024: dashboard/dashboard-2024.md
     - 2023: dashboard/dashboard-2023.md
