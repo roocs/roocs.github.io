@@ -36,8 +36,8 @@ python scripts/extract_stats.py --start 2025-04 --end 2026-02 --site dkrz --quie
 
 This writes:
 
-`docs/downloads/dashboard/<site>-monthly-<start>_to_<end>_metrics.csv`
-`docs/downloads/dashboard/<site>-monthly-<start>_to_<end>_visits.csv`
+`docs/downloads/stats/<site>-monthly-<start>_to_<end>_metrics.csv`
+`docs/downloads/stats/<site>-monthly-<start>_to_<end>_visits.csv`
 
 In the metrics CSV, `downloads_size` is in MB (rounded to full MB, no unit suffix in the values).
 

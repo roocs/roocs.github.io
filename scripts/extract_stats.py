@@ -11,7 +11,8 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-BASE = REPO_ROOT / "docs" / "downloads" / "dashboard"
+INPUT_BASE = REPO_ROOT / "docs" / "downloads" / "dashboard"
+OUTPUT_BASE = REPO_ROOT / "docs" / "downloads" / "stats"
 DEFAULT_START = "2025-04"
 DEFAULT_END = "2026-02"
 DEFAULT_SITE = "dkrz"
@@ -152,7 +153,7 @@ def build_months(start: str, end: str) -> list[str]:
 
 def parse_month(ym: str, site: str) -> dict[str, int | float | str]:
     year = ym[:4]
-    fpath = BASE / year / f"dashboard-{ym}-{site}.html"
+    fpath = INPUT_BASE / year / f"dashboard-{ym}-{site}.html"
     if not fpath.exists():
         raise FileNotFoundError(f"Missing dashboard file: {fpath}")
     text = fpath.read_text(encoding="utf-8")
@@ -197,12 +198,12 @@ def main() -> None:
     parser.add_argument(
         "--output",
         default=None,
-        help="Output CSV path (default: docs/downloads/dashboard/<site>-monthly-<start>_to_<end>_metrics.csv)",
+        help="Output CSV path (default: docs/downloads/stats/<site>-monthly-<start>_to_<end>_metrics.csv)",
     )
     parser.add_argument(
         "--visits-output",
         default=None,
-        help="Visits CSV path (default: docs/downloads/dashboard/<site>-monthly-<start>_to_<end>_visits.csv)",
+        help="Visits CSV path (default: docs/downloads/stats/<site>-monthly-<start>_to_<end>_visits.csv)",
     )
     parser.add_argument(
         "--quiet",
@@ -214,15 +215,17 @@ def main() -> None:
     months = build_months(args.start, args.end)
     rows = [parse_month(ym, args.site) for ym in months]
 
+    OUTPUT_BASE.mkdir(parents=True, exist_ok=True)
+
     if args.output:
         out_path = Path(args.output)
     else:
-        out_path = BASE / f"{args.site}-monthly-{args.start}_to_{args.end}_metrics.csv"
+        out_path = OUTPUT_BASE / f"{args.site}-monthly-{args.start}_to_{args.end}_metrics.csv"
 
     if args.visits_output:
         visits_out_path = Path(args.visits_output)
     else:
-        visits_out_path = BASE / f"{args.site}-monthly-{args.start}_to_{args.end}_visits.csv"
+        visits_out_path = OUTPUT_BASE / f"{args.site}-monthly-{args.start}_to_{args.end}_visits.csv"
 
     with out_path.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(
