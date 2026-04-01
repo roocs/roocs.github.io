@@ -42,9 +42,20 @@ This writes:
 
 Notes:
 
-- `downloads_size` is in MB (rounded to full MB, no unit suffix in the values).
-- `max_concurrency` is included in quarterly metrics CSVs.
-- Visits are generated for monthly outputs only.
+- `downloads_size` is in MB.
+
+
+## Generate Yearly Dashboard Report
+
+Generate `docs/dashboard/dashboard-<year>.md` from the current quarterly stats files:
+
+```bash
+python scripts/generate_dashboard_report.py 2026
+```
+
+Input parameter:
+
+- `year` (for example: `2026`)
 
 
 ## Deployment

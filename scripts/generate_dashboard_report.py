@@ -75,6 +75,21 @@ def _month_name(month: int, year: int) -> str:
     return f"{names[month - 1]} {year}"
 
 
+def _quarter_label(year: int, quarter: str) -> str:
+    mapping = {
+        "Q1": "January - March",
+        "Q2": "April - June",
+        "Q3": "July - September",
+        "Q4": "October - December",
+    }
+    return f"{quarter}: {mapping.get(quarter, '')} {year}".strip()
+
+
+def _mb_to_tb_text(mb_value: int) -> str:
+    tb = mb_value / 1024 / 1024
+    return f"{tb:,.2f} TB"
+
+
 def build_report(year: int) -> str:
     dkrz = _read_quarterly_rows("dkrz", year)
     ipsl = _read_quarterly_rows("ipsl", year)
@@ -105,10 +120,13 @@ def build_report(year: int) -> str:
         quarter_rows.append(
             {
                 "quarter": qid,
+                "quarter_label": _quarter_label(year, qid),
                 "total_requests": _format_int(total_requests),
                 "dkrz_requests": _format_int(d.requests) if d else "-",
                 "ipsl_requests": _format_int(i.requests) if i else "-",
-                "total_downloads_size_mb": _format_int(total_downloads_size_mb),
+                "total_downloads_size": _mb_to_tb_text(total_downloads_size_mb),
+                "dkrz_downloads_size": _mb_to_tb_text(d.downloads_size_mb) if d else "-",
+                "ipsl_downloads_size": _mb_to_tb_text(i.downloads_size_mb) if i else "-",
                 "max_concurrency": _format_int(max_concurrency),
                 "all_link": _existing_link(_dashboard_link(year, qid, "all")),
                 "dkrz_link": _existing_link(_dashboard_link(year, qid, "dkrz")),
@@ -132,29 +150,48 @@ def build_report(year: int) -> str:
                 }
             )
 
-    template = Template(
-        """# Usage Statistics for {{ year }}
+        template = Template(
+                """# Usage Statistics for {{ year }}
 
 ## Quarterly Reports
-{% if quarter_rows %}
-| Quarter | Dashboards | Total Requests | DKRZ | IPSL | Data Transfer (MB) | Max Concurrency |
-|---|---|---:|---:|---:|---:|---:|
-{% for row in quarter_rows -%}
-| **{{ row.quarter }}** | {% if row.all_link %}[ALL]({{ row.all_link }}){% endif %}{% if row.dkrz_link %}{% if row.all_link %} / {% endif %}[DKRZ]({{ row.dkrz_link }}){% endif %}{% if row.ipsl_link %}{% if row.all_link or row.dkrz_link %} / {% endif %}[IPSL]({{ row.ipsl_link }}){% endif %} | {{ row.total_requests }} | {{ row.dkrz_requests }} | {{ row.ipsl_requests }} | {{ row.total_downloads_size_mb }} | {{ row.max_concurrency }} |
+    {% if quarter_rows %}
+    {% for row in quarter_rows %}
+### {{ row.quarter_label }}
+
+- **Dashboards**
+    - 📊 [IPSL]({{ row.ipsl_link if row.ipsl_link else '#' }})
+    - 📊 [DKRZ]({{ row.dkrz_link if row.dkrz_link else '#' }})
+
+- **Number of Requests**
+    - **Total**: `{{ row.total_requests }}`
+        - **DKRZ**: `{{ row.dkrz_requests }}`
+        - **IPSL**: `{{ row.ipsl_requests }}`
+
+- **Data Transfer (Subsetted Data)**
+    - **Total**: `{{ row.total_downloads_size }}`
+        - **DKRZ**: `{{ row.dkrz_downloads_size }}`
+        - **IPSL**: `{{ row.ipsl_downloads_size }}`
+
+- **Max Concurrency**: #`{{ row.max_concurrency }}`
+
 {% endfor %}
 {% else %}
 No quarterly statistics found for {{ year }}.
 {% endif %}
 
+---
+
 ## Monthly Reports
 
-| Month | ALL | IPSL | DKRZ |
-|---|---|---|---|
-{% for row in months -%}
-| **{{ row.label }}** | {% if row.all_link %}[View]({{ row.all_link }}){% else %}-{% endif %} | {% if row.ipsl_link %}[View]({{ row.ipsl_link }}){% else %}-{% endif %} | {% if row.dkrz_link %}[View]({{ row.dkrz_link }}){% else %}-{% endif %} |
+| Month | IPSL | DKRZ |
+|------------------|----------------|----------------|
+{% for row in months %}
+| **{{ row.label }}** | {% if row.ipsl_link %}[View]({{ row.ipsl_link }}){% else %}-{% endif %} | {% if row.dkrz_link %}[View]({{ row.dkrz_link }}){% else %}-{% endif %} |
 {% endfor %}
-"""
-    )
+""",
+    trim_blocks=True,
+    lstrip_blocks=True,
+        )
 
     return template.render(year=year, quarter_rows=quarter_rows, months=months)
 
