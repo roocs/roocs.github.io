@@ -168,6 +168,13 @@ def parse_month(ym: str, site: str) -> dict[str, int | float | str]:
     total_transfer_gb = float(transfer_match.group(1))
     total_transfer_mb = int(round(total_transfer_gb * 1024))
 
+    concurrency_str = str(overview["Concurrency per day (min/max/median)"])
+    # Format is expected as: "min / max / median"
+    parts = [p.strip() for p in concurrency_str.split("/")]
+    if len(parts) < 2:
+        raise RuntimeError(f"Could not parse concurrency values in {fpath}")
+    max_concurrency = int(float(parts[1]))
+
     downloads = int(sum(_extract_download_counts(text)))
     date_ts = f"{ym}-01T00:00:00"
 
@@ -176,7 +183,35 @@ def parse_month(ym: str, site: str) -> dict[str, int | float | str]:
         "requests": requests,
         "downloads": downloads,
         "downloads_size": total_transfer_mb,
+        "max_concurrency": max_concurrency,
     }
+
+
+def build_quarterly_rows(rows: list[dict[str, int | float | str]]) -> list[dict[str, int | str]]:
+    grouped: dict[str, dict[str, int | str]] = {}
+
+    for row in rows:
+        dt = datetime.strptime(str(row["date"]), "%Y-%m-%dT%H:%M:%S")
+        quarter = ((dt.month - 1) // 3) + 1
+        quarter_key = f"{dt.year}-Q{quarter}"
+
+        if quarter_key not in grouped:
+            grouped[quarter_key] = {
+                "date": quarter_key,
+                "requests": 0,
+                "downloads": 0,
+                "downloads_size": 0,
+                "max_concurrency": 0,
+            }
+
+        grouped[quarter_key]["requests"] += int(row["requests"])
+        grouped[quarter_key]["downloads"] += int(row["downloads"])
+        grouped[quarter_key]["downloads_size"] += int(row["downloads_size"])
+        grouped[quarter_key]["max_concurrency"] = max(
+            int(grouped[quarter_key]["max_concurrency"]), int(row["max_concurrency"])
+        )
+
+    return [grouped[key] for key in sorted(grouped.keys())]
 
 
 def to_visit_row(metrics_row: dict[str, int | float | str]) -> dict[str, str]:
@@ -222,17 +257,34 @@ def main() -> None:
     else:
         out_path = OUTPUT_BASE / f"{args.site}-monthly-{args.start}_to_{args.end}_metrics.csv"
 
+    quarterly_out_path = OUTPUT_BASE / f"{args.site}-quarterly-{args.start}_to_{args.end}_metrics.csv"
+
     if args.visits_output:
         visits_out_path = Path(args.visits_output)
     else:
         visits_out_path = OUTPUT_BASE / f"{args.site}-monthly-{args.start}_to_{args.end}_visits.csv"
 
+    monthly_fields = ["date", "requests", "downloads", "downloads_size"]
     with out_path.open("w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=monthly_fields)
+        writer.writeheader()
+        for row in rows:
+            writer.writerow({key: row[key] for key in monthly_fields})
+
+    quarterly_rows = build_quarterly_rows(rows)
+    with quarterly_out_path.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(
-            f, fieldnames=["date", "requests", "downloads", "downloads_size"]
+            f,
+            fieldnames=[
+                "date",
+                "requests",
+                "downloads",
+                "downloads_size",
+                "max_concurrency",
+            ],
         )
         writer.writeheader()
-        writer.writerows(rows)
+        writer.writerows(quarterly_rows)
 
     visit_rows = [to_visit_row(row) for row in rows]
     with visits_out_path.open("w", newline="", encoding="utf-8") as f:
@@ -241,6 +293,7 @@ def main() -> None:
         writer.writerows(visit_rows)
 
     print(out_path.as_posix())
+    print(quarterly_out_path.as_posix())
     print(visits_out_path.as_posix())
     if not args.quiet:
         for row in rows:
