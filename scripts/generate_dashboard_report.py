@@ -183,10 +183,10 @@ No quarterly statistics found for {{ year }}.
 
 ## Monthly Reports
 
-| Month | IPSL | DKRZ |
-|------------------|----------------|----------------|
+| Month | ALL | IPSL | DKRZ |
+|------------------|----------------|----------------|----------------|
 {% for row in months %}
-| **{{ row.label }}** | {% if row.ipsl_link %}[View]({{ row.ipsl_link }}){% else %}-{% endif %} | {% if row.dkrz_link %}[View]({{ row.dkrz_link }}){% else %}-{% endif %} |
+| **{{ row.label }}** | {% if row.all_link %}[View]({{ row.all_link }}){% else %}-{% endif %} | {% if row.ipsl_link %}[View]({{ row.ipsl_link }}){% else %}-{% endif %} | {% if row.dkrz_link %}[View]({{ row.dkrz_link }}){% else %}-{% endif %} |
 {% endfor %}
 """,
     trim_blocks=True,
