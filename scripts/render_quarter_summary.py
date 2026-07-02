@@ -1,6 +1,10 @@
 import argparse
+import json
+import re
 from dataclasses import dataclass
 from pathlib import Path
+
+from bs4 import BeautifulSoup
 
 from extract_stats import parse_month
 
@@ -12,12 +16,34 @@ class SiteTotals:
     max_concurrency: int = 0
 
 
+@dataclass
+class KpiStats:
+    total_requests: int
+    failed_requests: int
+
+    @property
+    def failed_pct(self) -> float:
+        return (self.failed_requests / self.total_requests) * 100.0
+
+    @property
+    def success_pct(self) -> float:
+        return 100.0 - self.failed_pct
+
+
 def quarter_to_months(year: int, quarter: int) -> list[str]:
     if quarter not in {1, 2, 3, 4}:
         raise ValueError("quarter must be one of: 1, 2, 3, 4")
 
     start_month = (quarter - 1) * 3 + 1
     return [f"{year}-{month:02d}" for month in range(start_month, start_month + 3)]
+
+
+def halfyear_to_months(year: int, half_year: int) -> list[str]:
+    if half_year not in {1, 2}:
+        raise ValueError("half-year must be one of: 1, 2")
+
+    start_month = 1 if half_year == 1 else 7
+    return [f"{year}-{month:02d}" for month in range(start_month, start_month + 6)]
 
 
 def mb_to_tb_text(mb_value: int) -> str:
@@ -48,14 +74,94 @@ def quarter_label(quarter: int) -> str:
     return labels[quarter]
 
 
-def render_markdown_block(year: int, quarter: int) -> str:
+def halfyear_label(half_year: int) -> str:
+    labels = {
+        1: "January - June",
+        2: "July - December",
+    }
+    return labels[half_year]
+
+
+def _extract_overview_values(html_text: str) -> dict[str, str | int | float]:
+    soup = BeautifulSoup(html_text, "lxml")
+    for script in soup.find_all("script"):
+        script_text = script.get_text() or ""
+        match = re.search(r"const docs_json = '(.*?)';", script_text, re.S)
+        if not match:
+            continue
+        parsed = json.loads(match.group(1))
+        for doc in parsed.values():
+            for root in doc.get("roots", []):
+                if root.get("name") != "DataTable":
+                    continue
+                source = root.get("attributes", {}).get("source", {})
+                entries = source.get("attributes", {}).get("data", {}).get("entries", [])
+                data_dict = {key: value for key, value in entries}
+                properties = data_dict.get("property")
+                values = data_dict.get("value")
+                if not isinstance(properties, list) or not isinstance(values, list):
+                    continue
+                if "Total Requests" not in properties:
+                    continue
+                return dict(zip(properties, values))
+    raise RuntimeError("Could not find overview DataTable values in dashboard HTML")
+
+
+def parse_quarter_kpi(year: int, quarter: int) -> KpiStats | None:
+    quarter_path = (
+        Path(__file__).resolve().parents[1]
+        / "docs"
+        / "downloads"
+        / "dashboard"
+        / str(year)
+        / f"dashboard-{year}-q{quarter}-all.html"
+    )
+    if not quarter_path.exists():
+        return None
+
+    overview = _extract_overview_values(quarter_path.read_text(encoding="utf-8"))
+    if "Total Requests" not in overview or "Failed Requests" not in overview:
+        return None
+
+    return KpiStats(
+        total_requests=int(overview["Total Requests"]),
+        failed_requests=int(overview["Failed Requests"]),
+    )
+
+
+def parse_halfyear_kpi(year: int, half_year: int) -> KpiStats | None:
+    quarters = [1, 2] if half_year == 1 else [3, 4]
+    quarter_kpis = [parse_quarter_kpi(year, q) for q in quarters]
+    if any(kpi is None for kpi in quarter_kpis):
+        return None
+
+    total_requests = sum(kpi.total_requests for kpi in quarter_kpis if kpi is not None)
+    failed_requests = sum(kpi.failed_requests for kpi in quarter_kpis if kpi is not None)
+    return KpiStats(total_requests=total_requests, failed_requests=failed_requests)
+
+
+def render_quarter_markdown_block(year: int, quarter: int) -> str:
     months = quarter_to_months(year, quarter)
     all_totals = build_site_totals(months, "all")
     dkrz_totals = build_site_totals(months, "dkrz")
     ipsl_totals = build_site_totals(months, "ipsl")
+    quarter_kpi = parse_quarter_kpi(year, quarter)
 
-    return "\n".join(
-        [
+    total_requests_display = all_totals.requests
+    kpi_lines: list[str] = []
+    if quarter_kpi is not None:
+        total_requests_display = quarter_kpi.total_requests
+        kpi_lines = [
+            f"    - **KPI (Successful Requests)**: `{quarter_kpi.success_pct:.1f}%`",
+            (
+                "        - Calculation: "
+                f"`{format_int(quarter_kpi.failed_requests)} (failed requests) / "
+                f"{format_int(quarter_kpi.total_requests)} (total requests) = "
+                f"{quarter_kpi.failed_pct:.1f}% failures -> KPI = {quarter_kpi.success_pct:.1f}%`"
+            ),
+        ]
+
+    lines = [
             f"### Q{quarter}: {quarter_label(quarter)} {year}",
             "",
             "- **Dashboards**",
@@ -64,9 +170,16 @@ def render_markdown_block(year: int, quarter: int) -> str:
             f"    - 📊 [DKRZ](/downloads/dashboard/{year}/dashboard-{year}-q{quarter}-dkrz.html)",
             "",
             "- **Number of Requests**",
-            f"    - **Total**: `{format_int(all_totals.requests)}`",
+            f"    - **Total**: `{format_int(total_requests_display)}`",
             f"        - **DKRZ**: `{format_int(dkrz_totals.requests)}`",
             f"        - **IPSL**: `{format_int(ipsl_totals.requests)}`",
+    ]
+
+    if kpi_lines:
+        lines.extend(kpi_lines)
+
+    lines.extend(
+        [
             "",
             "- **Data Transfer (Subsetted Data)**",
             f"    - **Total**: `{mb_to_tb_text(all_totals.downloads_size_mb)}`",
@@ -76,6 +189,56 @@ def render_markdown_block(year: int, quarter: int) -> str:
             f"- **Max Concurrency**: #`{all_totals.max_concurrency}`",
         ]
     )
+
+    return "\n".join(lines)
+
+
+def render_halfyear_markdown_block(year: int, half_year: int) -> str:
+    months = halfyear_to_months(year, half_year)
+    all_totals = build_site_totals(months, "all")
+    dkrz_totals = build_site_totals(months, "dkrz")
+    ipsl_totals = build_site_totals(months, "ipsl")
+    halfyear_kpi = parse_halfyear_kpi(year, half_year)
+
+    total_requests_display = all_totals.requests
+    kpi_lines: list[str] = []
+    if halfyear_kpi is not None:
+        total_requests_display = halfyear_kpi.total_requests
+        kpi_lines = [
+            f"    - **KPI (Successful Requests)**: `{halfyear_kpi.success_pct:.1f}%`",
+            (
+                "        - Calculation: "
+                f"`{format_int(halfyear_kpi.failed_requests)} (failed requests) / "
+                f"{format_int(halfyear_kpi.total_requests)} (total requests) = "
+                f"{halfyear_kpi.failed_pct:.1f}% failures -> KPI = {halfyear_kpi.success_pct:.1f}%`"
+            ),
+        ]
+
+    lines = [
+        f"### H{half_year}: {halfyear_label(half_year)} {year}",
+        "",
+        "- **Number of Requests**",
+        f"    - **Total**: `{format_int(total_requests_display)}`",
+        f"        - **DKRZ**: `{format_int(dkrz_totals.requests)}`",
+        f"        - **IPSL**: `{format_int(ipsl_totals.requests)}`",
+    ]
+
+    if kpi_lines:
+        lines.extend(kpi_lines)
+
+    lines.extend(
+        [
+            "",
+            "- **Data Transfer (Subsetted Data)**",
+            f"    - **Total**: `{mb_to_tb_text(all_totals.downloads_size_mb)}`",
+            f"        - **DKRZ**: `{mb_to_tb_text(dkrz_totals.downloads_size_mb)}`",
+            f"        - **IPSL**: `{mb_to_tb_text(ipsl_totals.downloads_size_mb)}`",
+            "",
+            f"- **Max Concurrency**: #`{all_totals.max_concurrency}`",
+        ]
+    )
+
+    return "\n".join(lines)
 
 
 def upsert_quarter_block(markdown_path: Path, quarter: int, block: str) -> bool:
@@ -122,12 +285,71 @@ def upsert_quarter_block(markdown_path: Path, quarter: int, block: str) -> bool:
     return changed
 
 
+def upsert_halfyear_block(markdown_path: Path, half_year: int, block: str) -> bool:
+    text = markdown_path.read_text(encoding="utf-8")
+    lines = text.splitlines()
+
+    halfyear_prefix = f"### H{half_year}:"
+    start_idx = None
+    for idx, line in enumerate(lines):
+        if line.startswith(halfyear_prefix):
+            start_idx = idx
+            break
+
+    block_lines = block.splitlines()
+
+    if start_idx is not None:
+        end_idx = None
+        for idx in range(start_idx + 1, len(lines)):
+            if lines[idx].startswith("### H") or lines[idx].startswith("## Quarterly Reports"):
+                end_idx = idx
+                break
+        if end_idx is None:
+            end_idx = len(lines)
+
+        new_lines = lines[:start_idx] + block_lines + ["", "---", ""] + lines[end_idx:]
+    else:
+        section_idx = None
+        for idx, line in enumerate(lines):
+            if line.strip() == "## Half-Year Reports":
+                section_idx = idx
+                break
+
+        if section_idx is None:
+            q_idx = None
+            for idx, line in enumerate(lines):
+                if line.strip() == "## Quarterly Reports":
+                    q_idx = idx
+                    break
+            if q_idx is None:
+                raise RuntimeError("Could not locate insertion point for half-year section")
+
+            new_lines = (
+                lines[:q_idx]
+                + ["## Half-Year Reports", "", *block_lines, "", "---", ""]
+                + lines[q_idx:]
+            )
+        else:
+            insert_idx = section_idx + 1
+            if insert_idx < len(lines) and lines[insert_idx].strip() == "":
+                insert_idx += 1
+            new_lines = lines[:insert_idx] + ["", *block_lines, "", "---", ""] + lines[insert_idx:]
+
+    new_text = "\n".join(new_lines).rstrip() + "\n"
+    changed = new_text != text
+    if changed:
+        markdown_path.write_text(new_text, encoding="utf-8")
+    return changed
+
+
 def main() -> None:
     examples = "\n".join(
         [
             "Examples:",
             "  python scripts/render_quarter_summary.py 2026 2",
+            "  python scripts/render_quarter_summary.py 2026 --half-year 1",
             "  python scripts/render_quarter_summary.py 2026 2 --update-file",
+            "  python scripts/render_quarter_summary.py 2026 --half-year 1 --update-file",
             "  python scripts/render_quarter_summary.py 2026 2 --update-file --print-block",
             "  python scripts/render_quarter_summary.py 2026 2 --dashboard-md docs/dashboard/dashboard-2026.md --update-file",
         ]
@@ -135,18 +357,31 @@ def main() -> None:
 
     parser = argparse.ArgumentParser(
         description=(
-            "Render a quarterly markdown summary block from monthly dashboard HTML files "
+            "Render quarterly or half-year markdown summary blocks from monthly dashboard HTML files "
             "and optionally update the yearly dashboard markdown file in-place."
         ),
         epilog=examples,
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument("year", type=int, help="Year to summarize, e.g. 2026")
-    parser.add_argument("quarter", type=int, choices=[1, 2, 3, 4], help="Quarter number (1-4)")
+    parser.add_argument(
+        "quarter",
+        nargs="?",
+        type=int,
+        choices=[1, 2, 3, 4],
+        help="Quarter number (1-4). Omit when using --half-year.",
+    )
+    parser.add_argument(
+        "--half-year",
+        type=int,
+        choices=[1, 2],
+        default=None,
+        help="Half-year number (1 or 2).",
+    )
     parser.add_argument(
         "--update-file",
         action="store_true",
-        help="Update docs/dashboard/dashboard-<year>.md in-place with the rendered quarter block",
+        help="Update docs/dashboard/dashboard-<year>.md in-place with the rendered summary block",
     )
     parser.add_argument(
         "--write",
@@ -171,8 +406,16 @@ def main() -> None:
     )
     args = parser.parse_args()
 
+    if args.quarter is None and args.half_year is None:
+        parser.error("Provide either <quarter> or --half-year")
+    if args.quarter is not None and args.half_year is not None:
+        parser.error("Use either <quarter> or --half-year, not both")
+
     try:
-        block = render_markdown_block(args.year, args.quarter)
+        if args.half_year is not None:
+            block = render_halfyear_markdown_block(args.year, args.half_year)
+        else:
+            block = render_quarter_markdown_block(args.year, args.quarter)
 
         if args.update_file:
             md_path = (
@@ -186,7 +429,10 @@ def main() -> None:
                     "Create it first or pass --dashboard-md."
                 )
 
-            changed = upsert_quarter_block(md_path, args.quarter, block)
+            if args.half_year is not None:
+                changed = upsert_halfyear_block(md_path, args.half_year, block)
+            else:
+                changed = upsert_quarter_block(md_path, args.quarter, block)
             if args.quiet:
                 print(md_path)
             else:

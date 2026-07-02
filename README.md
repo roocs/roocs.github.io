@@ -65,9 +65,14 @@ Input parameter:
 - `year` (for example: `2026`)
 
 
-## Render Quarterly Summary Block
+## Render Quarterly Or Half-Year Summary Block
 
-Use `scripts/render_quarter_summary.py` to build a quarterly markdown block directly from monthly dashboard HTML files (ALL, IPSL, DKRZ).
+Use `scripts/render_quarter_summary.py` to build quarterly or half-year markdown blocks directly from monthly dashboard HTML files (ALL, IPSL, DKRZ).
+
+The script also adds a KPI line for successful requests when quarterly ALL dashboard files are available (`dashboard-<year>-q<quarter>-all.html`), using:
+
+- failed requests / total requests
+- KPI = 100% - failure rate
 
 Print a block to copy/paste:
 
@@ -75,10 +80,22 @@ Print a block to copy/paste:
 python scripts/render_quarter_summary.py 2026 2
 ```
 
+Print a half-year block to copy/paste:
+
+```bash
+python scripts/render_quarter_summary.py 2026 --half-year 1
+```
+
 Update the year dashboard file in-place:
 
 ```bash
 python scripts/render_quarter_summary.py 2026 2 --update-file
+```
+
+Update half-year section in-place:
+
+```bash
+python scripts/render_quarter_summary.py 2026 --half-year 1 --update-file
 ```
 
 Update in-place and also print the generated block:
