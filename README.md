@@ -74,6 +74,13 @@ The script also adds a KPI line for successful requests when quarterly ALL dashb
 - failed requests / total requests
 - KPI = 100% - failure rate
 
+It also adds a failed request split:
+
+- Wrong Requests
+- Internal Errors
+
+The split is derived from failure message categories in the quarterly ALL dashboard failure table (`Message`, `Count`) using rule-based keyword matching.
+
 Print a block to copy/paste:
 
 ```bash

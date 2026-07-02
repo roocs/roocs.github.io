@@ -10,10 +10,13 @@
         - **IPSL**: `405,947`
 
 - **Failed Requests**: `33,915`
+    - Wrong Requests: `27,737`
+    - Internal Errors: `6,178`
 
 - **KPI**
     - Successful Requests: `96.5%`
     - Calculation: `33,915 (failed requests) / 970,976 (total requests) = 3.5% failures -> KPI = 96.5%`
+    - Internal Errors Ratio: `0.6%` (`6,178 / 970,976`)
 
 - **Data Transfer (Subsetted Data)**
     - **Total**: `53.90 TB`
@@ -39,10 +42,13 @@
         - **IPSL**: `257,698`
 
 - **Failed Requests**: `20,555`
+    - Wrong Requests: `15,305`
+    - Internal Errors: `5,250`
 
 - **KPI**
     - Successful Requests: `96.3%`
     - Calculation: `20,555 (failed requests) / 561,974 (total requests) = 3.7% failures -> KPI = 96.3%`
+    - Internal Errors Ratio: `0.9%` (`5,250 / 561,974`)
 
 - **Data Transfer (Subsetted Data)**
     - **Total**: `24.93 TB`
@@ -66,10 +72,13 @@
         - **IPSL**: `148,249`
 
 - **Failed Requests**: `13,360`
+    - Wrong Requests: `12,432`
+    - Internal Errors: `928`
 
 - **KPI**
     - Successful Requests: `96.7%`
     - Calculation: `13,360 (failed requests) / 409,002 (total requests) = 3.3% failures -> KPI = 96.7%`
+    - Internal Errors Ratio: `0.2%` (`928 / 409,002`)
 
 - **Data Transfer (Subsetted Data)**
     - **Total**: `28.97 TB`
