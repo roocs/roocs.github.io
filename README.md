@@ -65,6 +65,40 @@ Input parameter:
 - `year` (for example: `2026`)
 
 
+## Render Quarterly Summary Block
+
+Use `scripts/render_quarter_summary.py` to build a quarterly markdown block directly from monthly dashboard HTML files (ALL, IPSL, DKRZ).
+
+Print a block to copy/paste:
+
+```bash
+python scripts/render_quarter_summary.py 2026 2
+```
+
+Update the year dashboard file in-place:
+
+```bash
+python scripts/render_quarter_summary.py 2026 2 --update-file
+```
+
+Update in-place and also print the generated block:
+
+```bash
+python scripts/render_quarter_summary.py 2026 2 --update-file --print-block
+```
+
+Use a custom dashboard markdown target:
+
+```bash
+python scripts/render_quarter_summary.py 2026 2 --dashboard-md docs/dashboard/dashboard-2026.md --update-file
+```
+
+Tip:
+
+- Use `--write` as a short alias for `--update-file`.
+- Use `--quiet` with update mode to print only the target file path.
+
+
 ## Deployment
 
 Pull requests merged to the main branch are automatically deployed to the production website.
