@@ -1,5 +1,23 @@
 # Usage Statistics for 2026
 
+## Half-Year Reports
+
+### H1: January - June 2026
+
+- **Number of Requests**
+    - **Total**: `970,973`
+        - **DKRZ**: `565,026`
+        - **IPSL**: `405,947`
+
+- **Data Transfer (Subsetted Data)**
+    - **Total**: `53.90 TB`
+        - **DKRZ**: `32.49 TB`
+        - **IPSL**: `21.42 TB`
+
+- **Max Concurrency**: #`33`
+
+---
+
 ## Quarterly Reports
 
 ### Q2: April - June 2026
@@ -43,7 +61,6 @@
 
 
 ---
-
 ## Monthly Reports
 
 | Month | ALL | IPSL | DKRZ |
