@@ -13,6 +13,11 @@ site breakdowns, and monthly charts are available from the linked annual pages.
 | [2025](summary-2025.md) | January–December | 1,523,415 | 103.30 TB |
 | [2026](summary-2026.md) | January–June (year to date) | 970,973 | 55.19 TB |
 
+ROOCS is designed to subset large datasets before delivery. Transferred volume
+is therefore not a metric to maximize: for equivalent scientific requests,
+less data transferred generally means more effective subsetting and lower
+network and storage costs.
+
 ## Requests
 
 ![ROOCS requests by year](../downloads/stats/roocs-all-years-requests.svg)

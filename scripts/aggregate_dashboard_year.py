@@ -782,6 +782,11 @@ site breakdowns, and monthly charts are available from the linked annual pages.
 | --- | --- | ---: | ---: |
 {chr(10).join(table_rows)}
 
+ROOCS is designed to subset large datasets before delivery. Transferred volume
+is therefore not a metric to maximize: for equivalent scientific requests,
+less data transferred generally means more effective subsetting and lower
+network and storage costs.
+
 ## Requests
 
 ![ROOCS requests by year]({request_link})
