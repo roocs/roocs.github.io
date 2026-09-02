@@ -80,11 +80,47 @@ def parse_month(path: Path) -> Metrics:
     )
 
 
+def monthly_dashboard_path(dashboard_dir: Path, year: int, month: int, site: str) -> Path:
+    month_id = f"{year}-{month:02d}"
+    candidates = (
+        dashboard_dir / str(year) / f"dashboard-{month_id}-{site}.html",
+        dashboard_dir / str(year) / f"{month_id}-dashboard_{site}.html",
+    )
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate
+    raise FileNotFoundError(f"No monthly dashboard found for {month_id} {site}")
+
+
+def source_override(year: int, month: int, site: str, metrics: Metrics | None) -> Metrics:
+    if (year, month, site) == (2024, 5, "dkrz"):
+        if metrics is None:
+            raise RuntimeError("The May 2024 DKRZ dashboard is required")
+        # The regular export has the complete request counts but only the final
+        # 5.60 GB of transfer data. The partial export contains the accumulated
+        # transfer value used by the published quarterly report.
+        return Metrics(metrics.requests, metrics.failures, metrics.peak_concurrency, 3328.50)
+    if (year, month, site) == (2024, 9, "ipsl"):
+        # The monthly export is missing. Requests, failures, and concurrency are
+        # recovered from September in the full-year IPSL series. The transfer
+        # value is the estimate recorded on the existing 2024 dashboard page.
+        return Metrics(7149, 841, 18, 140.0)
+    if metrics is None:
+        raise FileNotFoundError(f"No metrics or source override for {year}-{month:02d} {site}")
+    return metrics
+
+
 def read_year(year: int, dashboard_dir: Path) -> list[dict[str, object]]:
     rows = []
     for month in range(1, 13):
         month_id = f"{year}-{month:02d}"
-        sites = {site: parse_month(dashboard_dir / str(year) / f"dashboard-{month_id}-{site}.html") for site in SITES}
+        sites = {}
+        for site in SITES:
+            try:
+                metrics = parse_month(monthly_dashboard_path(dashboard_dir, year, month, site))
+            except FileNotFoundError:
+                metrics = None
+            sites[site] = source_override(year, month, site, metrics)
         rows.append({
             "month": month_id,
             "dkrz": sites["dkrz"],
@@ -140,6 +176,16 @@ Source note: the raw March IPSL export reports 45 requests and 0.19 GB. The
 existing 2025 dashboard page instead shows manual estimates of 25,000 requests
 and 1,500 GB. Applying those estimates would make the annual totals 1,548,370
 requests and 104.80 TB; no corresponding failure estimate is available.
+"""
+    elif year == 2024:
+        source_note = """
+Source note: the September IPSL monthly export is missing. Its 7,149 requests,
+841 failures, and peak concurrency of 18 were recovered from the corresponding
+daily series in the full-year IPSL export. The 140 GB transfer value is the
+estimate recorded in the existing 2024 dashboard report. For May DKRZ, the
+regular monthly export contains the complete request totals but only 5.60 GB of
+transfer data; this summary uses the accumulated 3,328.50 GB value from its
+partial export, consistent with the published quarterly report.
 """
     path.write_text(f"""# ROOCS {year} annual summary
 
