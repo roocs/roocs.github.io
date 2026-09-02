@@ -93,6 +93,22 @@ def monthly_dashboard_path(dashboard_dir: Path, year: int, month: int, site: str
 
 
 def source_override(year: int, month: int, site: str, metrics: Metrics | None) -> Metrics:
+    if (year, month, site) == (2023, 1, "ipsl"):
+        # The file labelled January spans January and February. Request outcome
+        # and concurrency values come from January in the Q1 daily series; the
+        # transfer value is the estimate in the published 2023 report.
+        return Metrics(17813, 4606, 14, 5339.0)
+    if year == 2023 and site == "ipsl" and month in (2, 3):
+        if metrics is None:
+            raise RuntimeError(f"The {year}-{month:02d} IPSL dashboard is required")
+        # The Q1 transfer exports are incomplete. Retain their request metrics
+        # and use the monthly transfer estimates from the published report.
+        transfer_estimate = {2: 4000.0, 3: 2340.0}[month]
+        return Metrics(metrics.requests, metrics.failures, metrics.peak_concurrency, transfer_estimate)
+    if (year, month, site) == (2023, 10, "ipsl"):
+        # The monthly export is missing. Request outcomes and concurrency come
+        # from October in the Q4 daily series; transfer is the published estimate.
+        return Metrics(23260, 2263, 31, 500.0)
     if (year, month, site) == (2024, 5, "dkrz"):
         if metrics is None:
             raise RuntimeError("The May 2024 DKRZ dashboard is required")
@@ -186,6 +202,16 @@ estimate recorded in the existing 2024 dashboard report. For May DKRZ, the
 regular monthly export contains the complete request totals but only 5.60 GB of
 transfer data; this summary uses the accumulated 3,328.50 GB value from its
 partial export, consistent with the published quarterly report.
+"""
+    elif year == 2023:
+        source_note = """
+Source note: the January IPSL file spans both January and February, and the
+October IPSL monthly export is missing. January and October request outcomes
+and concurrency were therefore recovered from the daily series in the Q1 and
+Q4 exports. The IPSL transfer exports are incomplete for those periods, so this
+summary uses the monthly estimates recorded in the existing 2023 dashboard:
+5,339 GB for January, 4,000 GB for February, 2,340 GB for March, and 500 GB for
+October.
 """
     path.write_text(f"""# ROOCS {year} annual summary
 
