@@ -5,7 +5,9 @@ nav:
   - Overview: overview.md
   - Dashboard:
     - 2026: dashboard/dashboard-2026.md 
-    - 2025: dashboard/dashboard-2025.md 
+    - 2025:
+      - Annual summary: dashboard/summary-2025.md
+      - Quarterly and monthly reports: dashboard/dashboard-2025.md
     - 2024: dashboard/dashboard-2024.md
     - 2023: dashboard/dashboard-2023.md
     - 2022: dashboard/dashboard-2022.md
@@ -20,5 +22,4 @@ markdown_extensions:
   - attr_list
 plugins:
   - search
-
 
