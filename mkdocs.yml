@@ -4,7 +4,9 @@ nav:
   - About: about.md
   - Overview: overview.md
   - Dashboard:
-    - 2026: dashboard/dashboard-2026.md 
+    - 2026:
+      - Annual summary to date: dashboard/summary-2026.md
+      - Reports: dashboard/dashboard-2026.md
     - 2025:
       - Annual summary: dashboard/summary-2025.md
       - Quarterly and monthly reports: dashboard/dashboard-2025.md

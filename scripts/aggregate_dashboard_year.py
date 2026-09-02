@@ -27,6 +27,7 @@ DEFAULT_OUTPUT_DIR = REPO_ROOT / "docs" / "downloads" / "stats"
 DEFAULT_PAGE_DIR = REPO_ROOT / "docs" / "dashboard"
 SITES = ("dkrz", "ipsl")
 MONTH_NAMES = ("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+MONTH_FULL_NAMES = ("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
 DTYPES = {"float64": "d", "int64": "q", "int32": "i", "uint32": "I"}
 
 
@@ -261,12 +262,21 @@ def read_year(year: int, dashboard_dir: Path) -> list[dict[str, object]]:
     for month in range(1, 13):
         month_id = f"{year}-{month:02d}"
         sites = {}
+        partial_year_complete = False
         for site in sites_for_year:
             try:
                 metrics = parse_month(monthly_dashboard_path(dashboard_dir, year, month, site))
             except FileNotFoundError:
                 metrics = None
-            sites[site] = source_override(year, month, site, metrics)
+            try:
+                sites[site] = source_override(year, month, site, metrics)
+            except FileNotFoundError:
+                if year >= 2026 and rows:
+                    partial_year_complete = True
+                    break
+                raise
+        if partial_year_complete:
+            break
         row = {
             "month": month_id,
             "dkrz": sites["dkrz"],
@@ -454,6 +464,11 @@ totals and charts, while showing the available site-series values separately.
 
 def write_markdown(path: Path, year: int, rows: list[dict[str, object]], csv_link: str, chart_links: list[str]) -> None:
     total, dkrz, ipsl = _totals(rows), _totals(rows, "dkrz"), _totals(rows, "ipsl")
+    partial = len(rows) < 12
+    end_month = MONTH_FULL_NAMES[len(rows) - 1]
+    heading = f"ROOCS {year} annual summary to date" if partial else f"ROOCS {year} annual summary"
+    period_text = f"January–{end_month} {year}" if partial else str(year)
+    all_scope = f"All sites, January–{end_month}" if partial else "All sites"
     ceda = _totals(rows, "ceda") if "ceda" in rows[0] else None
     site_names = "DKRZ, IPSL, and CEDA" if ceda else "DKRZ and IPSL"
     ceda_table = ""
@@ -483,6 +498,20 @@ times."""
 IPSL dashboard exports. Successful requests are calculated as total requests
 minus failed requests. Peak concurrency is not additive: the combined monthly
 series uses the higher site value, and the annual value is its maximum."""
+    if partial:
+        methodology_text = methodology_text.replace("annual value", "reporting-period value")
+    failure_explanation = """Most failed requests were caused by users accessing the services directly
+through the CDS API rather than through the CDS portal. In this workflow there
+is no CDS catalogue interface to guide or validate the available parameters, so
+users commonly rely on trial and error to discover valid request combinations.
+These invalid requests are counted as failures even though the service itself
+is operating normally.
+
+A smaller share resulted from temporary infrastructure problems, such as full
+temporary disks or unavailable Lustre storage. The statistics also include
+genuine processing failures discovered during normal operation, including
+issues related to calendar handling. The available dashboard data does not
+provide a reliable numerical breakdown among these causes."""
     source_note = ""
     if year == 2025:
         source_note = """
@@ -523,16 +552,39 @@ implied by the published Q3 IPSL total of 2,340 GB. The unusually high peaks of
 143 for CEDA in January and 97 for IPSL in October come directly from the raw
 monthly exports.
 """
-    path.write_text(f"""# ROOCS {year} annual summary
+    elif year == 2026:
+        failure_explanation = """Of the 33,915 failed requests, 27,737 (81.8%) were classified as wrong
+requests. These are mostly caused by users accessing the services directly
+through the CDS API rather than through the CDS portal. Without the CDS
+catalogue interface to guide and validate available parameters, users commonly
+rely on trial and error to discover valid request combinations.
+
+The remaining 6,178 failures (18.2%, or 0.64% of all requests) were classified
+as internal errors. These include temporary infrastructure problems, such as
+full temporary disks or unavailable Lustre storage, as well as genuine
+processing defects discovered during operation, including calendar-handling
+issues."""
+        source_note = f"""
+Reporting note: 2026 is ongoing. This summary contains the complete monthly
+exports currently available for January through {end_month}. Totals are derived
+from those monthly DKRZ and IPSL exports and will increase as later months are
+added. The existing H1 overview reports 970,976 requests and 53.90 TB, whereas
+the sum of the monthly site exports is 970,973 requests and 55.19 TB. This page
+uses the monthly values so its totals remain consistent with the charts and CSV.
+The H1 overview's concurrency of 33 comes from the combined export; following
+the method used on these annual pages, the chart instead uses the higher DKRZ or
+IPSL peak in each month, producing a reporting-period peak of 21.
+"""
+    path.write_text(f"""# {heading}
 
 This report summarizes monthly usage of the ROOCS subsetting services operated
-by {site_names} during {year}. Together, the services processed
+by {site_names} during {period_text}. Together, the services processed
 **{total.requests:,} requests**, of which **{total.requests - total.failures:,} were successful**,
 and delivered **{total.subsetted_data_gb / 1000:.2f} TB** of subsetted data.
 
 | Scope | Requests | Successful | Failures | Subsetted data | Peak concurrency |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| All sites | {total.requests:,} | {total.requests - total.failures:,} | {total.failures:,} ({total.failures / total.requests * 100:.2f}%) | {total.subsetted_data_gb / 1000:.2f} TB | {total.peak_concurrency} |
+| {all_scope} | {total.requests:,} | {total.requests - total.failures:,} | {total.failures:,} ({total.failures / total.requests * 100:.2f}%) | {total.subsetted_data_gb / 1000:.2f} TB | {total.peak_concurrency} |
 | DKRZ | {dkrz.requests:,} | {dkrz.requests - dkrz.failures:,} | {dkrz.failures:,} ({dkrz.failures / dkrz.requests * 100:.2f}%) | {dkrz.subsetted_data_gb / 1000:.2f} TB | {dkrz.peak_concurrency} |
 | IPSL | {ipsl.requests:,} | {ipsl.requests - ipsl.failures:,} | {ipsl.failures:,} ({ipsl.failures / ipsl.requests * 100:.2f}%) | {ipsl.subsetted_data_gb / 1000:.2f} TB | {ipsl.peak_concurrency} |{ceda_table}
 
@@ -561,18 +613,7 @@ shown in red.
 
 {ceda_chart}### Understanding the failures
 
-Most failed requests were caused by users accessing the services directly
-through the CDS API rather than through the CDS portal. In this workflow there
-is no CDS catalogue interface to guide or validate the available parameters, so
-users commonly rely on trial and error to discover valid request combinations.
-These invalid requests are counted as failures even though the service itself
-is operating normally.
-
-A smaller share resulted from temporary infrastructure problems, such as full
-temporary disks or unavailable Lustre storage. The statistics also include
-genuine processing failures discovered during normal operation, including
-issues related to calendar handling. The available dashboard data does not
-provide a reliable numerical breakdown among these causes.
+{failure_explanation}
 
 ## Monthly subsetted data
 
@@ -629,9 +670,10 @@ def write_request_svg(path: Path, year: int, rows: list[dict[str, object]], site
     requests = [item.requests if site else int(item["requests"]) for item in metrics]
     failures = [item.failures if site else int(item["failures"]) for item in metrics]
     successful = [request - failure for request, failure in zip(requests, failures)]
+    coverage = f" · Data through {MONTH_FULL_NAMES[len(rows) - 1]}; later months blank" if len(rows) < 12 else ""
     parts, (px, py, pw, ph) = _chart_base(
         f"{label}: monthly request outcomes · {year}",
-        f"{sum(successful):,} successful requests · {sum(failures):,} failures",
+        f"{sum(successful):,} successful requests · {sum(failures):,} failures{coverage}",
     )
     maximum = max(requests) * 1.1 or 1
     _axes(parts, px, py, pw, ph, maximum, lambda v: f"{v / 1000:.0f}k")
@@ -713,8 +755,11 @@ def main() -> None:
         write_request_svg(chart_paths[2], args.year, rows, "ipsl")
         if "ceda" in rows[0]:
             write_request_svg(chart_paths[5], args.year, rows, "ceda")
-        write_series_svg(chart_paths[3], f"All sites: monthly subsetted data · {args.year}", f"Annual total: {sum(data_values) / 1000:.2f} TB", data_values, lambda v: f"{v / 1000:.0f} TB", "#0072B2")
+        total_label = "Year-to-date total" if len(rows) < 12 else "Annual total"
+        coverage_suffix = f" · Data through {MONTH_FULL_NAMES[len(rows) - 1]}; later months blank" if len(rows) < 12 else ""
+        write_series_svg(chart_paths[3], f"All sites: monthly subsetted data · {args.year}", f"{total_label}: {sum(data_values) / 1000:.2f} TB{coverage_suffix}", data_values, lambda v: f"{v / 1000:.0f} TB", "#0072B2")
         concurrency_subtitle = "Highest of the DKRZ, IPSL, and CEDA peak values in each month" if "ceda" in rows[0] else "Higher of the DKRZ and IPSL peak values in each month"
+        concurrency_subtitle += coverage_suffix
         write_series_svg(chart_paths[4], f"All sites: monthly peak concurrency · {args.year}", concurrency_subtitle, concurrency_values, lambda v: f"{v:.0f}", "#6F4EAA", line=True)
     csv_link = Path(os.path.relpath(csv_path, markdown_path.parent)).as_posix()
     chart_links = [Path(os.path.relpath(item, markdown_path.parent)).as_posix() for item in chart_paths]
