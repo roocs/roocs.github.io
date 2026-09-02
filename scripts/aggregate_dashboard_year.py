@@ -85,6 +85,7 @@ def monthly_dashboard_path(dashboard_dir: Path, year: int, month: int, site: str
     candidates = (
         dashboard_dir / str(year) / f"dashboard-{month_id}-{site}.html",
         dashboard_dir / str(year) / f"{month_id}-dashboard_{site}.html",
+        dashboard_dir / str(year) / f"{month_id}-01-dashboard_{site}.html",
     )
     for candidate in candidates:
         if candidate.exists():
@@ -93,6 +94,25 @@ def monthly_dashboard_path(dashboard_dir: Path, year: int, month: int, site: str
 
 
 def source_override(year: int, month: int, site: str, metrics: Metrics | None) -> Metrics:
+    if (year, month, site) == (2022, 1, "ceda"):
+        if metrics is None:
+            raise RuntimeError("The January 2022 CEDA dashboard is required")
+        # January transfer is absent from the monthly export. Complete the
+        # published Q1 CEDA total of 420 GB after February and March.
+        return Metrics(metrics.requests, metrics.failures, metrics.peak_concurrency, 402.68)
+    if (year, month, site) == (2022, 4, "ipsl"):
+        # The monthly export is missing. Request outcomes and concurrency come
+        # from April in the Q2 daily series. Transfer completes the published
+        # Q2 IPSL total of 1,366 GB after May and June.
+        return Metrics(12586, 298, 13, 630.49)
+    if (year, month, site) == (2022, 9, "ipsl"):
+        if metrics is None:
+            raise RuntimeError("The September 2022 IPSL dashboard is required")
+        # The export contains only 49.88 GB. Use the value implied by the
+        # published Q3 IPSL total of 2,340 GB.
+        return Metrics(metrics.requests, metrics.failures, metrics.peak_concurrency, 895.82)
+    if year == 2022 and site == "ceda" and month >= 5:
+        return Metrics(0, 0, 0, 0.0)
     if (year, month, site) == (2023, 1, "ipsl"):
         # The file labelled January spans January and February. Request outcome
         # and concurrency values come from January in the Q1 daily series; the
@@ -128,16 +148,17 @@ def source_override(year: int, month: int, site: str, metrics: Metrics | None) -
 
 def read_year(year: int, dashboard_dir: Path) -> list[dict[str, object]]:
     rows = []
+    sites_for_year = (*SITES, "ceda") if year == 2022 else SITES
     for month in range(1, 13):
         month_id = f"{year}-{month:02d}"
         sites = {}
-        for site in SITES:
+        for site in sites_for_year:
             try:
                 metrics = parse_month(monthly_dashboard_path(dashboard_dir, year, month, site))
             except FileNotFoundError:
                 metrics = None
             sites[site] = source_override(year, month, site, metrics)
-        rows.append({
+        row = {
             "month": month_id,
             "dkrz": sites["dkrz"],
             "ipsl": sites["ipsl"],
@@ -145,19 +166,24 @@ def read_year(year: int, dashboard_dir: Path) -> list[dict[str, object]]:
             "failures": sum(item.failures for item in sites.values()),
             "subsetted_data_gb": sum(item.subsetted_data_gb for item in sites.values()),
             "peak_concurrency": max(item.peak_concurrency for item in sites.values()),
-        })
+        }
+        if "ceda" in sites:
+            row["ceda"] = sites["ceda"]
+        rows.append(row)
     return rows
 
 
 def write_csv(path: Path, rows: list[dict[str, object]]) -> None:
     fields = ["month", "requests", "successful_requests", "failures", "failure_rate_percent", "subsetted_data_gb", "peak_concurrency", "dkrz_requests", "dkrz_successful_requests", "dkrz_failures", "dkrz_peak_concurrency", "dkrz_subsetted_data_gb", "ipsl_requests", "ipsl_successful_requests", "ipsl_failures", "ipsl_peak_concurrency", "ipsl_subsetted_data_gb"]
+    if "ceda" in rows[0]:
+        fields.extend(["ceda_requests", "ceda_successful_requests", "ceda_failures", "ceda_peak_concurrency", "ceda_subsetted_data_gb"])
     with path.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=fields)
         writer.writeheader()
         for row in rows:
             dkrz, ipsl = row["dkrz"], row["ipsl"]
             requests, failures = int(row["requests"]), int(row["failures"])
-            writer.writerow({
+            output_row = {
                 "month": row["month"], "requests": requests,
                 "successful_requests": requests - failures, "failures": failures,
                 "failure_rate_percent": f"{failures / requests * 100:.3f}",
@@ -173,7 +199,17 @@ def write_csv(path: Path, rows: list[dict[str, object]]) -> None:
                 "ipsl_failures": ipsl.failures,
                 "ipsl_peak_concurrency": ipsl.peak_concurrency,
                 "ipsl_subsetted_data_gb": f"{ipsl.subsetted_data_gb:.2f}",
-            })
+            }
+            if "ceda" in row:
+                ceda = row["ceda"]
+                output_row.update({
+                    "ceda_requests": ceda.requests,
+                    "ceda_successful_requests": ceda.requests - ceda.failures,
+                    "ceda_failures": ceda.failures,
+                    "ceda_peak_concurrency": ceda.peak_concurrency,
+                    "ceda_subsetted_data_gb": f"{ceda.subsetted_data_gb:.2f}",
+                })
+            writer.writerow(output_row)
 
 
 def _totals(rows: list[dict[str, object]], site: str | None = None) -> Metrics:
@@ -185,6 +221,35 @@ def _totals(rows: list[dict[str, object]], site: str | None = None) -> Metrics:
 
 def write_markdown(path: Path, year: int, rows: list[dict[str, object]], csv_link: str, chart_links: list[str]) -> None:
     total, dkrz, ipsl = _totals(rows), _totals(rows, "dkrz"), _totals(rows, "ipsl")
+    ceda = _totals(rows, "ceda") if "ceda" in rows[0] else None
+    site_names = "DKRZ, IPSL, and CEDA" if ceda else "DKRZ and IPSL"
+    ceda_table = ""
+    ceda_chart = ""
+    if ceda:
+        ceda_table = f"\n| CEDA | {ceda.requests:,} | {ceda.requests - ceda.failures:,} | {ceda.failures:,} ({ceda.failures / ceda.requests * 100:.2f}%) | {ceda.subsetted_data_gb / 1000:.2f} TB | {ceda.peak_concurrency} |"
+        ceda_chart = f"""### CEDA
+
+![Successful and failed requests for CEDA]({chart_links[5]})
+
+[Download this chart as SVG]({chart_links[5]}){{: download }}
+
+"""
+    if ceda:
+        concurrency_explanation = f"""For each month, overall concurrency is the highest peak reported by
+{site_names}. The site peaks are not added because they may have
+occurred at different times."""
+        methodology_text = """Request, failure, and subsetted-data totals are sums of the monthly DKRZ,
+IPSL, and CEDA dashboard exports. Successful requests are calculated as total
+requests minus failed requests. Peak concurrency is not additive: the combined
+monthly series uses the higher site value, and the annual value is its maximum."""
+    else:
+        concurrency_explanation = """For each month, overall concurrency is the higher of the DKRZ and IPSL peak
+values. The site peaks are not added because they may have occurred at different
+times."""
+        methodology_text = """Request, failure, and subsetted-data totals are sums of the monthly DKRZ and
+IPSL dashboard exports. Successful requests are calculated as total requests
+minus failed requests. Peak concurrency is not additive: the combined monthly
+series uses the higher site value, and the annual value is its maximum."""
     source_note = ""
     if year == 2025:
         source_note = """
@@ -213,10 +278,22 @@ summary uses the monthly estimates recorded in the existing 2023 dashboard:
 5,339 GB for January, 4,000 GB for February, 2,340 GB for March, and 500 GB for
 October.
 """
+    elif year == 2022:
+        source_note = """
+Source note: CEDA contributed during the service transition through April. Its
+January export omits transfer volume, so the value is inferred from the
+published Q1 CEDA total of 420 GB. The April IPSL monthly export is missing;
+request outcomes and concurrency were recovered from the Q2 daily series, and
+its transfer value completes the published Q2 IPSL total of 1,366 GB. The
+September IPSL export contains only 49.88 GB, so this summary uses the value
+implied by the published Q3 IPSL total of 2,340 GB. The unusually high peaks of
+143 for CEDA in January and 97 for IPSL in October come directly from the raw
+monthly exports.
+"""
     path.write_text(f"""# ROOCS {year} annual summary
 
 This report summarizes monthly usage of the ROOCS subsetting services operated
-by DKRZ and IPSL during {year}. Together, the services processed
+by {site_names} during {year}. Together, the services processed
 **{total.requests:,} requests**, of which **{total.requests - total.failures:,} were successful**,
 and delivered **{total.subsetted_data_gb / 1000:.2f} TB** of subsetted data.
 
@@ -224,7 +301,7 @@ and delivered **{total.subsetted_data_gb / 1000:.2f} TB** of subsetted data.
 | --- | ---: | ---: | ---: | ---: | ---: |
 | All sites | {total.requests:,} | {total.requests - total.failures:,} | {total.failures:,} ({total.failures / total.requests * 100:.2f}%) | {total.subsetted_data_gb / 1000:.2f} TB | {total.peak_concurrency} |
 | DKRZ | {dkrz.requests:,} | {dkrz.requests - dkrz.failures:,} | {dkrz.failures:,} ({dkrz.failures / dkrz.requests * 100:.2f}%) | {dkrz.subsetted_data_gb / 1000:.2f} TB | {dkrz.peak_concurrency} |
-| IPSL | {ipsl.requests:,} | {ipsl.requests - ipsl.failures:,} | {ipsl.failures:,} ({ipsl.failures / ipsl.requests * 100:.2f}%) | {ipsl.subsetted_data_gb / 1000:.2f} TB | {ipsl.peak_concurrency} |
+| IPSL | {ipsl.requests:,} | {ipsl.requests - ipsl.failures:,} | {ipsl.failures:,} ({ipsl.failures / ipsl.requests * 100:.2f}%) | {ipsl.subsetted_data_gb / 1000:.2f} TB | {ipsl.peak_concurrency} |{ceda_table}
 
 ## Monthly request outcomes
 
@@ -249,7 +326,7 @@ shown in red.
 
 [Download this chart as SVG]({chart_links[2]}){{: download }}
 
-### Understanding the failures
+{ceda_chart}### Understanding the failures
 
 Most failed requests were caused by users accessing the services directly
 through the CDS API rather than through the CDS portal. In this workflow there
@@ -266,7 +343,7 @@ provide a reliable numerical breakdown among these causes.
 
 ## Monthly subsetted data
 
-The monthly values combine the data delivered by DKRZ and IPSL.
+The monthly values combine the data delivered by {site_names}.
 
 ![Subsetted data across all sites]({chart_links[3]})
 
@@ -274,9 +351,7 @@ The monthly values combine the data delivered by DKRZ and IPSL.
 
 ## Monthly peak concurrency
 
-For each month, overall concurrency is the higher of the DKRZ and IPSL peak
-values. The site peaks are not added because they may have occurred at different
-times.
+{concurrency_explanation}
 
 ![Peak concurrency across all sites]({chart_links[4]})
 
@@ -284,10 +359,7 @@ times.
 
 ## Data and methodology
 
-Request, failure, and subsetted-data totals are sums of the monthly DKRZ and
-IPSL dashboard exports. Successful requests are calculated as total requests
-minus failed requests. Peak concurrency is not additive: the combined monthly
-series uses the higher site value, and the annual value is its maximum.
+{methodology_text}
 {source_note}
 
 [Download the monthly source data as CSV]({csv_link}){{: download }}
@@ -383,14 +455,19 @@ def main() -> None:
         args.output_dir / f"{stem}-subsetted-data-all.svg",
         args.output_dir / f"{stem}-concurrency-all.svg",
     ]
+    if "ceda" in rows[0]:
+        chart_paths.append(args.output_dir / f"{stem}-requests-ceda.svg")
     write_csv(csv_path, rows)
     write_request_svg(chart_paths[0], args.year, rows, None)
     write_request_svg(chart_paths[1], args.year, rows, "dkrz")
     write_request_svg(chart_paths[2], args.year, rows, "ipsl")
+    if "ceda" in rows[0]:
+        write_request_svg(chart_paths[5], args.year, rows, "ceda")
     data_values = [float(row["subsetted_data_gb"]) for row in rows]
     write_series_svg(chart_paths[3], f"All sites: monthly subsetted data · {args.year}", f"Annual total: {sum(data_values) / 1000:.2f} TB", data_values, lambda v: f"{v / 1000:.0f} TB", "#0072B2")
     concurrency_values = [float(row["peak_concurrency"]) for row in rows]
-    write_series_svg(chart_paths[4], f"All sites: monthly peak concurrency · {args.year}", "Higher of the DKRZ and IPSL peak values in each month", concurrency_values, lambda v: f"{v:.0f}", "#6F4EAA", line=True)
+    concurrency_subtitle = "Highest of the DKRZ, IPSL, and CEDA peak values in each month" if "ceda" in rows[0] else "Higher of the DKRZ and IPSL peak values in each month"
+    write_series_svg(chart_paths[4], f"All sites: monthly peak concurrency · {args.year}", concurrency_subtitle, concurrency_values, lambda v: f"{v:.0f}", "#6F4EAA", line=True)
     csv_link = Path(os.path.relpath(csv_path, markdown_path.parent)).as_posix()
     chart_links = [Path(os.path.relpath(item, markdown_path.parent)).as_posix() for item in chart_paths]
     write_markdown(markdown_path, args.year, rows, csv_link, chart_links)
