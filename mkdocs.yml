@@ -17,7 +17,9 @@ nav:
     - 2022:
       - Annual summary: dashboard/summary-2022.md
       - Quarterly and monthly reports: dashboard/dashboard-2022.md
-    - 2021: dashboard/dashboard-2021.md
+    - 2021:
+      - Annual summary: dashboard/summary-2021.md
+      - Reports: dashboard/dashboard-2021.md
   - Releases: changelog.md
   - Contact: contact.md 
 theme:

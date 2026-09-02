@@ -9,12 +9,16 @@ Overall concurrency is the higher of the two site peaks in each month.
 from __future__ import annotations
 
 import argparse
+import base64
 import csv
 import html
 import json
+import math
 import os
 import re
+import struct
 from dataclasses import dataclass
+from datetime import UTC, datetime
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -23,6 +27,7 @@ DEFAULT_OUTPUT_DIR = REPO_ROOT / "docs" / "downloads" / "stats"
 DEFAULT_PAGE_DIR = REPO_ROOT / "docs" / "dashboard"
 SITES = ("dkrz", "ipsl")
 MONTH_NAMES = ("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+DTYPES = {"float64": "d", "int64": "q", "int32": "i", "uint32": "I"}
 
 
 @dataclass(frozen=True)
@@ -43,9 +48,76 @@ def _objects(value: object):
             yield from _objects(child)
 
 
+def _docs_json_strings(text: str) -> list[str]:
+    return re.findall(r"(?:const|var) docs_json = '(.*?)';", text, re.S)
+
+
+def _decode_values(value: object) -> list[float]:
+    if isinstance(value, list):
+        return value
+    if not isinstance(value, dict) or "__ndarray__" not in value:
+        raise ValueError("Unsupported chart data array")
+    dtype = str(value["dtype"])
+    raw = base64.b64decode(value["__ndarray__"])
+    length = int(value["shape"][0])
+    return list(struct.unpack(f"<{DTYPES[dtype] * length}", raw))
+
+
+def _chart_series(path: Path, title_prefix: str) -> dict[str, object]:
+    for encoded in _docs_json_strings(path.read_text(encoding="utf-8")):
+        document = json.loads(encoded)
+        objects = list(_objects(document))
+        titles = [
+            obj.get("attributes", {}).get("text", "")
+            for obj in objects
+            if obj.get("type") == "Title" or obj.get("name") == "Title"
+        ]
+        if not any(str(title).startswith(title_prefix) for title in titles):
+            continue
+        for obj in objects:
+            if obj.get("type") != "ColumnDataSource" and obj.get("name") != "ColumnDataSource":
+                continue
+            data = obj.get("attributes", {}).get("data", {})
+            if "entries" in data:
+                data = dict(data["entries"])
+            if isinstance(data, dict) and ("time" in data or "datetime" in data):
+                return data
+    raise RuntimeError(f"Could not find {title_prefix!r} chart data in {path}")
+
+
+def parse_series_month(path: Path, year: int, month: int) -> Metrics:
+    activity = _chart_series(path, "Activity - Requests per day")
+    concurrency = _chart_series(path, "Max concurrent requests per day")
+    transfer = _chart_series(path, "Data transfer per day")
+
+    def month_indices(series: dict[str, object]) -> list[int]:
+        key = "time" if "time" in series else "datetime"
+        timestamps = _decode_values(series[key])
+        return [
+            index
+            for index, timestamp in enumerate(timestamps)
+            if (date := datetime.fromtimestamp(timestamp / 1000, UTC)).year == year
+            and date.month == month
+        ]
+
+    activity_indices = month_indices(activity)
+    success = _decode_values(activity["success"])
+    failed = _decode_values(activity["failed"])
+    concurrency_indices = month_indices(concurrency)
+    running = _decode_values(concurrency["running"])
+    transfer_indices = month_indices(transfer)
+    sizes = _decode_values(transfer["size"])
+    return Metrics(
+        requests=int(sum(success[index] + failed[index] for index in activity_indices)),
+        failures=int(sum(failed[index] for index in activity_indices)),
+        peak_concurrency=int(max((running[index] for index in concurrency_indices if not math.isnan(running[index])), default=0)),
+        subsetted_data_gb=sum(sizes[index] for index in transfer_indices),
+    )
+
+
 def _overview_values(path: Path) -> dict[str, object]:
     text = path.read_text(encoding="utf-8")
-    for encoded in re.findall(r"const docs_json = '(.*?)';", text, re.S):
+    for encoded in _docs_json_strings(text):
         documents = json.loads(encoded)
         for document in documents.values():
             for root in _objects(document.get("roots", [])):
@@ -146,7 +218,44 @@ def source_override(year: int, month: int, site: str, metrics: Metrics | None) -
     return metrics
 
 
+def read_2021(dashboard_dir: Path) -> list[dict[str, object]]:
+    year_dir = dashboard_dir / "2021"
+    annual_paths = {
+        site: year_dir / f"2021-dashboard_{site}.html"
+        for site in ("dkrz", "ceda")
+    }
+    rows = []
+    for month in range(1, 13):
+        if month < 3:
+            combined = Metrics(0, 0, 0, 0.0)
+            sites = {site: Metrics(0, 0, 0, 0.0) for site in annual_paths}
+        else:
+            combined = parse_month(year_dir / f"2021-{month:02d}-01-dashboard.html")
+            if month < 7:
+                sites = {
+                    site: parse_series_month(path, 2021, month)
+                    for site, path in annual_paths.items()
+                }
+            else:
+                sites = {
+                    site: parse_month(year_dir / f"2021-{month:02d}-01-dashboard_{site}.html")
+                    for site in annual_paths
+                }
+        rows.append({
+            "month": f"2021-{month:02d}",
+            "dkrz": sites["dkrz"],
+            "ceda": sites["ceda"],
+            "requests": combined.requests,
+            "failures": combined.failures,
+            "subsetted_data_gb": combined.subsetted_data_gb,
+            "peak_concurrency": combined.peak_concurrency,
+        })
+    return rows
+
+
 def read_year(year: int, dashboard_dir: Path) -> list[dict[str, object]]:
+    if year == 2021:
+        return read_2021(dashboard_dir)
     rows = []
     sites_for_year = (*SITES, "ceda") if year == 2022 else SITES
     for month in range(1, 13):
@@ -217,6 +326,130 @@ def _totals(rows: list[dict[str, object]], site: str | None = None) -> Metrics:
     if site:
         return Metrics(sum(v.requests for v in values), sum(v.failures for v in values), max(v.peak_concurrency for v in values), sum(v.subsetted_data_gb for v in values))
     return Metrics(sum(int(v["requests"]) for v in values), sum(int(v["failures"]) for v in values), max(int(v["peak_concurrency"]) for v in values), sum(float(v["subsetted_data_gb"]) for v in values))
+
+
+def write_csv_2021(path: Path, rows: list[dict[str, object]]) -> None:
+    fields = ["month", "requests", "successful_requests", "failures", "failure_rate_percent", "subsetted_data_gb", "peak_concurrency", "dkrz_requests", "dkrz_successful_requests", "dkrz_failures", "dkrz_peak_concurrency", "dkrz_subsetted_data_gb", "ceda_requests", "ceda_successful_requests", "ceda_failures", "ceda_peak_concurrency", "ceda_subsetted_data_gb"]
+    with path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fields)
+        writer.writeheader()
+        for row in rows:
+            dkrz, ceda = row["dkrz"], row["ceda"]
+            requests, failures = int(row["requests"]), int(row["failures"])
+            writer.writerow({
+                "month": row["month"], "requests": requests,
+                "successful_requests": requests - failures, "failures": failures,
+                "failure_rate_percent": f"{failures / requests * 100:.3f}" if requests else "",
+                "subsetted_data_gb": f"{float(row['subsetted_data_gb']):.2f}",
+                "peak_concurrency": row["peak_concurrency"],
+                "dkrz_requests": dkrz.requests,
+                "dkrz_successful_requests": dkrz.requests - dkrz.failures,
+                "dkrz_failures": dkrz.failures,
+                "dkrz_peak_concurrency": dkrz.peak_concurrency,
+                "dkrz_subsetted_data_gb": f"{dkrz.subsetted_data_gb:.2f}",
+                "ceda_requests": ceda.requests,
+                "ceda_successful_requests": ceda.requests - ceda.failures,
+                "ceda_failures": ceda.failures,
+                "ceda_peak_concurrency": ceda.peak_concurrency,
+                "ceda_subsetted_data_gb": f"{ceda.subsetted_data_gb:.2f}",
+            })
+
+
+def write_markdown_2021(path: Path, rows: list[dict[str, object]], csv_link: str, chart_links: list[str]) -> None:
+    total, dkrz, ceda = _totals(rows), _totals(rows, "dkrz"), _totals(rows, "ceda")
+    path.write_text(f"""# ROOCS 2021 annual summary
+
+Monthly ROOCS reporting began in March 2021. From March through December, the
+available combined exports record **{total.requests:,} requests**, of which
+**{total.requests - total.failures:,} were successful**, and **{total.subsetted_data_gb / 1000:.2f} TB**
+of subsetted data across DKRZ and CEDA.
+
+| Scope | Requests | Successful | Failures | Recorded subsetted data | Peak concurrency |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| All sites, March–December | {total.requests:,} | {total.requests - total.failures:,} | {total.failures:,} ({total.failures / total.requests * 100:.2f}%) | {total.subsetted_data_gb / 1000:.2f} TB | {total.peak_concurrency} |
+| DKRZ | {dkrz.requests:,} | {dkrz.requests - dkrz.failures:,} | {dkrz.failures:,} ({dkrz.failures / dkrz.requests * 100:.2f}%) | {dkrz.subsetted_data_gb / 1000:.2f} TB | {dkrz.peak_concurrency} |
+| CEDA | {ceda.requests:,} | {ceda.requests - ceda.failures:,} | {ceda.failures:,} ({ceda.failures / ceda.requests * 100:.2f}%) | {ceda.subsetted_data_gb / 1000:.2f} TB | {ceda.peak_concurrency} |
+
+The DKRZ and CEDA request figures cover March–December. Their transfer columns
+only contain the available site-level July–December values; March–June transfer
+cannot be divided reliably between the sites.
+
+## Monthly request outcomes
+
+The green portion of each bar represents successful requests; failures are
+shown in red. January and February are empty because monthly reporting had not
+yet started.
+
+### All sites
+
+![Successful and failed requests for all sites]({chart_links[0]})
+
+[Download this chart as SVG]({chart_links[0]}){{: download }}
+
+### DKRZ
+
+![Successful and failed requests for DKRZ]({chart_links[1]})
+
+[Download this chart as SVG]({chart_links[1]}){{: download }}
+
+### CEDA
+
+![Successful and failed requests for CEDA]({chart_links[2]})
+
+[Download this chart as SVG]({chart_links[2]}){{: download }}
+
+### Understanding the failures
+
+Most failed requests were caused by users accessing the services directly
+through the CDS API rather than through the CDS portal. In this workflow there
+is no CDS catalogue interface to guide or validate the available parameters, so
+users commonly rely on trial and error to discover valid request combinations.
+These invalid requests are counted as failures even though the service itself
+is operating normally.
+
+A smaller share resulted from temporary infrastructure problems, such as full
+temporary disks or unavailable Lustre storage. The statistics also include
+genuine processing failures discovered during normal operation, including
+issues related to calendar handling. The available dashboard data does not
+provide a reliable numerical breakdown among these causes.
+
+## Monthly subsetted data
+
+The chart shows the transfer volume recorded in the combined monthly exports.
+
+![Subsetted data across all sites]({chart_links[3]})
+
+[Download this chart as SVG]({chart_links[3]}){{: download }}
+
+## Monthly peak concurrency
+
+The chart uses the combined monthly export because the site split is not
+available for the first part of the reporting period.
+
+![Peak concurrency across all sites]({chart_links[4]})
+
+[Download this chart as SVG]({chart_links[4]}){{: download }}
+
+## Data and methodology
+
+Combined monthly exports provide the overall request, failure, transfer, and
+concurrency series. DKRZ and CEDA request outcomes for March–June were recovered
+from the corresponding daily series in the full-year site exports; monthly site
+exports are available from July onward.
+
+The archived monthly files record 6.62 TB for July–December, while the existing
+2021 dashboard page reports a rounded total of 11 TB for that period. This
+summary retains the reproducible monthly values and therefore describes its
+7.62 TB annual figure as recorded data rather than a complete transfer total.
+
+The full-year overview reports 95,096 requests and 4,179 failures, compared
+with 94,254 requests and 4,141 failures obtained by summing the monthly combined
+exports. The site-level series also differ slightly from the combined series.
+This summary consistently uses the monthly combined values for the overall
+totals and charts, while showing the available site-series values separately.
+
+[Download the monthly source data as CSV]({csv_link}){{: download }}
+""", encoding="utf-8")
 
 
 def write_markdown(path: Path, year: int, rows: list[dict[str, object]], csv_link: str, chart_links: list[str]) -> None:
@@ -448,29 +681,47 @@ def main() -> None:
     stem = f"roocs-{args.year}"
     csv_path = args.output_dir / f"{stem}-monthly.csv"
     markdown_path = args.page_dir / f"summary-{args.year}.md"
-    chart_paths = [
-        args.output_dir / f"{stem}-requests-all.svg",
-        args.output_dir / f"{stem}-requests-dkrz.svg",
-        args.output_dir / f"{stem}-requests-ipsl.svg",
-        args.output_dir / f"{stem}-subsetted-data-all.svg",
-        args.output_dir / f"{stem}-concurrency-all.svg",
-    ]
-    if "ceda" in rows[0]:
-        chart_paths.append(args.output_dir / f"{stem}-requests-ceda.svg")
-    write_csv(csv_path, rows)
-    write_request_svg(chart_paths[0], args.year, rows, None)
-    write_request_svg(chart_paths[1], args.year, rows, "dkrz")
-    write_request_svg(chart_paths[2], args.year, rows, "ipsl")
-    if "ceda" in rows[0]:
-        write_request_svg(chart_paths[5], args.year, rows, "ceda")
     data_values = [float(row["subsetted_data_gb"]) for row in rows]
-    write_series_svg(chart_paths[3], f"All sites: monthly subsetted data · {args.year}", f"Annual total: {sum(data_values) / 1000:.2f} TB", data_values, lambda v: f"{v / 1000:.0f} TB", "#0072B2")
     concurrency_values = [float(row["peak_concurrency"]) for row in rows]
-    concurrency_subtitle = "Highest of the DKRZ, IPSL, and CEDA peak values in each month" if "ceda" in rows[0] else "Higher of the DKRZ and IPSL peak values in each month"
-    write_series_svg(chart_paths[4], f"All sites: monthly peak concurrency · {args.year}", concurrency_subtitle, concurrency_values, lambda v: f"{v:.0f}", "#6F4EAA", line=True)
+    if args.year == 2021:
+        chart_paths = [
+            args.output_dir / f"{stem}-requests-all.svg",
+            args.output_dir / f"{stem}-requests-dkrz.svg",
+            args.output_dir / f"{stem}-requests-ceda.svg",
+            args.output_dir / f"{stem}-subsetted-data-all.svg",
+            args.output_dir / f"{stem}-concurrency-all.svg",
+        ]
+        write_csv_2021(csv_path, rows)
+        write_request_svg(chart_paths[0], args.year, rows, None)
+        write_request_svg(chart_paths[1], args.year, rows, "dkrz")
+        write_request_svg(chart_paths[2], args.year, rows, "ceda")
+        write_series_svg(chart_paths[3], "All sites: monthly recorded subsetted data · 2021", f"Recorded total: {sum(data_values) / 1000:.2f} TB", data_values, lambda v: f"{v / 1000:.1f} TB", "#0072B2")
+        write_series_svg(chart_paths[4], "All sites: monthly peak concurrency · 2021", "Combined monthly dashboard values · reporting began in March", concurrency_values, lambda v: f"{v:.0f}", "#6F4EAA", line=True)
+    else:
+        chart_paths = [
+            args.output_dir / f"{stem}-requests-all.svg",
+            args.output_dir / f"{stem}-requests-dkrz.svg",
+            args.output_dir / f"{stem}-requests-ipsl.svg",
+            args.output_dir / f"{stem}-subsetted-data-all.svg",
+            args.output_dir / f"{stem}-concurrency-all.svg",
+        ]
+        if "ceda" in rows[0]:
+            chart_paths.append(args.output_dir / f"{stem}-requests-ceda.svg")
+        write_csv(csv_path, rows)
+        write_request_svg(chart_paths[0], args.year, rows, None)
+        write_request_svg(chart_paths[1], args.year, rows, "dkrz")
+        write_request_svg(chart_paths[2], args.year, rows, "ipsl")
+        if "ceda" in rows[0]:
+            write_request_svg(chart_paths[5], args.year, rows, "ceda")
+        write_series_svg(chart_paths[3], f"All sites: monthly subsetted data · {args.year}", f"Annual total: {sum(data_values) / 1000:.2f} TB", data_values, lambda v: f"{v / 1000:.0f} TB", "#0072B2")
+        concurrency_subtitle = "Highest of the DKRZ, IPSL, and CEDA peak values in each month" if "ceda" in rows[0] else "Higher of the DKRZ and IPSL peak values in each month"
+        write_series_svg(chart_paths[4], f"All sites: monthly peak concurrency · {args.year}", concurrency_subtitle, concurrency_values, lambda v: f"{v:.0f}", "#6F4EAA", line=True)
     csv_link = Path(os.path.relpath(csv_path, markdown_path.parent)).as_posix()
     chart_links = [Path(os.path.relpath(item, markdown_path.parent)).as_posix() for item in chart_paths]
-    write_markdown(markdown_path, args.year, rows, csv_link, chart_links)
+    if args.year == 2021:
+        write_markdown_2021(markdown_path, rows, csv_link, chart_links)
+    else:
+        write_markdown(markdown_path, args.year, rows, csv_link, chart_links)
     print(markdown_path, csv_path, *chart_paths, sep="\n")
 
 
