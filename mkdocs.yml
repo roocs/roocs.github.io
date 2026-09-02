@@ -4,6 +4,7 @@ nav:
   - About: about.md
   - Overview: overview.md
   - Dashboard:
+    - All years: dashboard/summary-all-years.md
     - 2026:
       - Annual summary to date: dashboard/summary-2026.md
       - Reports: dashboard/dashboard-2026.md

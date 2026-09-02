@@ -710,16 +710,115 @@ def write_series_svg(path: Path, title: str, subtitle: str, values: list[float],
     path.write_text("\n".join(parts), encoding="utf-8")
 
 
+def write_yearly_bar_svg(path: Path, title: str, subtitle: str, labels: list[str], values: list[float], formatter, color: str) -> None:
+    parts, (px, py, pw, ph) = _chart_base(title, subtitle)
+    maximum = max(values) * 1.12 or 1
+    for step in range(5):
+        value, y = maximum * step / 4, py + ph - ph * step / 4
+        parts.append(f'<line x1="{px}" y1="{y:.1f}" x2="{px + pw}" y2="{y:.1f}" stroke="#e7edf3"/>')
+        parts.append(_text(px - 8, y + 5, formatter(value), 11, "end", "#627386"))
+    slot, bar_width = pw / len(labels), pw / len(labels) * .54
+    for index, (label, value) in enumerate(zip(labels, values)):
+        x = px + slot * index + (slot - bar_width) / 2
+        height = ph * value / maximum
+        parts.append(f'<rect x="{x:.1f}" y="{py + ph - height:.1f}" width="{bar_width:.1f}" height="{height:.1f}" fill="{color}"/>')
+        parts.append(_text(x + bar_width / 2, py + ph + 22, label, 12, "middle", "#627386"))
+    parts.append("</svg>")
+    path.write_text("\n".join(parts), encoding="utf-8")
+
+
+def write_overall_report(dashboard_dir: Path, output_dir: Path, page_dir: Path) -> list[Path]:
+    years = sorted(
+        int(path.name)
+        for path in dashboard_dir.iterdir()
+        if path.is_dir() and path.name.isdigit() and int(path.name) >= 2021
+    )
+    annual = [(year, read_year(year, dashboard_dir)) for year in years]
+    totals = [(year, _totals(rows), len(rows)) for year, rows in annual]
+    request_chart = output_dir / "roocs-all-years-requests.svg"
+    data_chart = output_dir / "roocs-all-years-subsetted-data.svg"
+    labels = [str(year) for year, _, _ in totals]
+    requests = [float(total.requests) for _, total, _ in totals]
+    data = [total.subsetted_data_gb for _, total, _ in totals]
+    write_yearly_bar_svg(
+        request_chart,
+        "ROOCS requests by year",
+        "All reporting sites · 2021 and 2026 cover partial years",
+        labels,
+        requests,
+        lambda value: f"{value / 1_000_000:.1f}M",
+        "#2E8B57",
+    )
+    write_yearly_bar_svg(
+        data_chart,
+        "ROOCS subsetted data by year",
+        "Recorded monthly totals · 2021 and 2026 cover partial years",
+        labels,
+        data,
+        lambda value: f"{value / 1000:.0f} TB",
+        "#0072B2",
+    )
+    request_link = Path(os.path.relpath(request_chart, page_dir)).as_posix()
+    data_link = Path(os.path.relpath(data_chart, page_dir)).as_posix()
+    table_rows = []
+    for year, total, months in totals:
+        if year == 2021:
+            coverage = "March–December (recorded)"
+        elif months < 12:
+            coverage = f"January–{MONTH_FULL_NAMES[months - 1]} (year to date)"
+        else:
+            coverage = "January–December"
+        table_rows.append(
+            f"| [{year}](summary-{year}.md) | {coverage} | {total.requests:,} | {total.subsetted_data_gb / 1000:.2f} TB |"
+        )
+    page = page_dir / "summary-all-years.md"
+    page.write_text(f"""# ROOCS usage by year
+
+This overview shows the total number of requests processed and the recorded
+volume of subsetted data for each reporting year. Detailed request outcomes,
+site breakdowns, and monthly charts are available from the linked annual pages.
+
+| Year | Coverage | Requests | Subsetted data |
+| --- | --- | ---: | ---: |
+{chr(10).join(table_rows)}
+
+## Requests
+
+![ROOCS requests by year]({request_link})
+
+[Download this chart as SVG]({request_link}){{: download }}
+
+## Subsetted data
+
+![ROOCS subsetted data by year]({data_link})
+
+[Download this chart as SVG]({data_link}){{: download }}
+
+## Comparability
+
+The 2021 series starts in March, and its transfer total reflects the values
+recorded in the archived monthly exports; those exports are known to be
+incomplete. The 2026 figure currently covers January through
+{MONTH_FULL_NAMES[len(annual[-1][1]) - 1]} and will grow as later reports are added.
+See the individual annual pages for source-specific notes.
+""", encoding="utf-8")
+    return [page, request_chart, data_chart]
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--year", type=int, default=2025)
     parser.add_argument("--dashboard-dir", type=Path, default=DEFAULT_DASHBOARD_DIR)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
     parser.add_argument("--page-dir", type=Path, default=DEFAULT_PAGE_DIR)
+    parser.add_argument("--all-years", action="store_true", help="Generate the compact all-years summary")
     args = parser.parse_args()
-    rows = read_year(args.year, args.dashboard_dir)
     args.output_dir.mkdir(parents=True, exist_ok=True)
     args.page_dir.mkdir(parents=True, exist_ok=True)
+    if args.all_years:
+        print(*write_overall_report(args.dashboard_dir, args.output_dir, args.page_dir), sep="\n")
+        return
+    rows = read_year(args.year, args.dashboard_dir)
     stem = f"roocs-{args.year}"
     csv_path = args.output_dir / f"{stem}-monthly.csv"
     markdown_path = args.page_dir / f"summary-{args.year}.md"
