@@ -4,12 +4,25 @@ nav:
   - About: about.md
   - Overview: overview.md
   - Dashboard:
-    - 2026: dashboard/dashboard-2026.md 
-    - 2025: dashboard/dashboard-2025.md 
-    - 2024: dashboard/dashboard-2024.md
-    - 2023: dashboard/dashboard-2023.md
-    - 2022: dashboard/dashboard-2022.md
-    - 2021: dashboard/dashboard-2021.md
+    - All years: dashboard/summary-all-years.md
+    - 2026:
+      - Annual summary to date: dashboard/summary-2026.md
+      - Reports: dashboard/dashboard-2026.md
+    - 2025:
+      - Annual summary: dashboard/summary-2025.md
+      - Quarterly and monthly reports: dashboard/dashboard-2025.md
+    - 2024:
+      - Annual summary: dashboard/summary-2024.md
+      - Quarterly and monthly reports: dashboard/dashboard-2024.md
+    - 2023:
+      - Annual summary: dashboard/summary-2023.md
+      - Quarterly and monthly reports: dashboard/dashboard-2023.md
+    - 2022:
+      - Annual summary: dashboard/summary-2022.md
+      - Quarterly and monthly reports: dashboard/dashboard-2022.md
+    - 2021:
+      - Annual summary: dashboard/summary-2021.md
+      - Reports: dashboard/dashboard-2021.md
   - Releases: changelog.md
   - Contact: contact.md 
 theme:
@@ -20,5 +33,3 @@ markdown_extensions:
   - attr_list
 plugins:
   - search
-
-
