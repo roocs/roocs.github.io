@@ -3,6 +3,7 @@ nav:
   - Home: index.md
   - About: about.md
   - Overview: overview.md
+  - Service status: status.md
   - Dashboard:
     - All years: dashboard/summary-all-years.md
     - 2026:

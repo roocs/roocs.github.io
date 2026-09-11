@@ -778,6 +778,8 @@ This overview shows the total number of requests processed and the recorded
 volume of subsetted data for each reporting year. Detailed request outcomes,
 site breakdowns, and monthly charts are available from the linked annual pages.
 
+For the latest cached health checks, see [Service status](../status.md).
+
 | Year | Coverage | Requests | Subsetted data |
 | --- | --- | ---: | ---: |
 {chr(10).join(table_rows)}
