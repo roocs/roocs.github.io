@@ -5,3 +5,6 @@ The main focus of the service is to reduce the volumes of data transferred by pr
 *data-reduction* processes that can be invoked directly from the [C3S Climate Data Store (CDS)](https://cds.climate.copernicus.eu/).
 
 The **aim of this website** is to provide a set of links to the services and tools provided by ROOCS.
+
+See [Service status](status.md) for the latest cached health checks, or explore
+the [Dashboard](dashboard/summary-all-years.md) for historical service usage.

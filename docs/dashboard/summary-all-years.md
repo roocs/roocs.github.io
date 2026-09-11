@@ -4,6 +4,8 @@ This overview shows the total number of requests processed and the recorded
 volume of subsetted data for each reporting year. Detailed request outcomes,
 site breakdowns, and monthly charts are available from the linked annual pages.
 
+For the latest cached health checks, see [Service status](../status.md).
+
 | Year | Coverage | Requests | Subsetted data |
 | --- | --- | ---: | ---: |
 | [2021](summary-2021.md) | March–December (recorded) | 94,254 | 7.62 TB |
