@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560">
+<rect width="100%" height="100%" fill="#f5f7fa"/>
+<rect x="32" y="28" width="1136" height="500" rx="14" fill="#fff" stroke="#dce4ec"/>
+<text x="64.0" y="72.0" font-size="26" text-anchor="start" fill="#243447" font-weight="700">ROOCS requests by year</text>
+<text x="64.0" y="99.0" font-size="14" text-anchor="start" fill="#627386" font-weight="400">All reporting sites · 2021 and 2026 cover partial years</text>
+<line x1="126" y1="465.0" x2="1124" y2="465.0" stroke="#e7edf3"/>
+<text x="118.0" y="470.0" font-size="11" text-anchor="end" fill="#627386" font-weight="400">0.0M</text>
+<line x1="126" y1="382.5" x2="1124" y2="382.5" stroke="#e7edf3"/>
+<text x="118.0" y="387.5" font-size="11" text-anchor="end" fill="#627386" font-weight="400">0.4M</text>
+<line x1="126" y1="300.0" x2="1124" y2="300.0" stroke="#e7edf3"/>
+<text x="118.0" y="305.0" font-size="11" text-anchor="end" fill="#627386" font-weight="400">0.9M</text>
+<line x1="126" y1="217.5" x2="1124" y2="217.5" stroke="#e7edf3"/>
+<text x="118.0" y="222.5" font-size="11" text-anchor="end" fill="#627386" font-weight="400">1.3M</text>
+<line x1="126" y1="135.0" x2="1124" y2="135.0" stroke="#e7edf3"/>
+<text x="118.0" y="140.0" font-size="11" text-anchor="end" fill="#627386" font-weight="400">1.7M</text>
+<rect x="164.3" y="446.9" width="89.8" height="18.1" fill="#2E8B57"/>
+<text x="209.2" y="487.0" font-size="12" text-anchor="middle" fill="#627386" font-weight="400">2021</text>
+<rect x="330.6" y="396.4" width="89.8" height="68.6" fill="#2E8B57"/>
+<text x="375.5" y="487.0" font-size="12" text-anchor="middle" fill="#627386" font-weight="400">2022</text>
+<rect x="496.9" y="323.4" width="89.8" height="141.6" fill="#2E8B57"/>
+<text x="541.8" y="487.0" font-size="12" text-anchor="middle" fill="#627386" font-weight="400">2023</text>
+<rect x="663.3" y="170.4" width="89.8" height="294.6" fill="#2E8B57"/>
+<text x="708.2" y="487.0" font-size="12" text-anchor="middle" fill="#627386" font-weight="400">2024</text>
+<rect x="829.6" y="172.8" width="89.8" height="292.2" fill="#2E8B57"/>
+<text x="874.5" y="487.0" font-size="12" text-anchor="middle" fill="#627386" font-weight="400">2025</text>
+<rect x="995.9" y="278.8" width="89.8" height="186.2" fill="#2E8B57"/>
+<text x="1040.8" y="487.0" font-size="12" text-anchor="middle" fill="#627386" font-weight="400">2026</text>
+</svg>

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560">
+<rect width="100%" height="100%" fill="#f5f7fa"/>
+<rect x="32" y="28" width="1136" height="500" rx="14" fill="#fff" stroke="#dce4ec"/>
+<text x="64.0" y="72.0" font-size="26" text-anchor="start" fill="#243447" font-weight="700">DKRZ: monthly request outcomes · 2024</text>
+<text x="64.0" y="99.0" font-size="14" text-anchor="start" fill="#627386" font-weight="400">1,228,930 successful requests · 64,284 failures</text>
+<line x1="126" y1="465.0" x2="1124" y2="465.0" stroke="#e7edf3"/>
+<text x="118.0" y="470.0" font-size="11" text-anchor="end" fill="#627386" font-weight="400">0k</text>
+<line x1="126" y1="382.5" x2="1124" y2="382.5" stroke="#e7edf3"/>
+<text x="118.0" y="387.5" font-size="11" text-anchor="end" fill="#627386" font-weight="400">53k</text>
+<line x1="126" y1="300.0" x2="1124" y2="300.0" stroke="#e7edf3"/>
+<text x="118.0" y="305.0" font-size="11" text-anchor="end" fill="#627386" font-weight="400">107k</text>
+<line x1="126" y1="217.5" x2="1124" y2="217.5" stroke="#e7edf3"/>
+<text x="118.0" y="222.5" font-size="11" text-anchor="end" fill="#627386" font-weight="400">160k</text>
+<line x1="126" y1="135.0" x2="1124" y2="135.0" stroke="#e7edf3"/>
+<text x="118.0" y="140.0" font-size="11" text-anchor="end" fill="#627386" font-weight="400">214k</text>
+<text x="167.6" y="487.0" font-size="11" text-anchor="middle" fill="#627386" font-weight="400">Jan</text>
+<text x="250.8" y="487.0" font-size="11" text-anchor="middle" fill="#627386" font-weight="400">Feb</text>
+<text x="333.9" y="487.0" font-size="11" text-anchor="middle" fill="#627386" font-weight="400">Mar</text>
+<text x="417.1" y="487.0" font-size="11" text-anchor="middle" fill="#627386" font-weight="400">Apr</text>
+<text x="500.2" y="487.0" font-size="11" text-anchor="middle" fill="#627386" font-weight="400">May</text>
+<text x="583.4" y="487.0" font-size="11" text-anchor="middle" fill="#627386" font-weight="400">Jun</text>
+<text x="666.6" y="487.0" font-size="11" text-anchor="middle" fill="#627386" font-weight="400">Jul</text>
+<text x="749.8" y="487.0" font-size="11" text-anchor="middle" fill="#627386" font-weight="400">Aug</text>
+<text x="832.9" y="487.0" font-size="11" text-anchor="middle" fill="#627386" font-weight="400">Sep</text>
+<text x="916.1" y="487.0" font-size="11" text-anchor="middle" fill="#627386" font-weight="400">Oct</text>
+<text x="999.2" y="487.0" font-size="11" text-anchor="middle" fill="#627386" font-weight="400">Nov</text>
+<text x="1082.4" y="487.0" font-size="11" text-anchor="middle" fill="#627386" font-weight="400">Dec</text>
+<rect x="143.5" y="333.6" width="48.2" height="131.4" fill="#2E8B57"/>
+<rect x="143.5" y="332.6" width="48.2" height="1.0" fill="#D64545"/>
+<rect x="226.6" y="311.2" width="48.2" height="153.8" fill="#2E8B57"/>
+<rect x="226.6" y="310.0" width="48.2" height="1.1" fill="#D64545"/>
+<rect x="309.8" y="342.7" width="48.2" height="122.3" fill="#2E8B57"/>
+<rect x="309.8" y="338.3" width="48.2" height="4.3" fill="#D64545"/>
+<rect x="393.0" y="246.3" width="48.2" height="218.7" fill="#2E8B57"/>
+<rect x="393.0" y="241.4" width="48.2" height="5.0" fill="#D64545"/>
+<rect x="476.1" y="201.7" width="48.2" height="263.3" fill="#2E8B57"/>
+<rect x="476.1" y="196.1" width="48.2" height="5.6" fill="#D64545"/>
+<rect x="559.3" y="285.1" width="48.2" height="179.9" fill="#2E8B57"/>
+<rect x="559.3" y="276.9" width="48.2" height="8.1" fill="#D64545"/>
+<rect x="642.5" y="339.9" width="48.2" height="125.1" fill="#2E8B57"/>
+<rect x="642.5" y="337.2" width="48.2" height="2.7" fill="#D64545"/>
+<rect x="725.6" y="170.1" width="48.2" height="294.9" fill="#2E8B57"/>
+<rect x="725.6" y="165.0" width="48.2" height="5.1" fill="#D64545"/>
+<rect x="808.8" y="413.3" width="48.2" height="51.7" fill="#2E8B57"/>
+<rect x="808.8" y="406.7" width="48.2" height="6.6" fill="#D64545"/>
+<rect x="892.0" y="376.3" width="48.2" height="88.7" fill="#2E8B57"/>
+<rect x="892.0" y="354.9" width="48.2" height="21.4" fill="#D64545"/>
+<rect x="975.1" y="292.1" width="48.2" height="172.9" fill="#2E8B57"/>
+<rect x="975.1" y="265.8" width="48.2" height="26.4" fill="#D64545"/>
+<rect x="1058.3" y="370.8" width="48.2" height="94.2" fill="#2E8B57"/>
+<rect x="1058.3" y="358.9" width="48.2" height="11.9" fill="#D64545"/>
+<rect x="820" y="61" width="18" height="12" fill="#2E8B57"/>
+<text x="846.0" y="72.0" font-size="13" text-anchor="start" fill="#4d5966" font-weight="400">Successful</text>
+<rect x="980" y="61" width="18" height="12" fill="#D64545"/>
+<text x="1006.0" y="72.0" font-size="13" text-anchor="start" fill="#4d5966" font-weight="400">Failures</text>
+</svg>
