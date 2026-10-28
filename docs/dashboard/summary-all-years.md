@@ -13,7 +13,7 @@ For the latest cached health checks, see [Service status](../status.md).
 | [2023](summary-2023.md) | January–December | 738,432 | 81.97 TB |
 | [2024](summary-2024.md) | January–December | 1,536,287 | 55.32 TB |
 | [2025](summary-2025.md) | January–December | 1,523,415 | 103.30 TB |
-| [2026](summary-2026.md) | January–June (year to date) | 970,973 | 55.19 TB |
+| [2026](summary-2026.md) | January–September (year to date) | 1,743,361 | 89.45 TB |
 
 ROOCS is designed to subset large datasets before delivery. Transferred volume
 is therefore not a metric to maximize: for equivalent scientific requests,
@@ -37,5 +37,5 @@ network and storage costs.
 The 2021 series starts in March, and its transfer total reflects the values
 recorded in the archived monthly exports; those exports are known to be
 incomplete. The 2026 figure currently covers January through
-June and will grow as later reports are added.
+September and will grow as later reports are added.
 See the individual annual pages for source-specific notes.
