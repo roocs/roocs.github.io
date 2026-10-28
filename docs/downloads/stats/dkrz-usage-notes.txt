@@ -1,0 +1,46 @@
+DKRZ monthly and daily usage statistics
+
+Files: dkrz-monthly.csv and dkrz-daily.csv
+
+Format: UTF-8, semicolon delimiter, decimal point, six columns:
+date;country;requests;downloads;downloads_size;visits
+
+Both files start in January 2025. Each monthly row represents a calendar month;
+its date is the first day of that month. Each daily row represents a calendar
+day in UTC. DKRZ only; IPSL and CEDA are excluded. Both files are refreshed by
+scripts/aggregate_dashboard_year.py --all-years. Their first and last rows
+identify the current coverage. No extrapolation is applied. Earlier periods
+remain available in the annual reports and their source CSVs.
+
+Country GB is the agreed attribution for CDS gateway traffic, matching the
+previous UK convention. It is not the country of each underlying CDS user.
+Visits are empty because distinct users cannot be determined from these
+aggregated dashboards. Requests, downloads, and concurrency are not visits.
+
+Monthly requests match dkrz_requests in roocs-<year>-monthly.csv and the annual
+reports. Daily requests sum the success and failed series in the DKRZ
+"Activity - Requests per day" chart. Both include successful and failed jobs.
+Downloads are the sum of the DKRZ "Downloads per day" request_type series,
+filtered to each reporting month. These are recorded fetch counts, not
+distinct output filenames. Download counts need not equal request counts.
+Monthly downloads_size matches dkrz_subsetted_data_gb in those annual-report
+CSVs. Daily downloads_size uses the DKRZ "Data transfer per day (in GB)" chart.
+Both use 1 GB = 1024 MB, consistent with the previous project exports, and
+two decimal places. Monthly source sizes are independently rounded to 0.01 GB,
+so summing daily sizes can differ from monthly sizes by a few MB.
+
+Known source limitations:
+- Some charts omit individual days. All calendar dates in each reporting month
+  are included in the daily file, but missing metrics are empty rather than zero.
+  A metric is only zero when the source chart explicitly records zero.
+  Different metrics may have different daily coverage. Monthly totals reflect
+  the available records and can therefore be incomplete.
+- Daily count totals reconcile to the monthly counts for the current exports;
+  this does not establish that the original source logs cover every day.
+- Monthly exports are used throughout, as in the annual reports. Quarterly
+  exports may differ from the sum of the monthly exports.
+
+Sources in this repository:
+- docs/downloads/stats/roocs-<year>-monthly.csv (2025 onward)
+- docs/dashboard/summary-<year>.md (2025 onward)
+- docs/downloads/dashboard/<year>/*dkrz*.html (monthly exports)

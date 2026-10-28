@@ -32,6 +32,39 @@ network and storage costs.
 
 [Download this chart as SVG](../downloads/stats/roocs-all-years-subsetted-data.svg){: download }
 
+## Downloads
+
+[Download monthly DKRZ usage statistics (CSV)](../downloads/stats/dkrz-monthly.csv){: download }
+
+[Download daily DKRZ usage statistics (CSV)](../downloads/stats/dkrz-daily.csv){: download }
+
+These continuously updated files contain one row per month or calendar day for
+**DKRZ only**, currently covering **2025-01 through 2026-09**. Both start
+in January 2025. Each frequency has a single CSV spanning all reporting years;
+the download addresses stay the same as new months are added. IPSL and CEDA are excluded;
+an IPSL export may be added separately in future.
+
+Both CSVs use semicolons and the following columns:
+
+| Column | Meaning |
+| --- | --- |
+| `date` | First day of the reporting month, or the reporting day (UTC) in the daily file, in `YYYY-MM-DD` format. |
+| `country` | `GB`, the agreed attribution for CDS gateway traffic; this does not identify the countries of individual CDS users. |
+| `requests` | WPS Execute processing requests, including successful and failed jobs. |
+| `downloads` | Recorded result-file fetches; repeated fetches are counted separately. |
+| `downloads_size` | Recorded transfer volume in MB, using the previous exports' conversion of 1 GB = 1024 MB. Source totals are rounded. |
+| `visits` | Distinct users during the reporting period; empty because the dashboards do not provide this information. |
+
+Missing measurements are empty, rather than zero. Some source exports omit
+individual days; those dates remain in the daily file with the missing metrics
+left empty. Monthly totals sum the available records and may be incomplete.
+Daily transfer values come from the daily chart; monthly transfer totals are
+rounded independently, so small rounding differences are expected when summing
+daily sizes. The latest year contains only the available reporting months,
+without extrapolation. Earlier years remain available in the annual reports.
+
+[Download source and coverage notes](../downloads/stats/dkrz-usage-notes.txt){: download }
+
 ## Comparability
 
 The 2021 series starts in March, and its transfer total reflects the values
