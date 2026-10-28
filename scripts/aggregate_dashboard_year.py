@@ -553,17 +553,29 @@ implied by the published Q3 IPSL total of 2,340 GB. The unusually high peaks of
 monthly exports.
 """
     elif year == 2026:
-        failure_explanation = """Of the 33,915 failed requests, 27,737 (81.8%) were classified as wrong
+        failure_explanation = """During January–June, of the 33,915 failed requests, 27,737 (81.8%) were classified as wrong
 requests. These are mostly caused by users accessing the services directly
 through the CDS API rather than through the CDS portal. Without the CDS
 catalogue interface to guide and validate available parameters, users commonly
 rely on trial and error to discover valid request combinations.
 
-The remaining 6,178 failures (18.2%, or 0.64% of all requests) were classified
+The remaining 6,178 H1 failures (18.2%, or 0.64% of H1 requests) were classified
 as internal errors. These include temporary infrastructure problems, such as
 full temporary disks or unavailable Lustre storage, as well as genuine
 processing defects discovered during operation, including calendar-handling
 issues."""
+        if len(rows) >= 9:
+            failure_explanation += """
+
+For July–September, the [Q3 overview](dashboard-2026.md#q3-july-september-2026)
+classifies 39,618 failures as wrong requests and 19,382 as internal errors.
+These classifications describe the quarterly export's 59,000 failures; the
+monthly site exports record 58,719 failures for the same period. The quarterly
+breakdown is therefore reported separately from the monthly totals used above.
+
+Internal failures during the summer also resulted from the activation of Slurm
+memory and runtime limits. These issues have now mostly been resolved by
+running large jobs in batches."""
         source_note = f"""
 Reporting note: 2026 is ongoing. This summary contains the complete monthly
 exports currently available for January through {end_month}. Totals are derived
@@ -573,7 +585,16 @@ the sum of the monthly site exports is 970,973 requests and 55.19 TB. This page
 uses the monthly values so its totals remain consistent with the charts and CSV.
 The H1 overview's concurrency of 33 comes from the combined export; following
 the method used on these annual pages, the chart instead uses the higher DKRZ or
-IPSL peak in each month, producing a reporting-period peak of 21.
+IPSL peak in each month, producing an H1 peak of 21.
+"""
+        if len(rows) >= 9:
+            q3 = _totals(rows[6:9])
+            source_note += f"""
+For Q3, the existing overview reports 772,669 requests and 14.02 TB, compared
+with {q3.requests:,} requests and {q3.subsetted_data_gb / 1000:.2f} TB from the monthly site exports.
+Its combined concurrency peak is 33, while the monthly site exports peak at
+{q3.peak_concurrency} (DKRZ in August). The September combined ALL export is missing;
+both site exports are available and supply September's values in this summary.
 """
     path.write_text(f"""# {heading}
 
