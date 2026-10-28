@@ -1,0 +1,45 @@
+DKRZ monthly usage statistics
+
+File: dkrz-monthly.csv
+
+Format: UTF-8, semicolon delimiter, decimal point, six columns:
+date;country;requests;downloads;downloads_size;visits
+
+Each row represents a calendar month. The date is the month-start label, not
+the date of an individual request. DKRZ only; IPSL and CEDA are excluded.
+The file is refreshed by scripts/aggregate_dashboard_year.py --all-years.
+Its first and last rows identify the current coverage. No extrapolation is applied.
+2021 request reporting starts in March.
+
+Country GB is the agreed attribution for CDS gateway traffic, matching the
+previous UK convention. It is not the country of each underlying CDS user.
+Visits are empty because distinct users cannot be determined from these
+aggregated dashboards. Requests, downloads, and concurrency are not visits.
+
+Requests are dkrz_requests in roocs-<year>-monthly.csv, matching
+the annual reports. They include successful and failed processing requests.
+Downloads are the sum of the DKRZ "Downloads per day" request_type series,
+filtered to each reporting month. These are recorded fetch counts, not
+distinct output filenames. Download counts need not equal request counts.
+downloads_size uses dkrz_subsetted_data_gb in those same annual-report CSVs,
+converted with 1 GB = 1024 MB, consistent with the previous project exports.
+Source size totals are rounded, so the exported sizes are approximate.
+
+Known source limitations:
+- 2021: DKRZ transfer totals only cover July-December. The annual DKRZ
+  download series has no observations for March-June; monthly DKRZ download
+  exports are available for July-December. Downloads and downloads_size are
+  therefore empty for March-June, rather than reporting unknown values as zero.
+- May 2024: Downloads combine May 1-27 from the partial DKRZ export and
+  May 30-31 from the regular export. These dates do not overlap. May 28-29
+  are missing, so the May 2024 download count is a recorded lower bound.
+  Size follows the annual report's 3,328.50 GB May estimate from the partial
+  export; the regular export contains only the final 5.60 GB.
+- 2026: Monthly exports are used throughout, as in the annual report.
+  Quarterly exports differ from the sum of the monthly exports.
+
+Sources in this repository:
+- docs/downloads/stats/roocs-2021-monthly.csv through roocs-2026-monthly.csv
+- docs/dashboard/summary-2021.md through summary-2026.md
+- docs/downloads/dashboard/<year>/*dkrz*.html (monthly exports)
+- docs/downloads/dashboard/2024/2024-05-dashboard_dkrz_partial.html

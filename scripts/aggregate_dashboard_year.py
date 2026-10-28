@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import base64
 import csv
+import gzip
 import html
 import json
 import math
@@ -19,6 +20,7 @@ import re
 import struct
 from dataclasses import dataclass
 from datetime import UTC, datetime
+from decimal import Decimal
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -748,6 +750,71 @@ def write_yearly_bar_svg(path: Path, title: str, subtitle: str, labels: list[str
     path.write_text("\n".join(parts), encoding="utf-8")
 
 
+def monthly_download_count(path: Path, year: int, month: int) -> int | None:
+    """Read fetch counts from either archived or current Bokeh exports."""
+    series = _chart_series(path, "Downloads per day")
+
+    def decode(value: object) -> list[float]:
+        if not isinstance(value, dict) or value.get("type") != "ndarray":
+            return _decode_values(value)
+        raw = base64.b64decode(value["array"]["data"])
+        if raw[:2] == b"\x1f\x8b":
+            raw = gzip.decompress(raw)
+        order = "<" if value.get("order", "little") == "little" else ">"
+        return list(struct.unpack(f"{order}{DTYPES[value['dtype']] * int(value['shape'][0])}", raw))
+
+    timestamps = decode(series.get("datetime", series.get("time")))
+    counts = decode(series["request_type"])
+    if len(timestamps) != len(counts):
+        raise ValueError(f"Mismatched download timestamps and counts in {path}")
+    selected = [
+        count for timestamp, count in zip(timestamps, counts)
+        if (date := datetime.fromtimestamp(timestamp / 1000, UTC)).year == year
+        and date.month == month
+    ]
+    if not selected:
+        return None
+    if any(not math.isfinite(count) or count < 0 or int(count) != count for count in selected):
+        raise ValueError(f"Invalid download counts in {path}")
+    return int(sum(selected))
+
+
+def write_monthly_usage_csv(
+    path: Path, annual: list, dashboard_dir: Path, site: str = "dkrz",
+) -> None:
+    """Export the available monthly site metrics with the reporting schema.
+
+    GB is the agreed CDS gateway attribution, not end-user geolocation.
+    Unknown users and missing measurements remain blank.
+    """
+    rows = []
+    for year, months in annual:
+        for row in months:
+            month_id = str(row["month"])
+            if month_id < "2021-03" or site not in row:
+                continue
+            month = int(month_id[-2:])
+            metrics = row[site]
+            downloads, size = None, None
+            if not (site == "dkrz" and year == 2021 and month < 7):
+                source = monthly_dashboard_path(dashboard_dir, year, month, site)
+                downloads = monthly_download_count(source, year, month)
+                if site == "dkrz" and (year, month) == (2024, 5):
+                    # May 1-27 and May 30-31 are disjoint. May 28-29 are absent.
+                    partial = source.with_name("2024-05-dashboard_dkrz_partial.html")
+                    early_downloads = monthly_download_count(partial, year, month)
+                    if downloads is None or early_downloads is None:
+                        raise ValueError("Both May 2024 DKRZ download exports are required")
+                    downloads += early_downloads
+                # Match the annual reports' source precision and earlier exports.
+                size = f"{Decimal(f'{metrics.subsetted_data_gb:.2f}') * 1024:.2f}"
+            rows.append([f"{month_id}-01", "GB", metrics.requests, downloads, size, None])
+    with path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.writer(handle, delimiter=";", lineterminator="\n")
+        writer.writerow(["date", "country", "requests", "downloads", "downloads_size", "visits"])
+        writer.writerows(rows)
+
+
 def write_overall_report(dashboard_dir: Path, output_dir: Path, page_dir: Path) -> list[Path]:
     years = sorted(
         int(path.name)
@@ -755,6 +822,12 @@ def write_overall_report(dashboard_dir: Path, output_dir: Path, page_dir: Path) 
         if path.is_dir() and path.name.isdigit() and int(path.name) >= 2021
     )
     annual = [(year, read_year(year, dashboard_dir)) for year in years]
+    usage_csv = output_dir / "dkrz-monthly.csv"
+    write_monthly_usage_csv(usage_csv, annual, dashboard_dir)
+    usage_link = Path(os.path.relpath(usage_csv, page_dir)).as_posix()
+    usage_notes_link = Path(os.path.relpath(output_dir / "dkrz-monthly-notes.txt", page_dir)).as_posix()
+    usage_start = next(str(row["month"]) for _, rows in annual for row in rows if str(row["month"]) >= "2021-03")
+    usage_end = str(annual[-1][1][-1]["month"])
     totals = [(year, _totals(rows), len(rows)) for year, rows in annual]
     request_chart = output_dir / "roocs-all-years-requests.svg"
     data_chart = output_dir / "roocs-all-years-subsetted-data.svg"
@@ -822,6 +895,33 @@ network and storage costs.
 
 [Download this chart as SVG]({data_link}){{: download }}
 
+## Downloads
+
+[Download monthly DKRZ usage statistics (CSV)]({usage_link}){{: download }}
+
+This continuously updated file contains one row per month for **DKRZ only**,
+currently covering **{usage_start} through {usage_end}**. The download address stays
+the same when new reporting months are added. IPSL and CEDA are excluded;
+an IPSL export may be added separately in future.
+
+The CSV uses semicolons and the following columns:
+
+| Column | Meaning |
+| --- | --- |
+| `date` | First day of the reporting month, in `YYYY-MM-DD` format. |
+| `country` | `GB`, the agreed attribution for CDS gateway traffic; this does not identify the countries of individual CDS users. |
+| `requests` | WPS Execute processing requests, including successful and failed jobs. |
+| `downloads` | Recorded result-file fetches; repeated fetches are counted separately. |
+| `downloads_size` | Recorded transfer volume in MB, using the previous exports' conversion of 1 GB = 1024 MB. Source totals are rounded. |
+| `visits` | Distinct users during the month; empty because the dashboards do not provide this information. |
+
+Missing measurements are empty, rather than zero. Download counts and sizes
+are unavailable for March–June 2021. The May 2024 download count is incomplete
+because May 28–29 are missing from the source exports. The latest year contains
+only the available months, without extrapolation.
+
+[Download source and coverage notes]({usage_notes_link}){{: download }}
+
 ## Comparability
 
 The 2021 series starts in March, and its transfer total reflects the values
@@ -830,7 +930,7 @@ incomplete. The 2026 figure currently covers January through
 {MONTH_FULL_NAMES[len(annual[-1][1]) - 1]} and will grow as later reports are added.
 See the individual annual pages for source-specific notes.
 """, encoding="utf-8")
-    return [page, request_chart, data_chart]
+    return [page, request_chart, data_chart, usage_csv]
 
 
 def main() -> None:

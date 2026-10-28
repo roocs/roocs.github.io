@@ -47,6 +47,22 @@ Notes:
 
 ## Generate Yearly Dashboard Report
 
+Refresh the all-years dashboard and its continuously updated, DKRZ-only monthly
+usage download:
+
+```bash
+python scripts/aggregate_dashboard_year.py --all-years
+```
+
+This regenerates the Downloads section in `docs/dashboard/summary-all-years.md`
+and `docs/downloads/stats/dkrz-monthly.csv` from the available dashboard exports.
+The CSV has a stable filename, semicolon separators, and the columns `date`,
+`country`, `requests`, `downloads`, `downloads_size`, and `visits`. Country is
+attributed to the CDS gateway (`GB`); visits and unavailable measurements are
+empty. Coverage limitations are explained on the dashboard and in
+`docs/downloads/stats/dkrz-monthly-notes.txt`. Only DKRZ is published currently;
+any future IPSL export should be a separate download with its own source notes.
+
 Generate `docs/dashboard/dashboard-<year>.md` from the current quarterly stats files:
 
 ```bash

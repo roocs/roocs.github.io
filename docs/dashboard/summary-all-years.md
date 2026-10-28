@@ -32,6 +32,33 @@ network and storage costs.
 
 [Download this chart as SVG](../downloads/stats/roocs-all-years-subsetted-data.svg){: download }
 
+## Downloads
+
+[Download monthly DKRZ usage statistics (CSV)](../downloads/stats/dkrz-monthly.csv){: download }
+
+This continuously updated file contains one row per month for **DKRZ only**,
+currently covering **2021-03 through 2026-09**. The download address stays
+the same when new reporting months are added. IPSL and CEDA are excluded;
+an IPSL export may be added separately in future.
+
+The CSV uses semicolons and the following columns:
+
+| Column | Meaning |
+| --- | --- |
+| `date` | First day of the reporting month, in `YYYY-MM-DD` format. |
+| `country` | `GB`, the agreed attribution for CDS gateway traffic; this does not identify the countries of individual CDS users. |
+| `requests` | WPS Execute processing requests, including successful and failed jobs. |
+| `downloads` | Recorded result-file fetches; repeated fetches are counted separately. |
+| `downloads_size` | Recorded transfer volume in MB, using the previous exports' conversion of 1 GB = 1024 MB. Source totals are rounded. |
+| `visits` | Distinct users during the month; empty because the dashboards do not provide this information. |
+
+Missing measurements are empty, rather than zero. Download counts and sizes
+are unavailable for March–June 2021. The May 2024 download count is incomplete
+because May 28–29 are missing from the source exports. The latest year contains
+only the available months, without extrapolation.
+
+[Download source and coverage notes](../downloads/stats/dkrz-monthly-notes.txt){: download }
+
 ## Comparability
 
 The 2021 series starts in March, and its transfer total reflects the values
