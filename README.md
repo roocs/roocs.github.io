@@ -58,9 +58,9 @@ This regenerates the Downloads section in `docs/dashboard/summary-all-years.md`
 and `docs/downloads/stats/dkrz-monthly.csv` and `dkrz-daily.csv` from the available
 dashboard exports. Each frequency has one file spanning all reporting years.
 Both CSVs have stable filenames, semicolon separators, and the columns `date`,
-`country`, `requests`, `downloads`, `downloads_size`, and `visits`. Country is
-attributed to the CDS gateway (`GB`); visits and unavailable measurements are
-empty. Coverage limitations are explained on the dashboard and in
+`country`, `requests`, `downloads`, `downloads_size`, and `visits`. All requests
+come from the Copernicus CDS, located in the UK (`GB`). Visits and unavailable
+measurements are empty. Coverage limitations are explained on the dashboard and in
 `docs/downloads/stats/dkrz-usage-notes.txt`. Missing daily observations remain
 blank; monthly and daily sizes can differ slightly because the source totals
 are rounded independently. Only DKRZ is published currently;
