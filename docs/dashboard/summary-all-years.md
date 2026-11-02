@@ -13,7 +13,7 @@ For the latest cached health checks, see [Service status](../status.md).
 | [2023](summary-2023.md) | January–December | 738,432 | 81.97 TB |
 | [2024](summary-2024.md) | January–December | 1,536,287 | 55.32 TB |
 | [2025](summary-2025.md) | January–December | 1,523,415 | 103.30 TB |
-| [2026](summary-2026.md) | January–September (year to date) | 1,743,361 | 89.45 TB |
+| [2026](summary-2026.md) | January–October (year to date) | 1,938,979 | 100.77 TB |
 
 ROOCS is designed to subset large datasets before delivery. Transferred volume
 is therefore not a metric to maximize: for equivalent scientific requests,
@@ -39,7 +39,7 @@ network and storage costs.
 [Download daily DKRZ usage statistics (CSV)](../downloads/stats/dkrz-daily.csv){: download }
 
 These continuously updated files contain one row per month or calendar day for
-**DKRZ only**, currently covering **2025-01 through 2026-09**. Both start
+**DKRZ only**, currently covering **2025-01 through 2026-10**. Both start
 in January 2025. Each frequency has a single CSV spanning all reporting years;
 the download addresses stay the same as new months are added. IPSL and CEDA are excluded;
 an IPSL export may be added separately in future.
@@ -70,5 +70,5 @@ without extrapolation. Earlier years remain available in the annual reports.
 The 2021 series starts in March, and its transfer total reflects the values
 recorded in the archived monthly exports; those exports are known to be
 incomplete. The 2026 figure currently covers January through
-September and will grow as later reports are added.
+October and will grow as later reports are added.
 See the individual annual pages for source-specific notes.

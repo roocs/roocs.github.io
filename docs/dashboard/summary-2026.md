@@ -1,15 +1,15 @@
 # ROOCS 2026 annual summary to date
 
 This report summarizes monthly usage of the ROOCS subsetting services operated
-by DKRZ and IPSL during January–September 2026. Together, the services processed
-**1,743,361 requests**, of which **1,650,727 were successful**,
-and delivered **89.45 TB** of subsetted data.
+by DKRZ and IPSL during January–October 2026. Together, the services processed
+**1,938,979 requests**, of which **1,835,252 were successful**,
+and delivered **100.77 TB** of subsetted data.
 
 | Scope | Requests | Successful | Failures | Subsetted data | Peak concurrency |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| All sites, January–September | 1,743,361 | 1,650,727 | 92,634 (5.31%) | 89.45 TB | 40 |
-| DKRZ | 1,108,020 | 1,047,241 | 60,779 (5.49%) | 56.69 TB | 40 |
-| IPSL | 635,341 | 603,486 | 31,855 (5.01%) | 32.76 TB | 29 |
+| All sites, January–October | 1,938,979 | 1,835,252 | 103,727 (5.35%) | 100.77 TB | 40 |
+| DKRZ | 1,252,451 | 1,183,567 | 68,884 (5.50%) | 64.80 TB | 40 |
+| IPSL | 686,528 | 651,685 | 34,843 (5.08%) | 35.97 TB | 29 |
 
 ## Monthly request outcomes
 
@@ -84,7 +84,7 @@ minus failed requests. Peak concurrency is not additive: the combined monthly
 series uses the higher site value, and the reporting-period value is its maximum.
 
 Reporting note: 2026 is ongoing. This summary contains the complete monthly
-exports currently available for January through September. Totals are derived
+exports currently available for January through October. Totals are derived
 from those monthly DKRZ and IPSL exports and will increase as later months are
 added. The existing H1 overview reports 970,976 requests and 53.90 TB, whereas
 the sum of the monthly site exports is 970,973 requests and 55.19 TB. This page
