@@ -12,8 +12,7 @@ scripts/aggregate_dashboard_year.py --all-years. Their first and last rows
 identify the current coverage. No extrapolation is applied. Earlier periods
 remain available in the annual reports and their source CSVs.
 
-Country GB is the agreed attribution for CDS gateway traffic, matching the
-previous UK convention. It is not the country of each underlying CDS user.
+All requests come from the Copernicus CDS, located in the UK (country code GB).
 Visits are empty because distinct users cannot be determined from these
 aggregated dashboards. Requests, downloads, and concurrency are not visits.
 

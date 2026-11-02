@@ -49,7 +49,7 @@ Both CSVs use semicolons and the following columns:
 | Column | Meaning |
 | --- | --- |
 | `date` | First day of the reporting month, or the reporting day (UTC) in the daily file, in `YYYY-MM-DD` format. |
-| `country` | `GB`, the agreed attribution for CDS gateway traffic; this does not identify the countries of individual CDS users. |
+| `country` | `GB`: all requests come from the Copernicus CDS, located in the UK. |
 | `requests` | WPS Execute processing requests, including successful and failed jobs. |
 | `downloads` | Recorded result-file fetches; repeated fetches are counted separately. |
 | `downloads_size` | Recorded transfer volume in MB, using the previous exports' conversion of 1 GB = 1024 MB. Source totals are rounded. |
