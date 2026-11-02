@@ -128,6 +128,7 @@ for September.
 
 | Month | ALL | IPSL | DKRZ |
 |------------------|----------------|----------------|----------------|
+| **October 2026** | [View](/downloads/dashboard/2026/dashboard-2026-10-all.html) | [View](/downloads/dashboard/2026/dashboard-2026-10-ipsl.html) | [View](/downloads/dashboard/2026/dashboard-2026-10-dkrz.html) |
 | **September 2026** | - | [View](/downloads/dashboard/2026/dashboard-2026-09-ipsl.html) | [View](/downloads/dashboard/2026/dashboard-2026-09-dkrz.html) |
 | **August 2026** | [View](/downloads/dashboard/2026/dashboard-2026-08-all.html) | [View](/downloads/dashboard/2026/dashboard-2026-08-ipsl.html) | [View](/downloads/dashboard/2026/dashboard-2026-08-dkrz.html) |
 | **July 2026** | [View](/downloads/dashboard/2026/dashboard-2026-07-all.html) | [View](/downloads/dashboard/2026/dashboard-2026-07-ipsl.html) | [View](/downloads/dashboard/2026/dashboard-2026-07-dkrz.html) |
