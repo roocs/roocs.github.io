@@ -8,6 +8,7 @@ checks.
 | --- | --- |
 | DKRZ — CDS production (rook8) | [View CDS production status](http://rook8.cloud.dkrz.de/status) |
 | DKRZ — rook.dkrz.de | [View service status](http://rook.dkrz.de/status) |
+| IPSL — copernicus-wps.ipsl.fr | [View IPSL service status](http://copernicus-wps.ipsl.fr/status) |
 
 Each report shows an overall state and individual checks with **green** (OK),
 **yellow** (warning), or **red** (failure) indicators. Read the check messages
