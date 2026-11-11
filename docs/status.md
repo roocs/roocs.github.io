@@ -18,5 +18,7 @@ Reports are cached by nginx. Check the **Measured at** timestamp in the report
 to see when the checks ran; refreshing the page may return the same cached
 result.
 
+See [DKRZ GeoHealthCheck](https://geohealthcheck.dkrz.de/) for service monitoring.
+
 For historical request counts, outcomes, and data volumes, see the
 [usage Dashboard](dashboard/summary-all-years.md).
